@@ -39,8 +39,6 @@ public class DataBase {
             // TODO : Properly manage exception.
         }
 
-        // TODO : Run Construction script.
-
         runScript(getFileFromRessources("CreationTables.sql"));
     }
 
