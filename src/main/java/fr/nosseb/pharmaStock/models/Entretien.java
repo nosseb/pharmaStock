@@ -3,32 +3,32 @@ package fr.nosseb.pharmaStock.models;
 import java.util.GregorianCalendar;
 
 /**
- * 
+ *
  * @author Loan Veyer
  * @date 20/03/2019
  *
  */
 
 public class Entretien {
-	private String nom;
-	private String description;
-	private GregorianCalendar date;
-	
-	public Entretien(String nom, String description, GregorianCalendar date) {
-		this.nom = nom;
-		this.description = description;
-		this.date = date;
-	}
+    private String nom;
+    private String description;
+    private GregorianCalendar date;
 
-	public String getNom() {
-		return nom;
-	}
+    public Entretien(String nom, String description, GregorianCalendar date) {
+        this.nom = nom;
+        this.description = description;
+        this.date = date;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getNom() {
+        return nom;
+    }
 
-	public GregorianCalendar getDate() {
-		return date;
-	}
+    public String getDescription() {
+        return description;
+    }
+
+    public GregorianCalendar getDate() {
+        return date;
+    }
 }

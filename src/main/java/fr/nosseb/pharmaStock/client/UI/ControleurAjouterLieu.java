@@ -9,33 +9,33 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * 
+ *
  * @author Loan Veyer
  * @date 03/04/2019
  *
  */
 
 public class ControleurAjouterLieu implements Initializable {
-	@FXML
-	private TextField nom;
-	
-	@FXML
-	private TextField description;
-	
-	@FXML
-	private Button ajouter;
-	
-	@Override
+    @FXML
+    private TextField nom;
+
+    @FXML
+    private TextField description;
+
+    @FXML
+    private Button ajouter;
+
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
-		
-	}
-	
-	@FXML
-	private void ajouter() {
-		if (nom.getText() != " " && description.getText() != " ") {
-			Lieu nouveauLieu = new Lieu(nom.getText(), description.getText());
-			
-			ControleurLieu.ajouterLieu(nouveauLieu);
-		}
-	}
+
+    }
+
+    @FXML
+    private void ajouter() {
+        if (nom.getText() != " " && description.getText() != " ") {
+            Lieu nouveauLieu = new Lieu(nom.getText(), description.getText());
+
+            ControleurLieu.ajouterLieu(nouveauLieu);
+        }
+    }
 }

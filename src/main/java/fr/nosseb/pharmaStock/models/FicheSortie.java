@@ -9,31 +9,31 @@ import java.util.GregorianCalendar;
  */
 
 public class FicheSortie {
-	private String nom;
-	private String contenu;
-	
-	private GregorianCalendar dateCreation;
-	
-	
-	public FicheSortie(String nom, Calendar dateCreation) {
-		this.nom = nom;
-		this.dateCreation = (GregorianCalendar) dateCreation;
-	}
+    private String nom;
+    private String contenu;
 
-	public String getNom() {
-		return this.nom;
-	}
-
-	public String getContenu() {
-		return this.contenu;
-	}
+    private GregorianCalendar dateCreation;
 
 
-	public GregorianCalendar getDateCreation() {
-		return this.dateCreation;
-	}
+    public FicheSortie(String nom, Calendar dateCreation) {
+        this.nom = nom;
+        this.dateCreation = (GregorianCalendar) dateCreation;
+    }
 
-	public void setContenu(String contenu) {
-		this.contenu = contenu;
-	}
+    public String getNom() {
+        return this.nom;
+    }
+
+    public String getContenu() {
+        return this.contenu;
+    }
+
+
+    public GregorianCalendar getDateCreation() {
+        return this.dateCreation;
+    }
+
+    public void setContenu(String contenu) {
+        this.contenu = contenu;
+    }
 }

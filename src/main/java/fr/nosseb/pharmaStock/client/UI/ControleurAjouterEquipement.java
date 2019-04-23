@@ -13,40 +13,40 @@ import java.util.ResourceBundle;
 
 /**
  * Controleur de la page qui affiche les equipements
- * 
+ *
  * @author Loan Veyer
  * @date 26/03/2019
  *
  */
 
 public class ControleurAjouterEquipement implements Initializable {
-	@FXML
-	private TextField nom;
-	
-	@FXML
-	private TextField description;
-	
-	@FXML
-	private TextField numeroSerie;
-	
-	@FXML
-	private ChoiceBox<Lieu> lieu;
-	
-	@FXML
-	private Button ajouter;
-	
-	@Override
+    @FXML
+    private TextField nom;
+
+    @FXML
+    private TextField description;
+
+    @FXML
+    private TextField numeroSerie;
+
+    @FXML
+    private ChoiceBox<Lieu> lieu;
+
+    @FXML
+    private Button ajouter;
+
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
-	}
-	
-	@FXML
-	private void ajouter() {
-		String nouveauNom = nom.getText();
-		String nouvelleDescription = description.getText();
-		String nouveauNumeroSerie = numeroSerie.getText();
-		
-		Equipement nouvelleEquipement = new Equipement(1, nouveauNom, nouvelleDescription, nouveauNumeroSerie, 0, "Lorient");
-		
-		ControleurEquipement.ajouterEquipement(nouvelleEquipement);
-	}
+    }
+
+    @FXML
+    private void ajouter() {
+        String nouveauNom = nom.getText();
+        String nouvelleDescription = description.getText();
+        String nouveauNumeroSerie = numeroSerie.getText();
+
+        Equipement nouvelleEquipement = new Equipement(1, nouveauNom, nouvelleDescription, nouveauNumeroSerie, 0, "Lorient");
+
+        ControleurEquipement.ajouterEquipement(nouvelleEquipement);
+    }
 }

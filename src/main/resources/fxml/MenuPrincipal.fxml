@@ -3,32 +3,32 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.nosseb.pharmaStock.client.UI.ControleurMenuPrincipale">
-   <children>
-      <GridPane prefHeight="400.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints maxHeight="32.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="368.0" minHeight="10.0" prefHeight="368.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="368.0" minHeight="10.0" prefHeight="368.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
-               <children>
-                  <Button fx:id="equipement1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#pressEquipement" text="Equipement" />
-                  <Button fx:id="lieu1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#pressLieu" text="Lieu" />
-                  <Button fx:id="ficheSortie1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#pressFicheSortie" text="Fiche de sortie" />
-                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Fonction4" />
-               </children>
-            </FlowPane>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label text="Label" />
-                  <Label text="Label" />
-               </children>
-            </HBox>
-         </children>
-      </GridPane>
-   </children>
+    <children>
+        <GridPane prefHeight="400.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="32.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="368.0" minHeight="10.0" prefHeight="368.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="368.0" minHeight="10.0" prefHeight="368.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                    <children>
+                        <Button fx:id="equipement1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#pressEquipement" text="Equipement" />
+                        <Button fx:id="lieu1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#pressLieu" text="Lieu" />
+                        <Button fx:id="ficheSortie1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#pressFicheSortie" text="Fiche de sortie" />
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Fonction4" />
+                    </children>
+                </FlowPane>
+                <HBox prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <Label text="Label" />
+                        <Label text="Label" />
+                    </children>
+                </HBox>
+            </children>
+        </GridPane>
+    </children>
 </AnchorPane>
