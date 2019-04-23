@@ -33,6 +33,9 @@ public class App {
         System.out.println("File : " + (file.isFile() ? "yes" : "no"));
         System.out.println("Directory : " + (file.isDirectory() ? "yes" : "no"));
 
+        System.out.println("Absolute ath : " + file.getAbsolutePath());
+
+
     }
 
 }

@@ -101,7 +101,8 @@ public class DataBase {
      * @param fileName the name of the file
      * @return file File recovered from the .jar archive
      */
-    private File getFileFromRessources (String fileName) {
+    // TODO : set private
+    public File getFileFromRessources (String fileName) {
         ClassLoader classLoader = getClass().getClassLoader();
 
         URL resource = classLoader.getResource(fileName);
@@ -122,7 +123,8 @@ public class DataBase {
      * @param file script to parse
      * @return ArrayList of single lince SQL commands
      */
-    private ArrayList<String> commandParser (File file) {
+    // TODO : set private
+    public ArrayList<String> commandParser (File file) {
 
         ArrayList<String> lines = new ArrayList<>();
         ArrayList<String> cmds = new ArrayList<>();
