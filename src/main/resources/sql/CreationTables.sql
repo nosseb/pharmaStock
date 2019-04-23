@@ -8,7 +8,7 @@ CREATE TABLE lieux (
     description     VARCHAR (512) ,
 
     CONSTRAINT pk_lieux PRIMARY KEY (id_lieu, id_rev)
-);
+)
 
 
 CREATE TABLE hierarchies_lieux (
@@ -21,7 +21,7 @@ CREATE TABLE hierarchies_lieux (
     cf_inf              INT NOT NULL ,
 
     CONSTRAINT pk_hierarchies_lieux PRIMARY KEY (id_hierarchie_lieux, id_rev)
-);
+)
 
 
 CREATE TABLE utilisateurs (
@@ -36,7 +36,7 @@ CREATE TABLE utilisateurs (
     pwd_hash        VARCHAR(512) ,
 
     CONSTRAINT pk_utilisateurs PRIMARY KEY (id_utilisateur, id_rev)
-);
+)
 
 
 CREATE TABLE formulaires (
@@ -52,7 +52,7 @@ CREATE TABLE formulaires (
     date_aprobation TIMESTAMP ,
 
     CONSTRAINT pk_formulaires PRIMARY KEY (id_formulaire, id_rev)
-);
+)
 
 
 CREATE TABLE retraits (
@@ -67,7 +67,7 @@ CREATE TABLE retraits (
     description             VARCHAR(512) ,
 
     CONSTRAINT pk_retraits PRIMARY KEY (id_retrait, id_rev)
-);
+)
 
 
 CREATE TABLE compteurs (
@@ -84,7 +84,7 @@ CREATE TABLE compteurs (
     nom             VARCHAR(64) ,
 
     CONSTRAINT pk_compteurs PRIMARY KEY (id_compteur, id_rev)
-);
+)
 
 
 CREATE TABLE categories (
@@ -97,7 +97,7 @@ CREATE TABLE categories (
     description     VARCHAR(512) ,
 
     CONSTRAINT pk_categories PRIMARY KEY (id_categorie, id_rev)
-);
+)
 
 
 CREATE TABLE factures (
@@ -110,7 +110,7 @@ CREATE TABLE factures (
     description     VARCHAR(512) ,
 
     CONSTRAINT pk_factures PRIMARY KEY (id_facture, id_rev)
-);
+)
 
 
 CREATE TABLE equipements (
@@ -128,7 +128,7 @@ CREATE TABLE equipements (
     numSerie        varchar(64) ,
 
     CONSTRAINT pk_equipements PRIMARY KEY (id_equipement, id_rev)
-);
+)
 
 
 CREATE TABLE entretients (
@@ -145,7 +145,7 @@ CREATE TABLE entretients (
     jour            DATE NOT NULL DEFAULT CURRENT_DATE ,
 
     CONSTRAINT pk_entretients PRIMARY KEY (id_entretient, id_rev)
-);
+)
 
 
 CREATE TABLE futurEntretients (
@@ -161,7 +161,7 @@ CREATE TABLE futurEntretients (
     description         VARCHAR(512) ,
 
     CONSTRAINT pk_futurEntretients PRIMARY KEY (id_futurEntretients, id_rev)
-);
+)
 
 
 CREATE TABLE consomables (
@@ -179,7 +179,7 @@ CREATE TABLE consomables (
     quantite        INT NOT NULL ,
 
     CONSTRAINT pk_consomable PRIMARY KEY (id_consomable, id_rev)
-);
+)
 
 
 CREATE TABLE droits (
@@ -204,7 +204,7 @@ CREATE TABLE droits (
     consomableSupression    BOOLEAN NOT NULL ,
 
     CONSTRAINT pk_droits PRIMARY KEY (id_droits, id_rev)
-);
+)
 
 
 CREATE TABLE utilisateurDroits(
@@ -219,4 +219,4 @@ CREATE TABLE utilisateurDroits(
     nom                     VARCHAR(64),
 
     CONSTRAINT pk_utilisateurDroits PRIMARY KEY (id_utilisateurDroits, id_rev)
-);
+)

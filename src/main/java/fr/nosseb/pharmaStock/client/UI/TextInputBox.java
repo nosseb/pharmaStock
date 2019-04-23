@@ -34,6 +34,8 @@ public class TextInputBox {
         //Clicking will set answer and close window
         okButton.setOnAction(e -> {
             answer = textField.getText();
+            // TODO : Cleanup debug
+            System.out.println("answer : " + answer);
             window.close();
         });
 

@@ -22,12 +22,16 @@ public class Manager {
     private static String db_version, db_path, server_url;
     private static boolean server;
 
+    private static Preferences preferences = null;
+
     public static String getDb_version() {
         return db_version;
     }
 
     public static void setDb_version(String db_version) {
         Manager.db_version = db_version;
+
+        preferences.put(DB_VERSION, db_version);
     }
 
     public static String getDb_path() {
@@ -36,6 +40,8 @@ public class Manager {
 
     public static void setDb_path(String db_path) {
         Manager.db_path = db_path;
+
+        preferences.put(DB_PATH, db_path);
     }
 
     public static String getServer_url() throws IllegalAccessException{
@@ -44,7 +50,10 @@ public class Manager {
     }
 
     public static void setServer_url(String server_url) throws IllegalAccessException{
-        if (isClient) Manager.server_url = server_url;
+        if (isClient) {
+            Manager.server_url = server_url;
+            preferences.put(SERVER_URL, server_url);
+        }
         else throw new IllegalAccessException("No server_url outside of client mode !");
     }
 
@@ -54,24 +63,30 @@ public class Manager {
     }
 
     public static void setServer(boolean server) throws IllegalAccessException{
-        if (isClient) Manager.server = server;
+        if (isClient) {
+            Manager.server = server;
+            preferences.putBoolean(SERVER, server);
+        }
         else throw new IllegalAccessException("No server outside of client mode !");
     }
 
     /**
      * Load Settings
-     * @param app App.class
+     * @param app Launcher.class
      * @param client Are those parameters for client side ?
      * @return true if settings are valid, false otherwise.
      */
     public static boolean loadSettings(Class app, boolean client) {
         isClient = client;
 
-        Preferences preferences;
         preferences = Preferences.userNodeForPackage(app);
 
         db_version = preferences.get(DB_VERSION, "0");
         db_path = preferences.get(DB_PATH, "");
+
+        // TODO : Cleanup debug
+        //System.out.println("DB_version : " + db_version);
+        //System.out.println("DB_path : " + db_path);
 
         if (isClient) {
             server_url = preferences.get(SERVER_URL, "");
@@ -103,7 +118,12 @@ public class Manager {
      * @return true if version is valid, false otherwise.
      */
     public static boolean checkDb_version() {
-        return !(db_version.equals("") || db_version.equals("0"));
+        boolean b = !(db_version.equals("") || db_version.equals("0"));
+
+        // TODO : Cleanup debug
+        //System.out.println("DB_vertion : " + (b ? "Valid" : "Invalid"));
+
+        return b;
     }
 
 
@@ -114,7 +134,11 @@ public class Manager {
     public static boolean checkDb_path() {
         File file = new File(db_path);
 
-        return file.exists() && file.isDirectory();
+        boolean b = file.exists() && file.isDirectory();
+
+        // TODO : Cleanup debug
+        //System.out.println("DB_Path : " + (b ? "Valid" : "invalid") );
+        return b;
     }
 
 

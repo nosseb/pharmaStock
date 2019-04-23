@@ -1,12 +1,12 @@
 package fr.nosseb.pharmaStock.DB;
 
 import java.io.*;
+import java.math.BigDecimal;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Map;
 
 /**
  * @author Robinson Besson
@@ -19,8 +19,9 @@ public class DataBase {
     private static final String DRIVER_URL_SUFIX = ";create=true";
     private static String DRIVER_URL;
 
-    private Connection connection;
+    private static final String driver = "org.apache.derby.jdbc.EmbeddedDriver";
 
+    private static Connection connection;
 
 
     /**
@@ -32,14 +33,23 @@ public class DataBase {
         DRIVER_URL = DRIVER_URL_PREFIX + db_path + DRIVER_URL_SUFIX;
 
         try {
+
+            Class.forName(driver).newInstance();
+
             connection = DriverManager.getConnection(DRIVER_URL);
         } catch (SQLException e) {
             e.printStackTrace();
 
             // TODO : Properly manage exception.
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
 
-        runScript(getFileFromRessources("CreationTables.sql"));
+        runScript(getFileFromRessources("sql/CreationTables.sql"));
     }
 
 
@@ -48,7 +58,7 @@ public class DataBase {
      * Run a multi lines script
      * @param file .SQL script
      */
-    private void runScript(File file) {
+    private static void runScript(File file) {
         ArrayList<String> cmds = new ArrayList<>();
 
         cmds = commandParser(file);
@@ -65,8 +75,10 @@ public class DataBase {
      * Run a single line script
      * @param sql Single line SQL command
      */
-    private void runScript(String sql) {
+    private static void runScript(String sql) {
         try (Statement statement = connection.createStatement()) {
+            // TODO : cleanup debug
+            //System.out.println(sql);
             statement.execute(sql);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -81,16 +93,24 @@ public class DataBase {
      * Connect to an already existing database
      * @param db_path path to the DataBase
      */
-    public void connect(String db_path) {
+    public static void connect(String db_path) {
         // Assemble DB URL.
         DRIVER_URL = DRIVER_URL_PREFIX + db_path;
 
         try {
+            Class.forName(driver).newInstance();
+
             connection = DriverManager.getConnection(DRIVER_URL);
         } catch (SQLException e) {
             e.printStackTrace();
 
             // TODO : Properly manage exception.
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
         }
     }
 
@@ -101,15 +121,13 @@ public class DataBase {
      * @param fileName the name of the file
      * @return file File recovered from the .jar archive
      */
-    // TODO : set private
+    // TODO : cleanup after test : set private
     public File getFileFromRessources (String fileName) {
         ClassLoader classLoader = getClass().getClassLoader();
 
         URL resource = classLoader.getResource(fileName);
-
         if (resource == null) {
-            // Resource does not exist
-            throw new IllegalArgumentException("File not found !");
+            throw new IllegalArgumentException("file is not found!");
         } else {
             return new File(resource.getFile());
         }
@@ -124,7 +142,7 @@ public class DataBase {
      * @return ArrayList of single lince SQL commands
      */
     // TODO : set private
-    public ArrayList<String> commandParser (File file) {
+    public static ArrayList<String> commandParser (File file) {
 
         ArrayList<String> lines = new ArrayList<>();
         ArrayList<String> cmds = new ArrayList<>();
@@ -138,6 +156,7 @@ public class DataBase {
                 ) {
             while (reader.ready()) {
                 String line = reader.readLine();
+                // TODO : Cleanup debug
                 //System.out.println("line in: " + line);
                 lines.add(line);
             }
@@ -172,7 +191,7 @@ public class DataBase {
                         break;
 
                     case ';':
-                        temp.append(';');
+                        //temp.append(';');
                         if (parentheses == 0) {
                             cmds.add(temp.toString());
                             temp = null;
@@ -187,5 +206,30 @@ public class DataBase {
 
 
         return cmds;
+    }
+
+
+    /**
+     *
+     * @param sqlRequest
+     * @return semi-parsed SQL result
+     */
+    public static ResultSet query(String sqlRequest) {
+
+        ResultSet resultSet = null;
+
+        try {
+            Statement stmt = connection.createStatement();
+            //TODO : Cleanup debug
+            //System.out.println(stmt);
+            resultSet = stmt.executeQuery(sqlRequest);
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+        }
+
+        // TODO : Cleanup debug
+        //System.out.println("result : " + resultSet);
+
+        return resultSet;
     }
 }
