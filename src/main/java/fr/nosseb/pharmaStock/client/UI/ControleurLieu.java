@@ -49,6 +49,9 @@ public class ControleurLieu implements Initializable {
 		
 	@FXML
 	private TableColumn<Lieu, String> description;
+
+	@FXML
+	private TableColumn<Lieu, Integer> idLieu;
 		
 	static private ObservableList<Lieu> data;
 	
@@ -59,6 +62,7 @@ public class ControleurLieu implements Initializable {
 			
 		nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
 		description.setCellValueFactory(new PropertyValueFactory<>("description"));
+		idLieu.setCellValueFactory(new PropertyValueFactory<>("idLieu"));
 			
 		data = Lieu.from(Launcher.dataBase);
 			
@@ -129,7 +133,9 @@ public class ControleurLieu implements Initializable {
 	}
 	
 	static public void ajouterLieu(Lieu nouveauLieu) {
+		// TODO : Check if fields are not null
 		data.add(nouveauLieu);
+		nouveauLieu.addTo(Launcher.dataBase);
 	}
 	
 	static public void modifierLieu(Lieu ancienLieu, Lieu lieuModifier) {
@@ -144,6 +150,9 @@ public class ControleurLieu implements Initializable {
 		}
 		
 		data.set(i, lieuModifier);
+
+		lieuModifier.addTo(Launcher.dataBase);
+
 	}
 
 }

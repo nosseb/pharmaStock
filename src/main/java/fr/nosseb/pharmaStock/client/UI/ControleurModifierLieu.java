@@ -38,7 +38,7 @@ public class ControleurModifierLieu implements Initializable {
 	
 	@FXML
 	private void pressModifier() {
-		Lieu nouveauLieu = new Lieu(nom.getText(), description.getText());
+		Lieu nouveauLieu = new Lieu(lieuAncien.getIdLieu(), nom.getText(), description.getText());
 		
 		ControleurLieu.modifierLieu(lieuAncien, nouveauLieu);
 		

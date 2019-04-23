@@ -232,4 +232,15 @@ public class DataBase {
 
         return resultSet;
     }
+
+    public void wirte(String s) {
+        try {
+            Statement stmt = connection.createStatement();
+            //TODO : Cleanup debug
+            //System.out.println(stmt);
+            stmt.execute(s);
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

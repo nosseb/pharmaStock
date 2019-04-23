@@ -3,8 +3,11 @@ package fr.nosseb.pharmaStock.models;
 import fr.nosseb.pharmaStock.DB.DataBase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.apache.derby.impl.sql.catalog.SYSCOLUMNSRowFactory;
 
+import javax.crypto.spec.DESedeKeySpec;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * 
@@ -14,9 +17,29 @@ import java.sql.ResultSet;
  */
 
 public class Lieu extends NomDescription {
-	
+
+	private int idLieu;
+
+	// TODO : check if needed
+	public Integer getIdLieu() {
+		return idLieu;
+	}
+
+	// TODO : check if needed
+	public void setIdLieu(Integer i) {
+		this.idLieu = i;
+	}
+
 	public Lieu(String nom, String description) {
 		super(nom, description);
+
+		this.idLieu = -1;
+	}
+
+	public Lieu(int idLieu, String nom, String description) {
+		super(nom, description);
+
+		this.idLieu = idLieu;
 	}
 
 	public static ObservableList<Lieu> from(DataBase db) {
@@ -35,16 +58,54 @@ public class Lieu extends NomDescription {
 
 		try {
 			while (resultSet.next()) {
+				// TODO : Cleanup debug
+				//System.out.println("Result" + resultSet);
+
 				String nom = resultSet.getString("NOM");
 				String description = resultSet.getString("DESCRIPTION");
+				int id_lieu = resultSet.getInt("ID_LIEU");
 
-				lieux.add(new Lieu(nom, description));
+				// TODO : Cleanup debug
+				//System.out.println("description SQL : " + description);
+
+				lieux.add(new Lieu(id_lieu, nom, description));
 
 			}
 		} catch (java.sql.SQLException e) {
 			e.printStackTrace();
 		}
 
-		return null;
+		// TODO : Cleanup debug
+//		for (Lieu l : lieux) {
+//			System.out.println("lieu : " + l.getNom());
+//			System.out.println("description : " + l.getDescription());
+//		}
+		return lieux;
+	}
+
+	public void addTo(DataBase db) {
+		int id_rev=0;
+		if (this.idLieu > -1 ) {
+			ResultSet resultSet = db.query("SELECT MAX(ID_REV) AS MAX_ID_REV FROM LIEUX WHERE ID_LIEU = " + this.idLieu);
+			try {
+				id_rev = resultSet.getInt("MAX_ID_REV");
+				id_rev++;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		// TODO : take active user
+		int rev_utilisateur = 2;
+
+		String nom = this.nom;
+		String description = this.description;
+
+		db.wirte("INSERT INTO LIEUX (" +
+				( (this.idLieu > -1)? "ID_LIEU, ID_REV, " : "") +
+				"NOM, DESCRIPTION, REV_UTILISATEUR) VALUES (" +
+				((this.idLieu > -1)? (idLieu + ", " + (id_rev) + ", ") : "" ) +
+				"'" + nom + "', '" + description + "', " + rev_utilisateur + ")");
+
 	}
 }

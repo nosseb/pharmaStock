@@ -32,6 +32,7 @@
               <columns>
                 <TableColumn fx:id="nom" prefWidth="280.0" text="Nom" />
                 <TableColumn fx:id="description" maxWidth="1.7976931348623157E308" prefWidth="275.0" text="Description" />
+                <TableColumn fx:id="idLieu" text="ID"/>
               </columns>
             </TableView>
          </center>
