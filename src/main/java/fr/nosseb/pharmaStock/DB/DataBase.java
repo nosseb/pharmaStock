@@ -135,7 +135,6 @@ public class DataBase {
                 BufferedReader reader = new BufferedReader(new FileReader(file))
                 ) {
             while (reader.ready()) {
-                // TODO : Cleanup after test
                 String line = reader.readLine();
                 //System.out.println("line in: " + line);
                 lines.add(line);

@@ -68,7 +68,7 @@ public class Manager {
         isClient = client;
 
         Preferences preferences;
-        preferences = Preferences.systemNodeForPackage(app);
+        preferences = Preferences.userNodeForPackage(app);
 
         db_version = preferences.get(DB_VERSION, "0");
         db_path = preferences.get(DB_PATH, "");
