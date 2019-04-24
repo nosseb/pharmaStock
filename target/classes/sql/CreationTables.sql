@@ -17,8 +17,8 @@ CREATE TABLE hierarchies_lieux (
     rev_utilisateur     INT NOT NULL ,
     rev_date            TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
 
-    cf_sup              INT NOT NULL ,
-    cf_inf              INT NOT NULL ,
+    cf_sup              INT,
+    cf_inf              INT,
 
     CONSTRAINT pk_hierarchies_lieux PRIMARY KEY (id_hierarchie_lieux, id_rev)
 );
@@ -45,10 +45,10 @@ CREATE TABLE formulaires (
     rev_date        TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
     rev_utilisateur INT NOT NULL ,
 
-    cf_redacteur    INT NOT NULL ,
+    cf_redacteur    INT ,
     cf_aprobateur   INT ,
 
-    date_redaction  TIMESTAMP NOT NULL ,
+    date_redaction  TIMESTAMP ,
     date_aprobation TIMESTAMP ,
 
     CONSTRAINT pk_formulaires PRIMARY KEY (id_formulaire, id_rev)
@@ -61,8 +61,8 @@ CREATE TABLE retraits (
     rev_date                TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
     rev_utilisateur         INT NOT NULL ,
 
-    cf_formulaire_retrait   INT NOT NULL ,
-    cf_compteur_consomable  INT NOT NULL ,
+    cf_formulaire_retrait   INT ,
+    cf_compteur_consomable  INT ,
 
     description             VARCHAR(512) ,
 
@@ -76,11 +76,11 @@ CREATE TABLE compteurs (
     rev_date        TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
     rev_utilisateur INT NOT NULL ,
 
-    cf_lieu         INT NOT NULL ,
-    cf_proprietaire INT NOT NULL ,
-    cf_categorie    INT NOT NULL ,
+    cf_lieu         INT ,
+    cf_proprietaire INT ,
+    cf_categorie    INT ,
 
-    quantite        INT NOT NULL ,
+    quantite        INT ,
     nom             VARCHAR(64) ,
 
     CONSTRAINT pk_compteurs PRIMARY KEY (id_compteur, id_rev)
@@ -106,7 +106,7 @@ CREATE TABLE factures (
     rev_date        TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
     rev_utilisateur INT NOT NULL ,
 
-    jour            DATE NOT NULL DEFAULT CURRENT_DATE ,
+    jour            DATE DEFAULT CURRENT_DATE ,
     description     VARCHAR(512) ,
 
     CONSTRAINT pk_factures PRIMARY KEY (id_facture, id_rev)
@@ -119,8 +119,8 @@ CREATE TABLE equipements (
     rev_date        TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
     rev_utilisateur INT NOT NULL ,
 
-    cf_lieu         INT NOT NULL ,
-    cf_proprietaire INT NOT NULL ,
+    cf_lieu         INT ,
+    cf_proprietaire INT ,
     cf_facture      INT ,
 
     nom             VARCHAR(64) ,
@@ -137,12 +137,12 @@ CREATE TABLE entretients (
     rev_date        TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
     rev_utilisateur INT NOT NULL ,
 
-    cf_equipement   INT NOT NULL ,
-    cf_facture      INT NOT NULL ,
+    cf_equipement   INT ,
+    cf_facture      INT ,
 
     nom             VARCHAR(64) ,
     description     VARCHAR(512) ,
-    jour            DATE NOT NULL DEFAULT CURRENT_DATE ,
+    jour            DATE DEFAULT CURRENT_DATE ,
 
     CONSTRAINT pk_entretients PRIMARY KEY (id_entretient, id_rev)
 );
@@ -154,9 +154,9 @@ CREATE TABLE futurEntretients (
     rev_date            TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
     rev_utilisateur     INT NOT NULL ,
 
-    cf_equipement       INT NOT NULL ,
+    cf_equipement       INT ,
 
-    jour                DATE NOT NULL ,
+    jour                DATE ,
     nom                 VARCHAR(64) ,
     description         VARCHAR(512) ,
 
@@ -170,13 +170,13 @@ CREATE TABLE consomables (
     rev_date        TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
     rev_utilisateur INT NOT NULL ,
 
-    cf_lieu         INT NOT NULL ,
-    cf_categorie    INT NOT NULL ,
-    cf_proprietaire INT NOT NULL ,
+    cf_lieu         INT ,
+    cf_categorie    INT ,
+    cf_proprietaire INT ,
 
     peremption      DATE ,
     numSerie        VARCHAR(64) ,
-    quantite        INT NOT NULL ,
+    quantite        INT ,
 
     CONSTRAINT pk_consomable PRIMARY KEY (id_consomable, id_rev)
 );
@@ -188,7 +188,7 @@ CREATE TABLE droits (
     rev_date                TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
     rev_utilisateur         INT NOT NULL ,
 
-    cf_lieu                 INT NOT NULL ,
+    cf_lieu                 INT ,
 
     stockGeneral            BOOLEAN NOT NULL ,
     stockDetail             BOOLEAN NOT NULL ,

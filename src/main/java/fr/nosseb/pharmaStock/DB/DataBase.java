@@ -230,7 +230,7 @@ public class DataBase {
         return resultSet;
     }
 
-    public void wirte(String s) {
+    public static void write(String s) {
         try {
             Statement stmt = connection.createStatement();
             //TODO : Cleanup debug

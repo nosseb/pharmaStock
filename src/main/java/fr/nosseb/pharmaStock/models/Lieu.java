@@ -3,9 +3,7 @@ package fr.nosseb.pharmaStock.models;
 import fr.nosseb.pharmaStock.DB.DataBase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.apache.derby.impl.sql.catalog.SYSCOLUMNSRowFactory;
 
-import javax.crypto.spec.DESedeKeySpec;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -50,7 +48,8 @@ public class Lieu extends NomDescription {
                 "    GROUP BY ID_LIEU\n" +
                 "    ) a\n" +
                 "WHERE LIEUX.ID_LIEU = a.ID_LIEU\n" +
-                "AND LIEUX.ID_REV = a.MAX_REV";
+                "AND LIEUX.ID_REV = a.MAX_REV\n" +
+                "AND (LIEUX.NOM IS NOT NULL OR LIEUX.DESCRIPTION IS NOT NULL)";
 
         ResultSet resultSet = db.query(SQL_REQUEST);
         ObservableList<Lieu> lieux = FXCollections.observableArrayList();
@@ -86,7 +85,7 @@ public class Lieu extends NomDescription {
     public void addTo(DataBase db) {
         int id_rev=0;
         if (this.idLieu > -1 ) {
-            ResultSet resultSet = db.query("SELECT MAX(ID_REV) AS MAX_ID_REV FROM LIEUX WHERE ID_LIEU = " + this.idLieu);
+            ResultSet resultSet = DataBase.query("SELECT MAX(ID_REV) AS MAX_ID_REV FROM LIEUX WHERE ID_LIEU = " + this.idLieu);
             try {
                 resultSet.next();
                 id_rev = resultSet.getInt("MAX_ID_REV");
@@ -102,11 +101,32 @@ public class Lieu extends NomDescription {
         String nom = this.nom;
         String description = this.description;
 
-        db.wirte("INSERT INTO LIEUX (" +
+        DataBase.write("INSERT INTO LIEUX (" +
                 ( (this.idLieu > -1)? "ID_LIEU, ID_REV, " : "") +
                 "NOM, DESCRIPTION, REV_UTILISATEUR) VALUES (" +
                 ((this.idLieu > -1)? (idLieu + ", " + (id_rev) + ", ") : "" ) +
                 "'" + nom + "', '" + description + "', " + rev_utilisateur + ")");
+
+    }
+
+    public void removeFrom(DataBase dataBase) {
+
+        int id_rev=0;
+        if (this.idLieu > -1 ) {
+            ResultSet resultSet = DataBase.query("SELECT MAX(ID_REV) AS MAX_ID_REV FROM LIEUX WHERE ID_LIEU = " + this.idLieu);
+            try {
+                resultSet.next();
+                id_rev = resultSet.getInt("MAX_ID_REV");
+                id_rev++;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // TODO : take active user
+        int rev_utilisateur = 2;
+
+        DataBase.write("INSERT INTO LIEUX (ID_LIEU, ID_REV, NOM, DESCRIPTION, REV_UTILISATEUR) VALUES (" + idLieu + ", " + id_rev + ", NULL, NULL, " + rev_utilisateur + ")");
 
     }
 }

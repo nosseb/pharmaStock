@@ -73,7 +73,7 @@ public class ControleurLieu implements Initializable {
         // Get the locations from the database.
         data = Lieu.from(Launcher.dataBase);
 
-        // DOCUMENTATION: What exactly is that line for ?
+        // Link table 'lieux' with ObservableList 'data'.
         lieux.setItems(data);
     }
 
@@ -115,6 +115,10 @@ public class ControleurLieu implements Initializable {
      */
     @FXML
     private void pressAjouter() {
+        Stage fenetreLieu = (Stage)ajouterLieu1.getScene().getWindow();
+        // OPTIMISATION: Can we close the window later on to reduce the black screen lag ?
+        fenetreLieu.close();
+
         // CLEANUP: Can we get rid of this or will it be activated later on ?
         //Stage location = (Stage)ajouterEquipement1.getScene().getWindow();
 
@@ -151,9 +155,10 @@ public class ControleurLieu implements Initializable {
     private void pressSupprimer() {
         Lieu select = lieux.getSelectionModel().getSelectedItem();
 
-        if (select != null)
+        if (select != null) {
             lieux.getItems().remove(select);
-            // TODO: also remove from database.
+            select.removeFrom(Launcher.dataBase);
+        }
     }
 
     /**
@@ -196,13 +201,16 @@ public class ControleurLieu implements Initializable {
      * Aply the change of an element
      * @param nouveauLieu the updated element.
      */
-    static public void ajouterLieu(Lieu nouveauLieu) {
+    static void ajouterLieu(Lieu nouveauLieu) {
         // TODO : Check if fields are not null
 
         // Add element to observableList.
         data.add(nouveauLieu);
         // Add element to Database.
         nouveauLieu.addTo(Launcher.dataBase);
+
+        // Sync table x=with DataBase
+
     }
 
     /**
@@ -210,7 +218,7 @@ public class ControleurLieu implements Initializable {
      * @param ancienLieu the old version.
      * @param lieuModifier the updated version.
      */
-    static public void modifierLieu(Lieu ancienLieu, Lieu lieuModifier) {
+    static void modifierLieu(Lieu ancienLieu, Lieu lieuModifier) {
         // Find the old object in the observableList
         // OPTIMISATION: can we use an index as input instead of a cumbersome object ?
         int i = 0;

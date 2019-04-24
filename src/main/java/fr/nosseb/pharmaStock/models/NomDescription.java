@@ -1,5 +1,7 @@
 package fr.nosseb.pharmaStock.models;
 
+import fr.nosseb.pharmaStock.DB.DataBase;
+
 /**
  *
  * @author Loan Veyer
