@@ -1,12 +1,9 @@
 package fr.nosseb.pharmaStock.DB;
 
 import java.io.*;
-import java.math.BigDecimal;
 import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Map;
 
 /**
  * @author Robinson Besson
@@ -28,7 +25,7 @@ public class DataBase {
      * Build the database for first use.
      * @param db_path path to the DataBase
      */
-    public void build(String db_path) {
+    public static void build(String db_path) {
         // Assemble DB URL.
         DRIVER_URL = DRIVER_URL_PREFIX + db_path + DRIVER_URL_SUFIX;
 
@@ -49,7 +46,7 @@ public class DataBase {
             e.printStackTrace();
         }
 
-        runScript(getFileFromRessources("sql/CreationTables.sql"));
+        runScript(getFileFromResources("sql/CreationTables.sql"));
     }
 
 
@@ -122,8 +119,8 @@ public class DataBase {
      * @return file File recovered from the .jar archive
      */
     // TODO : cleanup after test : set private
-    public File getFileFromRessources (String fileName) {
-        ClassLoader classLoader = getClass().getClassLoader();
+    public static File getFileFromResources(String fileName) {
+        ClassLoader classLoader = DataBase.class.getClassLoader();
 
         URL resource = classLoader.getResource(fileName);
         if (resource == null) {

@@ -2,7 +2,6 @@ package TestDB;
 
 import fr.nosseb.pharmaStock.DB.DataBase;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public class App {
@@ -12,7 +11,7 @@ public class App {
         DataBase dataBase = new DataBase();
 
 
-        cmds = dataBase.commandParser(dataBase.getFileFromRessources("sql/CreationTables.sql"));
+        cmds = dataBase.commandParser(dataBase.getFileFromResources("sql/CreationTables.sql"));
 
         for (String cmd : cmds) {
             System.out.println(cmd);

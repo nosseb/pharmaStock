@@ -88,6 +88,7 @@ public class Lieu extends NomDescription {
         if (this.idLieu > -1 ) {
             ResultSet resultSet = db.query("SELECT MAX(ID_REV) AS MAX_ID_REV FROM LIEUX WHERE ID_LIEU = " + this.idLieu);
             try {
+                resultSet.next();
                 id_rev = resultSet.getInt("MAX_ID_REV");
                 id_rev++;
             } catch (SQLException e) {

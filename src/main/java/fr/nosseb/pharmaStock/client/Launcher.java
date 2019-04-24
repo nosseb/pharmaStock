@@ -1,15 +1,15 @@
 package fr.nosseb.pharmaStock.client;
 
-import fr.nosseb.pharmaStock.DB.DataBase;
 import fr.nosseb.pharmaStock.client.UI.TextInputBox;
-import fr.nosseb.pharmaStock.settings.Manager;
+import fr.nosseb.pharmaStock.DB.DataBase;
+import fr.nosseb.pharmaStock.settings.Settings;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 
 
@@ -19,29 +19,39 @@ import java.net.URL;
  * @since 0.1
  */
 public class Launcher extends Application {
+    // Database, used thorough the software.
     public static DataBase dataBase = new DataBase();
 
 
+    /**
+     * Main method, launch JavaFX.
+     * @param args Launch arguments for the software.
+     */
     public static void main(String[] args) {
         launch(args);
     }
 
 
+    /**
+     * Main method, called by JavaFX.
+     * @param primaryStage
+     */
     @Override
     public void start(Stage primaryStage) {
-        // TODO : set client to true
-        boolean validSettings = Manager.loadSettings(Launcher.class, false);
+        // ONLINE: Set client to true.
+        // Load and check settings
+        boolean validSettings = Settings.loadSettings(Launcher.class, false);
 
+        // Depending on settings validity, request user input.
         if (!validSettings) {
-            if (!(Manager.checkDb_path() && Manager.checkDb_version())) {
-                String path;
+            if (!(Settings.checkDb_path() && Settings.checkDb_version())) {
+                // DB has probably never been initialized.
+                // Requesting user for correct path to DB.
 
-                path = TextInputBox.display("Chemin d'accès", "Chemin d'accès vers les fichiers du logiciel :");
+                // TODO: Localisation: Use resource instead of hardcoded strings.
+                String path = TextInputBox.display("Chemin d'accès", "Chemin d'accès vers les fichiers du logiciel :");
 
-                // TODO : Cleanup debug
-                //System.out.println("Old path : " + path);
-
-
+                // Specials directories alias.
                 switch (path.charAt(0)) {
                     case '~' :
                         path = System.getProperty("user.home") + path.substring(1);
@@ -52,33 +62,48 @@ public class Launcher extends Application {
                         break;
                 }
 
-                // TODO : Cleanup debug
-                //System.out.println("New path : " + path);
+                // FIXME: Check if valid URL.
 
-                Manager.setDb_path(path);
-                dataBase.build(Manager.getDb_path());
+                // Save path
+                Settings.setDb_path(path);
 
-                Manager.setDb_version("0.1");
+                // Init the Database
+                DataBase.build(Settings.getDb_path());
+
+                // Save DB version
+                // TODO: To be placed somewhere more appropriate (eg. inside of 'DataBase.build()' )
+                Settings.setDb_version("0.1");
             }
+
+            // ONLINE: Check online configuration and request user input accordingly.
+
         } else {
-            dataBase.connect(Manager.getDb_path());
+            // Configuration is correct, attempt to connect.
+            DataBase.connect(Settings.getDb_path());
         }
 
-        // TODO : request server URL
-
+        // DOCUMENTATION: Explain wth 'Parent root' is.
         Parent root = null;
+        Scene scene;
+
+        // CLEANUP: Use 'FXMLLoader.setLocation()' to set the location used to resolve relative path attribute values.
+        // Will allow for cleaner paths when importing resources.
+        URL fxml = getClass().getResource("../../../../fxml/MenuPrincipal.fxml");
+        String css = getClass().getResource("../../../../css/application.css").toExternalForm();
+
         try {
-            root = FXMLLoader.load(getClass().getResource("../../../../fxml/MenuPrincipal.fxml"));
-        } catch (java.io.IOException e) {e.printStackTrace();}
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("../../../../css/application.css").toExternalForm());
+            root = FXMLLoader.load(fxml);
+        } catch (java.io.IOException e) {
+            // EXCEPTION: Internal resource not found, crash expected.
+            e.printStackTrace();
+        }
+
+        // FIXME : can we avoid the "Argument 'root' might be null" message ?
+        scene = new Scene(root);
+        scene.getStylesheets().add(css);
 
         primaryStage.setScene(scene);
         primaryStage.setTitle("Menu Principal");
         primaryStage.show();
-
-        System.out.println("END Launcher");
-
     }
-
 }

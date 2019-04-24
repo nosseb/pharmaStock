@@ -1,7 +1,7 @@
 package fr.nosseb.pharmaStock.server;
 
 import fr.nosseb.pharmaStock.DB.DataBase;
-import fr.nosseb.pharmaStock.settings.Manager;
+import fr.nosseb.pharmaStock.settings.Settings;
 
 import java.io.File;
 import java.util.Scanner;
@@ -19,17 +19,17 @@ public class App {
      * @param Args
      */
     public static void main(String[] Args) {
-        boolean validSettings = Manager.loadSettings(App.class, false);
+        boolean validSettings = Settings.loadSettings(App.class, false);
 
         if (!validSettings) {
-            if (!(Manager.checkDb_path() && Manager.checkDb_version())) {
-                Manager.setDb_path(
+            if (!(Settings.checkDb_path() && Settings.checkDb_version())) {
+                Settings.setDb_path(
                         getPath( "Enter path to DataBase :", true, false, true)
                         );
-                dataBase.build(Manager.getDb_path());
+                dataBase.build(Settings.getDb_path());
             }
         } else {
-            dataBase.connect(Manager.getDb_path());
+            dataBase.connect(Settings.getDb_path());
         }
     }
 

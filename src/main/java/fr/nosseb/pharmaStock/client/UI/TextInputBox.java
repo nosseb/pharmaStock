@@ -1,7 +1,5 @@
 package fr.nosseb.pharmaStock.client.UI;
 
-
-
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,33 +15,41 @@ import javafx.stage.Stage;
  * @since 0.1
  */
 public class TextInputBox {
+    private static String answer;
 
-    static String answer;
-
+    /**
+     * Request a String from the user.
+     * @param title The window's title.
+     * @param message The message to display.
+     * @return The String entered by the user.
+     */
     public static String display(String title, String message) {
+        // Window properties
         Stage window = new Stage();
+        // Defines a modal window that blocks events from being delivered to any other application window.
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(title);
         window.setMinWidth(250);
 
+        // Window elements
         Label label = new Label();
         label.setText(message);
         TextField textField = new TextField();
         Button okButton = new Button("Ok");
 
-        //Clicking will set answer and close window
+        // Action on button click :
+        // Set 'answer' to the 'String' from the 'textField'.
         okButton.setOnAction(e -> {
             answer = textField.getText();
-            // TODO : Cleanup debug
-            System.out.println("answer : " + answer);
             window.close();
         });
 
+        // Window's layout
         VBox layout = new VBox(10);
-
-        //Add buttons
         layout.getChildren().addAll(label, textField, okButton);
         layout.setAlignment(Pos.CENTER);
+
+        // Display window
         Scene scene = new Scene(layout);
         window.setScene(scene);
         window.showAndWait();
