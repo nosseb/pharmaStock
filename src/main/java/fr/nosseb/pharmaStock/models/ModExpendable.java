@@ -15,7 +15,7 @@ public class ModConsommable {
     private String numeroSerie;
     private GregorianCalendar datePeremption;
 
-    private ModCategorie categorie;
+    private ModCategory categorie;
 
     private ModLieu lieu;
 
@@ -26,7 +26,7 @@ public class ModConsommable {
     public ModConsommable(String quantite,
                           String numeroSerie,
                           GregorianCalendar datePeremption,
-                          ModCategorie categorie,
+                          ModCategory categorie,
                           ModLieu lieu,
                           ModProprietaire proprietaire){
         this.quantite = quantite;
@@ -53,7 +53,7 @@ public class ModConsommable {
         return this.datePeremption;
     }
 
-    public ModCategorie getCategorie() {
+    public ModCategory getCategorie() {
         return categorie;
     }
 

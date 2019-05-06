@@ -22,7 +22,7 @@ public class ModEquipement {
     private int lieu;
     private String lieuNom;
 
-    private ArrayList<ModEntretien> entretiens;
+    private ArrayList<ModUpkeep> entretiens;
 
     public ModEquipement(int id, String nom, String description, String numeroSerie, ModLieu lieu) {
         this.id = id;
@@ -34,7 +34,7 @@ public class ModEquipement {
         this.lieu = lieu.getIdLieu();
         this.lieuNom = lieu.getNom();
 
-        this.entretiens = new ArrayList<ModEntretien>();
+        this.entretiens = new ArrayList<ModUpkeep>();
     }
 
 
@@ -48,7 +48,7 @@ public class ModEquipement {
         this.lieu = lieu;
         this.lieuNom = lieuNom;
 
-        this.entretiens = new ArrayList<ModEntretien>();
+        this.entretiens = new ArrayList<ModUpkeep>();
     }
 
     // Getters
@@ -69,7 +69,7 @@ public class ModEquipement {
         return this.numeroSerie;
     }
 
-    public ArrayList<ModEntretien> getEntretiens() {
+    public ArrayList<ModUpkeep> getEntretiens() {
         return this.entretiens;
     }
 
@@ -104,7 +104,7 @@ public class ModEquipement {
 //    }
 
     // Methode pour les entretiens
-    public void ajouterEntretien(ModEntretien nouveauEntretien) {
+    public void ajouterEntretien(ModUpkeep nouveauEntretien) {
         this.entretiens.add(nouveauEntretien);
     }
 
