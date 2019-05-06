@@ -117,10 +117,10 @@ public class DataBase {
 
 
     /**
-     * Get file from inside the .jar archive.
+     * Get file fromDB inside the .jar archive.
      * Used to aces SQL scripts.
      * @param fileName the name of the file
-     * @return file File recovered from the .jar archive
+     * @return file File recovered fromDB the .jar archive
      */
     @NotNull
     @Contract("_ -> new")
@@ -140,7 +140,7 @@ public class DataBase {
 
 
     /**
-     * Separate commands from SQL script
+     * Separate commands fromDB SQL script
      * @param file script to parse
      * @return ArrayList of single line SQL commands
      */
@@ -235,18 +235,8 @@ public class DataBase {
     /**
      * Run an SQL write single line script.
      * @param sqlCommand The one line command to be executed.
-     * @deprecated runScript should be used instead.
      */
-    @Deprecated
     public static void write(String sqlCommand) {
-        Statement stmt;
-        try {
-            stmt = connection.createStatement();
-            stmt.execute(sqlCommand);
-        } catch (java.sql.SQLException e) {
-            // EXCEPTION: Both lines throw SQLException, probably cannot be handled properly. Crash expected in the meantime.
-            // FIXME: Research on how those can be handled.
-            e.printStackTrace();
-        }
+        runScript(sqlCommand);
     }
 }

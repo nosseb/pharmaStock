@@ -1,9 +1,9 @@
 package fr.nosseb.pharmaStock.client.UI;
 
 import fr.nosseb.pharmaStock.client.Launcher;
-//import fr.nosseb.pharmaStock.models.ModLieu;
+//import fr.nosseb.pharmaStock.models.ModLocation;
 
-import fr.nosseb.pharmaStock.models.ModLieu;
+import fr.nosseb.pharmaStock.models.ModLocation;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,7 +30,7 @@ import java.util.ResourceBundle;
  * @date 03/04/2019
  *
  */
-public class Lieu implements Initializable {
+public class CtrlLocation implements Initializable {
     @FXML
     private Button retourMenuPrincipal1;
 
@@ -44,20 +44,20 @@ public class Lieu implements Initializable {
     private Button selectionner1;
 
     @FXML
-    private TableView<ModLieu> lieux;
+    private TableView<ModLocation> lieux;
 
     @FXML
-    private TableColumn<ModLieu, String> nom;
+    private TableColumn<ModLocation, String> nom;
 
     @FXML
-    private TableColumn<ModLieu, String> description;
+    private TableColumn<ModLocation, String> description;
 
     @FXML
-    private TableColumn<ModLieu, Integer> idLieu;
+    private TableColumn<ModLocation, Integer> idLieu;
 
-    static private ObservableList<ModLieu> data;
+    static private ObservableList<ModLocation> data;
     static public boolean selectionner;
-    static ModLieu selectedLocation;
+    static ModLocation selectedLocation;
 
 
     // DOCUMENTATION: Explain 'url" and 'rb" fields
@@ -69,12 +69,12 @@ public class Lieu implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Link JavaFX table columns to actual data.
-        nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        nom.setCellValueFactory(new PropertyValueFactory<>("name"));
         description.setCellValueFactory(new PropertyValueFactory<>("description"));
         idLieu.setCellValueFactory(new PropertyValueFactory<>("idLieu"));
 
-        // Get the locations from the database.
-        data = ModLieu.from(Launcher.dataBase);
+        // Get the locations fromDB the database.
+        data = ModLocation.fromDB(Launcher.dataBase);
 
         // Link table 'lieux' with ObservableList 'data'.
         lieux.setItems(data);
@@ -93,7 +93,7 @@ public class Lieu implements Initializable {
         Stage primaryStage = new Stage();
 
         // CLEANUP: Use 'FXMLLoader.setLocation()' to set the location used to resolve relative path attribute values.
-        URL fxml = getClass().getResource("../../../../../fxml/MenuPrincipal.fxml");
+        URL fxml = getClass().getResource("../../../../../fxml/MainMenu.fxml");
         String css = getClass().getResource("../../../../../css/application.css").toExternalForm();
 
         Parent root = null;
@@ -129,7 +129,7 @@ public class Lieu implements Initializable {
 
         Stage primaryStage = new Stage();
 
-        URL fxml = getClass().getResource("../../../../../fxml/LieuAjouter.fxml");
+        URL fxml = getClass().getResource("../../../../../fxml/CtrlLocationAdd.fxml");
         String css = getClass().getResource("../../../../../css/application.css").toExternalForm();
 
         Parent root = null;
@@ -149,7 +149,7 @@ public class Lieu implements Initializable {
         primaryStage.initModality(Modality.WINDOW_MODAL);
         primaryStage.initOwner(modifierLieu1.getScene().getWindow());
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Ajouter ModLieu");
+        primaryStage.setTitle("Ajouter ModLocation");
         primaryStage.show();
     }
 
@@ -158,7 +158,7 @@ public class Lieu implements Initializable {
      */
     @FXML
     private void pressSupprimer() {
-        ModLieu select = lieux.getSelectionModel().getSelectedItem();
+        ModLocation select = lieux.getSelectionModel().getSelectedItem();
 
         if (select != null) {
             lieux.getItems().remove(select);
@@ -171,14 +171,14 @@ public class Lieu implements Initializable {
      */
     @FXML
     private void pressModifier() {
-        ModLieu select = lieux.getSelectionModel().getSelectedItem();
+        ModLocation select = lieux.getSelectionModel().getSelectedItem();
 
         if (select != null) {
-            fr.nosseb.pharmaStock.client.UI.LieuModifier.lieuAncien = select;
+            CtrlLocationEdit.lieuAncien = select;
 
             Stage newStage = new Stage();
 
-            URL fxml = getClass().getResource("../../../../../fxml/LieuModifier.fxml");
+            URL fxml = getClass().getResource("../../../../../fxml/CtrlLocationEdit.fxml");
             String css = getClass().getResource("../../../../../css/application.css").toExternalForm();
 
             Parent root = null;
@@ -197,15 +197,15 @@ public class Lieu implements Initializable {
             newStage.initModality(Modality.WINDOW_MODAL);
             newStage.initOwner(modifierLieu1.getScene().getWindow());
             newStage.setScene(scene);
-            newStage.setTitle("Modifier ModLieu");
+            newStage.setTitle("Modifier ModLocation");
             newStage.show();
         }
     }
 
     @FXML
     private void pressSelectLieu() {
-        ModLieu select = lieux.getSelectionModel().getSelectedItem();
-        fr.nosseb.pharmaStock.client.UI.EquipementModifier.selectedLocation = select;
+        ModLocation select = lieux.getSelectionModel().getSelectedItem();
+        CtrlEquipmentEdit.selectedLocation = select;
 
         Stage location = (Stage)retourMenuPrincipal1.getScene().getWindow();
         // OPTIMISATION: Can we close the window later on to reduce the black screen lag ?
@@ -216,7 +216,7 @@ public class Lieu implements Initializable {
      * Aply the change of an element
      * @param nouveauLieu the updated element.
      */
-    static void ajouterLieu(ModLieu nouveauLieu) {
+    static void ajouterLieu(ModLocation nouveauLieu) {
         // TODO : Check if fields are not null
 
         // Add element to observableList.
@@ -233,11 +233,11 @@ public class Lieu implements Initializable {
      * @param ancienLieu the old version.
      * @param lieuModifier the updated version.
      */
-    static void modifierLieu(ModLieu ancienLieu, ModLieu lieuModifier) {
+    static void modifierLieu(ModLocation ancienLieu, ModLocation lieuModifier) {
         // Find the old object in the observableList
         // OPTIMISATION: can we use an index as input instead of a cumbersome object ?
         int i = 0;
-        for (ModLieu e : data) {
+        for (ModLocation e : data) {
 
             if (e.equals(ancienLieu))
                 break;
@@ -252,15 +252,15 @@ public class Lieu implements Initializable {
 
     }
 
-    static ModLieu selector() {
+    static ModLocation selector() {
         // Configuration
-        Lieu.selectionner = true;
+        CtrlLocation.selectionner = true;
 
         // Window initialization
         Stage stage = new Stage();
 
         // CLEANUP: Use 'FXMLLoader.setLocation()' to set the location used to resolve relative path attribute values.
-        URL fxml = Lieu.class.getClassLoader().getResource("../../../../../fxml/ModLieu.fxml");
+        URL fxml = CtrlLocation.class.getClassLoader().getResource("../../../../../fxml/ModLocation.fxml");
         Parent root = null;
         try {
             root = FXMLLoader.load(fxml);
@@ -273,11 +273,11 @@ public class Lieu implements Initializable {
         Scene scene = new Scene(root);
 
         // Styles, will be activated later on
-        scene.getStylesheets().add(Lieu.class.getClassLoader().getResource("../../../../../css/application.css").toExternalForm());
+        scene.getStylesheets().add(CtrlLocation.class.getClassLoader().getResource("../../../../../css/application.css").toExternalForm());
 
         // Stage configuration
         stage.setScene(scene);
-        stage.setTitle("ModLieu");
+        stage.setTitle("ModLocation");
         stage.show();
 
         // TODO: return actual value

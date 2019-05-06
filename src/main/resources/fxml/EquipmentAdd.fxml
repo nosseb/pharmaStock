@@ -30,9 +30,9 @@
                         <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Nom" />
                         <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Description" GridPane.rowIndex="1" />
                         <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Numéro de série" GridPane.rowIndex="2" />
-                        <TextField fx:id="nom" GridPane.columnIndex="1" />
+                        <TextField fx:id="name" GridPane.columnIndex="1" />
                         <TextField fx:id="description" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField fx:id="numeroSerie" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="SerialNumber" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Lieu" GridPane.rowIndex="3" />
                   <Label fx:id="labelNomLieu" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Button fx:id="modLieu1" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#pressModLieu1" text="Modifier" GridPane.columnIndex="2" GridPane.rowIndex="3" />

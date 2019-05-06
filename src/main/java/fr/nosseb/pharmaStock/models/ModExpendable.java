@@ -9,59 +9,59 @@ import java.util.GregorianCalendar;
  *
  */
 
-public class ModConsommable {
-    // Attribut
-    private String quantite;
-    private String numeroSerie;
-    private GregorianCalendar datePeremption;
+public class ModExpendable {
+    private int quantity;
+    private String serialNumber;
+    private GregorianCalendar lapsingDate;
+    private ModCategory category;
+    private ModLocation location;
+    private ModLocation owner;
 
-    private ModCategory categorie;
+    /**
+     * Constructor for Expendable elements.
+     * @param quantity the quantity of the given expendable
+     * @param serialNumber the serial number of the given element
+     * @param lapsingDate the lapsing date of the given element
+     * @param category the category of the given element, as a {@code ModCategory} object
+     * @param location the location of the given element, as a {@code ModLocation} object
+     * @param owner the owner of the given element, as a {@code ModLocation} object
+     */
+    public ModExpendable(int quantity, String serialNumber, GregorianCalendar lapsingDate,
+                         ModCategory category, ModLocation location, ModLocation owner){
 
-    private ModLieu lieu;
-
-    private ModProprietaire proprietaire;
-
-
-    // Constructeur
-    public ModConsommable(String quantite,
-                          String numeroSerie,
-                          GregorianCalendar datePeremption,
-                          ModCategory categorie,
-                          ModLieu lieu,
-                          ModProprietaire proprietaire){
-        this.quantite = quantite;
-        this.numeroSerie = numeroSerie;
-        this.datePeremption = datePeremption;
-
-        this.categorie = categorie;
-
-        this.lieu = lieu;
-
-        this.proprietaire = proprietaire;
+        if (quantity >= 0) {
+            this.quantity = quantity;
+        } else {
+            throw new IllegalArgumentException("Quantity cannot be less than zero !");
+        }
+        this.serialNumber = serialNumber;
+        this.lapsingDate = lapsingDate;
+        this.category = category;
+        this.location = location;
+        this.owner = owner;
     }
 
-    // Getters
-    public String getQuantite() {
-        return this.quantite;
+    public int getQuantity() {
+        return this.quantity;
     }
 
-    public String getNumeroSerie() {
-        return this.numeroSerie;
+    public String getSerialNumber() {
+        return this.serialNumber;
     }
 
-    public GregorianCalendar getDatePeremption() {
-        return this.datePeremption;
+    public GregorianCalendar getLapsingDate() {
+        return this.lapsingDate;
     }
 
-    public ModCategory getCategorie() {
-        return categorie;
+    public ModCategory getCategory() {
+        return category;
     }
 
-    public ModLieu getLieu() {
-        return lieu;
+    public ModLocation getLocation() {
+        return location;
     }
 
-    public ModProprietaire getProprietaire() {
-        return proprietaire;
+    public ModLocation getOwner() {
+        return owner;
     }
 }

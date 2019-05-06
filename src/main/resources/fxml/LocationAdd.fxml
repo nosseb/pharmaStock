@@ -33,7 +33,7 @@
                     <children>
                         <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Nom" />
                         <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Description" GridPane.rowIndex="1" />
-                        <TextField fx:id="nom" GridPane.columnIndex="1" />
+                        <TextField fx:id="name" GridPane.columnIndex="1" />
                         <TextField fx:id="description" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                     </children>
                 </GridPane>

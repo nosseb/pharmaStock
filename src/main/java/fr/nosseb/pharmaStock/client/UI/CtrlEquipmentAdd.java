@@ -1,7 +1,7 @@
 package fr.nosseb.pharmaStock.client.UI;
 
-import fr.nosseb.pharmaStock.models.ModEquipement;
-import fr.nosseb.pharmaStock.models.ModLieu;
+import fr.nosseb.pharmaStock.models.ModEquipment;
+import fr.nosseb.pharmaStock.models.ModLocation;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
  * @date 03/04/2019
  *
  */
-public class EquipementAjouter implements Initializable {
+public class CtrlEquipmentAdd implements Initializable {
     // Links to FXML elements
     @FXML private TextField nom;
     @FXML private TextField description;
@@ -28,7 +28,7 @@ public class EquipementAjouter implements Initializable {
     @FXML private Button modLieu1;
     @FXML private Button ajouter1;
 
-    static ModLieu selectedLocation;
+    static ModLocation selectedLocation;
 
     /**
      * Constructor, but with access to @FXML fields.
@@ -45,11 +45,11 @@ public class EquipementAjouter implements Initializable {
      */
     @FXML private void pressAjouter1() {
         // Generate equipment
-        ModEquipement equipementModifier ;
-        equipementModifier = new ModEquipement(1, nom.getText(), description.getText(), numeroSerie.getText(), selectedLocation);
+        ModEquipment equipementModifier ;
+        equipementModifier = new ModEquipment(1, nom.getText(), description.getText(), numeroSerie.getText(), selectedLocation);
 
         // Transmit old and new equipment to the previous controller.
-        fr.nosseb.pharmaStock.client.UI.Equipement.ajouterEquipement(equipementModifier);
+        CtrlEquipment.ajouterEquipement(equipementModifier);
 
         // Reopen previous controller.
         Stage fenetrePrincipale = (Stage)ajouter1.getScene().getWindow();
@@ -61,6 +61,6 @@ public class EquipementAjouter implements Initializable {
      * Open te window to select a location
      */
     @FXML private void pressModLieu1() {
-        ModLieu lieu = fr.nosseb.pharmaStock.client.UI.Lieu.selector();
+        ModLocation lieu = CtrlLocation.selector();
     }
 }

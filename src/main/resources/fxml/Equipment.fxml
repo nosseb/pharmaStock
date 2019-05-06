@@ -13,9 +13,9 @@
             <center>
                 <TableView fx:id="equipements" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <columns>
-                        <TableColumn fx:id="nom" prefWidth="179.0" text="Nom" />
-                        <TableColumn fx:id="lieu" prefWidth="222.0" text="Lieu de stockage" />
-                        <TableColumn fx:id="numeroSerie" prefWidth="148.0" text="Numéro de série" />
+                        <TableColumn fx:id="name" prefWidth="179.0" text="Nom" />
+                        <TableColumn fx:id="location" prefWidth="222.0" text="Lieu de stockage" />
+                        <TableColumn fx:id="SerialNumber" prefWidth="148.0" text="Numéro de série" />
                     </columns>
                 </TableView>
             </center>

@@ -14,11 +14,11 @@ import javafx.stage.Stage;
  * @version 0.1
  * @since 0.1
  */
-public class TextInputBox {
+public class CtrlTextInputBox {
     private static String answer;
 
     /**
-     * Request a String from the user.
+     * Request a String fromDB the user.
      * @param title The window's title.
      * @param message The message to display.
      * @return The String entered by the user.
@@ -26,7 +26,7 @@ public class TextInputBox {
     public static String display(String title, String message) {
         // Window properties
         Stage window = new Stage();
-        // Defines a modal window that blocks events from being delivered to any other application window.
+        // Defines a modal window that blocks events fromDB being delivered to any other application window.
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(title);
         window.setMinWidth(250);
@@ -38,7 +38,7 @@ public class TextInputBox {
         Button okButton = new Button("Ok");
 
         // Action on button click :
-        // Set 'answer' to the 'String' from the 'textField'.
+        // Set 'answer' to the 'String' fromDB the 'textField'.
         okButton.setOnAction(e -> {
             answer = textField.getText();
             window.close();

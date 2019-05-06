@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.nosseb.pharmaStock.client.UI.EquipementModifier">
+<AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.nosseb.pharmaStock.client.UI.CtrlEquipmentAdd">
     <children>
-        <BorderPane prefHeight="400.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <BorderPane layoutX="60.0" layoutY="75.0" prefHeight="400.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <center>
                 <GridPane BorderPane.alignment="CENTER">
                     <columnConstraints>
@@ -30,19 +30,19 @@
                         <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Nom" />
                         <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Description" GridPane.rowIndex="1" />
                         <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Numéro de série" GridPane.rowIndex="2" />
-                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Lieu" GridPane.rowIndex="3" />
-                        <TextField fx:id="nom" GridPane.columnIndex="1" />
+                        <TextField fx:id="name" GridPane.columnIndex="1" />
                         <TextField fx:id="description" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField fx:id="numeroSerie" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Button fx:id="selectLieu1" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#pressSelectLieu" text="Modifier" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                  <Label fx:id="lieu" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="SerialNumber" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Lieu" GridPane.rowIndex="3" />
+                  <Label fx:id="labelNomLieu" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Button fx:id="modLieu1" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#pressModLieu1" text="Modifier" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                     </children>
                 </GridPane>
             </center>
             <bottom>
                 <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <buttons>
-                        <Button fx:id="modifier1" mnemonicParsing="false" onAction="#pressModifier" text="Modifier" />
+                        <Button fx:id="ajouter1" mnemonicParsing="false" onAction="#pressAjouter1" text="Ajouter" />
                     </buttons>
                 </ButtonBar>
             </bottom>

@@ -1,8 +1,8 @@
 package fr.nosseb.pharmaStock.client.UI;
 
 import fr.nosseb.pharmaStock.client.Launcher;
-import fr.nosseb.pharmaStock.models.ModEquipement;
-import fr.nosseb.pharmaStock.models.ModLieu;
+import fr.nosseb.pharmaStock.models.ModEquipment;
+import fr.nosseb.pharmaStock.models.ModLocation;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
  * @date 03/04/2019
  *
  */
-public class EquipementModifier implements Initializable {
+public class CtrlEquipmentEdit implements Initializable {
     @FXML
     private TextField nom;
 
@@ -44,8 +44,8 @@ public class EquipementModifier implements Initializable {
     @FXML
     private Button modifier1;
 
-    private ModEquipement equipementAncien;
-    static ModLieu selectedLocation;
+    private ModEquipment equipementAncien;
+    static ModLocation selectedLocation;
 
 
     /**
@@ -65,11 +65,11 @@ public class EquipementModifier implements Initializable {
     @FXML
     private void pressModifier() {
         // Generate equipment
-        ModEquipement equipementModifier ;
-        equipementModifier = new ModEquipement(1, nom.getText(), description.getText(), numeroSerie.getText(), selectedLocation);
+        ModEquipment equipementModifier ;
+        equipementModifier = new ModEquipment(1, nom.getText(), description.getText(), numeroSerie.getText(), selectedLocation);
 
         // Transmit old and new equipment to the previous controller.
-        fr.nosseb.pharmaStock.client.UI.Equipement.modifierEquipement(equipementAncien, equipementModifier);
+        CtrlEquipment.modifierEquipement(equipementAncien, equipementModifier);
 
         // Reopen previous controller.
         Stage fenetrePrincipale = (Stage)modifier1.getScene().getWindow();
@@ -84,10 +84,10 @@ public class EquipementModifier implements Initializable {
     private void pressSelectLieu() {
         // Init
         Stage primaryStage = new Stage();
-        Lieu.selectionner = true;
+        CtrlLocation.selectionner = true;
 
         // CLEANUP: Use 'FXMLLoader.setLocation()' to set the location used to resolve relative path attribute values.
-        URL fxml = getClass().getResource("../../../../../fxml/ModLieu.fxml");
+        URL fxml = getClass().getResource("../../../../../fxml/ModLocation.fxml");
         Parent root = null;
         try {
             root = FXMLLoader.load(fxml);
@@ -104,7 +104,7 @@ public class EquipementModifier implements Initializable {
 
         // Stage configuration
         primaryStage.setScene(scene);
-        primaryStage.setTitle("ModLieu");
+        primaryStage.setTitle("ModLocation");
         primaryStage.show();
     }
 
@@ -112,17 +112,17 @@ public class EquipementModifier implements Initializable {
      * Receive 'equipementAncien' and set the label accordingly.
      * @param equipment the selected equipment
      */
-    void setEquipementAncien(ModEquipement equipment) {
+    void setEquipementAncien(ModEquipment equipment) {
         // set value
         equipementAncien = equipment;
 
         // Set text in textFields
-        nom.setText(equipementAncien.getNom());
+        nom.setText(equipementAncien.getName());
         description.setText(equipementAncien.getDescription());
-        numeroSerie.setText(equipementAncien.getNumeroSerie());
+        numeroSerie.setText(equipementAncien.getSerialNumber());
 
         // Set label text
-        lieu.setText(equipementAncien.getLieuNom());
+        lieu.setText(equipementAncien.getLocationName());
 
         // Get Location object
         selectedLocation = equipementAncien.getLieuObject(Launcher.dataBase);

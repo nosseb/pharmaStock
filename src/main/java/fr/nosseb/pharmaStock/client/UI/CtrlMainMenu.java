@@ -8,11 +8,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
 import java.net.URL;
 
 
-// DOCUMENTATION: change doc language.
 /**
  * Contrôleur de la page d'acceuil
  *
@@ -20,36 +18,26 @@ import java.net.URL;
  * @date 26/03/2019
  *
  */
-public class MenuPrincipale {
-    // CLEANUP: change language for entire class.
-
-    // CLEANUP: wth is there a '1' at the end of that variable name ?
-    @FXML
-    private Button equipement1;
-
-    // CLEANUP: wth is there a '1' at the end of that variable name ?
-    @FXML
-    private Button lieu1;
-
-    // CLEANUP: wth is there a '1' at the end of that variable name ?
-    @FXML
-    private Button ficheSortie1;
+public class CtrlMainMenu {
+    // Links to JavFX elements.
+    @FXML private Button equipment1;
+    @FXML private Button Location1;
+    @FXML private Button ficheSortie1;
 
 
     /**
      * Launch window to view equipment.
      */
-    @FXML
-    public void pressEquipement() {
-        Stage fenetrePrincipale = (Stage)equipement1.getScene().getWindow();
+    @FXML public void pressEquipment() {
+        // Terminate current stage (window).
+        Stage currentStage = (Stage) equipment1.getScene().getWindow();
         // OPTIMISATION: Can we close the window later on to reduce the black screen lag ?
-        fenetrePrincipale.close();
-        Stage primaryStage = new Stage();
+        currentStage.close();
 
-        // CLEANUP: Use 'FXMLLoader.setLocation()' to set the location used to resolve relative path attribute values.
-        URL fxml = getClass().getResource("../../../../../fxml/ModEquipement.fxml");
+        // Setup new stage
+        Stage newStage = new Stage();
+        URL fxml = getClass().getResource("../../../../../fxml/Equipment.fxml");
         Parent root = null;
-
         try {
             root = FXMLLoader.load(fxml);
         } catch (IOException e) {
@@ -57,15 +45,17 @@ public class MenuPrincipale {
             e.printStackTrace();
         }
 
-        // FIXME : can we avoid the "Argument 'root' might be null" message ?
+        // Check if root was properly assigned.
+        if (root == null) {
+            throw new NullPointerException("'root' cannot be null");
+        }
+
         Scene scene = new Scene(root);
-
-        // CLEANUP: Can we get rid of this or will it be activated later on ?
-//        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("ModEquipement");
-        primaryStage.show();
+        scene.getStylesheets().add(getClass().getResource("../../../../../css/application.css").toExternalForm());
+        newStage.setScene(scene);
+        // TODO: Localization: use resources instead of hardcoded string.
+        newStage.setTitle("Équipement");
+        newStage.show();
     }
 
     /**
@@ -73,13 +63,13 @@ public class MenuPrincipale {
      */
     @FXML
     public void pressLieu(){
-        Stage fenetrePrincipale = (Stage)lieu1.getScene().getWindow();
+        Stage fenetrePrincipale = (Stage) Location1.getScene().getWindow();
         // OPTIMISATION: Can we close the window later on to reduce the black screen lag ?
         fenetrePrincipale.close();
         Stage primaryStage = new Stage();
 
         // CLEANUP: Use 'FXMLLoader.setLocation()' to set the location used to resolve relative path attribute values.
-        URL fxml = getClass().getResource("../../../../../fxml/ModLieu.fxml");
+        URL fxml = getClass().getResource("../../../../../fxml/ModLocation.fxml");
         Parent root = null;
         try {
             root = FXMLLoader.load(fxml);
@@ -95,9 +85,9 @@ public class MenuPrincipale {
 //        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
         primaryStage.setScene(scene);
-        primaryStage.setTitle("ModLieu");
+        primaryStage.setTitle("ModLocation");
         primaryStage.show();
-        Lieu.selectionner = false;
+        CtrlLocation.selectionner = false;
     }
 
     // DOCUMENTATION: Change non adapted word: "exit".

@@ -1,5 +1,6 @@
 package fr.nosseb.pharmaStock.settings;
 
+import org.jetbrains.annotations.Contract;
 
 import java.io.File;
 import java.util.prefs.Preferences;
@@ -20,7 +21,7 @@ public class Settings {
     private static String db_version, db_path, server_url;
     private static boolean isClient, server;
 
-    // Preferences object, from 'java.util.prefs.Preferences' API.
+    // Preferences object, fromDB 'java.util.prefs.Preferences' API.
     private static Preferences preferences = null;
 
 
@@ -28,6 +29,7 @@ public class Settings {
      * Getter for 'db_version'.
      * @return db_version
      */
+    @Contract(pure = true)
     public static String getDb_version() {
         return db_version;
     }
@@ -49,6 +51,7 @@ public class Settings {
      * Getter for 'db_path'.
      * @return db_path
      */
+    @Contract(pure = true)
     public static String getDb_path() {
         return db_path;
     }
@@ -71,12 +74,13 @@ public class Settings {
      * @return server_url
      * @throws IllegalAccessException When outside of client mode.
      */
+    @Contract(pure = true)
     public static String getServer_url() throws IllegalAccessException{
         if (isClient) {
             return server_url;
         }
         else {
-            // EXCEPTION : No 'server_url' outside of client mode, hard crash expected.
+            // EXCEPTION: No 'server_url' outside of client mode, hard crash expected.
             throw new IllegalAccessException("No server_url outside of client mode !");
         }
     }
@@ -94,7 +98,7 @@ public class Settings {
             preferences.put(SERVER_URL, server_url);
         }
         else {
-            // EXCEPTION : No 'server_url' outside of client mode, hard crash expected.
+            // EXCEPTION: No 'server_url' outside of client mode, hard crash expected.
             throw new IllegalAccessException("No server_url outside of client mode !");
         }
     }
@@ -104,12 +108,13 @@ public class Settings {
      * @return server
      * @throws IllegalAccessException When outside of client mode.
      */
+    @Contract(pure = true)
     public static boolean getServer() throws IllegalAccessException{
         if (isClient) {
             return server;
         }
         else {
-            // EXCEPTION : No 'server' outside of client mode, hard crash expected.
+            // EXCEPTION: No 'server' outside of client mode, hard crash expected.
             throw new IllegalAccessException("No server outside of client mode !");
         }
     }
@@ -127,7 +132,7 @@ public class Settings {
             preferences.putBoolean(SERVER, server);
         }
         else {
-            // EXCEPTION : No 'server' outside of client mode, hard crash expected.
+            // EXCEPTION: No 'server' outside of client mode, hard crash expected.
             throw new IllegalAccessException("No server outside of client mode !");
         }
     }
@@ -180,7 +185,7 @@ public class Settings {
      */
     public static boolean checkDb_version() {
         // Check if 'db_version' is set and valid.
-        // TODO: check if 'db_version' match le latest database model.
+        // TODO: check if 'db_version' match le latest database model or if the DB need to be updated.
         return !(db_version.equals("") || db_version.equals("0"));
     }
 
@@ -200,9 +205,9 @@ public class Settings {
      * Check if server_url is defined
      * @return true if server_url is defined, false otherwise
      */
+    @Contract(pure = true)
     public static boolean checkServer_url() {
         // TODO : check if valid url.
-
         return !(server_url.equals("") && server);
     }
 

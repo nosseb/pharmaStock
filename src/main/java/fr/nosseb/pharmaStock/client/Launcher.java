@@ -1,6 +1,6 @@
 package fr.nosseb.pharmaStock.client;
 
-import fr.nosseb.pharmaStock.client.UI.TextInputBox;
+import fr.nosseb.pharmaStock.client.UI.CtrlTextInputBox;
 import fr.nosseb.pharmaStock.DB.DataBase;
 import fr.nosseb.pharmaStock.settings.Settings;
 
@@ -50,7 +50,7 @@ public class Launcher extends Application {
                 // Requesting user for correct path to DB.
 
                 // TODO: Localisation: Use resource instead of hardcoded strings.
-                String path = TextInputBox.display("Chemin d'accès", "Chemin d'accès vers les fichiers du logiciel :");
+                String path = CtrlTextInputBox.display("Chemin d'accès", "Chemin d'accès vers les fichiers du logiciel :");
 
                 // Specials directories alias.
                 // FIXME: check if compatible with MS Windows & Mac OSX
@@ -89,7 +89,7 @@ public class Launcher extends Application {
         Scene scene;
 
         // Will allow for cleaner paths when importing resources.
-        URL fxml = getClass().getResource("../../../../fxml/MenuPrincipal.fxml");
+        URL fxml = getClass().getResource("../../../../fxml/MainMenu.fxml");
         String css = getClass().getResource("../../../../css/application.css").toExternalForm();
 
         try {

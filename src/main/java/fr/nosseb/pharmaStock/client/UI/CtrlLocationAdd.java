@@ -1,6 +1,6 @@
 package fr.nosseb.pharmaStock.client.UI;
 
-import fr.nosseb.pharmaStock.models.ModLieu;
+import fr.nosseb.pharmaStock.models.ModLocation;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
  *
  */
 
-public class LieuAjouter implements Initializable {
+public class CtrlLocationAdd implements Initializable {
     @FXML
     private TextField nom;
 
@@ -39,9 +39,9 @@ public class LieuAjouter implements Initializable {
     @FXML
     private void ajouter() {
         if (nom.getText() != " " && description.getText() != " ") {
-            ModLieu nouveauLieu = new ModLieu(nom.getText(), description.getText());
+            ModLocation nouveauLieu = new ModLocation(nom.getText(), description.getText());
 
-            fr.nosseb.pharmaStock.client.UI.Lieu.ajouterLieu(nouveauLieu);
+            CtrlLocation.ajouterLieu(nouveauLieu);
 
             Stage fenetreAjouterLieu = (Stage)ajouter.getScene().getWindow();
             // OPTIMISATION: Can we close the window later on to reduce the black screen lag ?
@@ -50,7 +50,7 @@ public class LieuAjouter implements Initializable {
             Stage primaryStage = new Stage();
 
             // CLEANUP: Use 'FXMLLoader.setLocation()' to set the location used to resolve relative path attribute values.
-            URL fxml = getClass().getResource("../../../../../fxml/ModLieu.fxml");
+            URL fxml = getClass().getResource("../../../../../fxml/ModLocation.fxml");
             Parent root = null;
             try {
                 root = FXMLLoader.load(fxml);
@@ -66,7 +66,7 @@ public class LieuAjouter implements Initializable {
 //        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
             primaryStage.setScene(scene);
-            primaryStage.setTitle("ModLieu");
+            primaryStage.setTitle("ModLocation");
             primaryStage.show();
         }
     }
