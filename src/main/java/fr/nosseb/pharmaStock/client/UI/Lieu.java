@@ -281,6 +281,6 @@ public class Lieu implements Initializable {
         stage.show();
 
         // TODO: return actual value
-        return lieux.getSelectionModel().getSelectedItem();
+        return null;
     }
 }

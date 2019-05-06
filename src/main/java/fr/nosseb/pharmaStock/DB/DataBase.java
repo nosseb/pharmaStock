@@ -1,6 +1,9 @@
 package fr.nosseb.pharmaStock.DB;
 
+
 import fr.nosseb.pharmaStock.settings.Settings;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 import java.net.URL;
@@ -13,11 +16,10 @@ import java.util.ArrayList;
  * @since 0.1
  */
 public class DataBase {
-    // URL
+    // DB URL
     private static final String DRIVER_URL_PREFIX = "jdbc:derby:";
     private static final String DRIVER_URL_SUFIX = ";create=true";
     private static String DRIVER_URL;
-
     private static final String driver = "org.apache.derby.jdbc.EmbeddedDriver";
 
     private static Connection connection;
@@ -28,26 +30,10 @@ public class DataBase {
      * @param db_path path to the DataBase
      */
     public static void build(String db_path) {
-        // Assemble DB URL.
-        DRIVER_URL = DRIVER_URL_PREFIX + db_path + DRIVER_URL_SUFIX;
+        // Connect to the DB.
+        connect(db_path);
 
-        try {
-
-            Class.forName(driver).newInstance();
-
-            connection = DriverManager.getConnection(DRIVER_URL);
-        } catch (SQLException e) {
-            e.printStackTrace();
-
-            // TODO : Properly manage exception.
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
+        // Run script to generate the tables.
         runScript(getFileFromResources("sql/CreationTables.sql"));
 
         // Save DB version.
@@ -61,10 +47,10 @@ public class DataBase {
      * @param file .SQL script
      */
     private static void runScript(File file) {
-        ArrayList<String> cmds = new ArrayList<>();
+        // Split script into multiples one line commands.
+        ArrayList<String> cmds = commandParser(file);
 
-        cmds = commandParser(file);
-
+        // Run all the commands
         for (String cmd : cmds) {
             runScript(cmd);
         }
@@ -79,13 +65,11 @@ public class DataBase {
      */
     private static void runScript(String sql) {
         try (Statement statement = connection.createStatement()) {
-            // TODO : cleanup debug
-            //System.out.println(sql);
             statement.execute(sql);
         } catch (SQLException e) {
+            // EXCEPTION: in case of incorrect SQL, crash expected.
+            // FIXME: check if this could be managed in somme way. In that case would need to be managed on a higher level.
             e.printStackTrace();
-
-            // TODO : properly manage exception
         }
     }
 
@@ -97,21 +81,35 @@ public class DataBase {
      */
     public static void connect(String db_path) {
         // Assemble DB URL.
-        DRIVER_URL = DRIVER_URL_PREFIX + db_path;
+        DRIVER_URL = DRIVER_URL_PREFIX + db_path + DRIVER_URL_SUFIX;
 
+        // Launch DB driver
+        // TODO: check if really required.
         try {
-            Class.forName(driver).newInstance();
+            Class.forName(driver).getDeclaredConstructor().newInstance();
+        } catch (java.lang.NoSuchMethodException e) {
+            // EXCEPTION: java couldn't find a constructor, crash expected.
+            e.printStackTrace();
+        } catch (java.lang.reflect.InvocationTargetException e) {
+            // EXCEPTION : ???
+            // FIXME: research and handle correctly.
+            e.printStackTrace();
+        } catch (java.lang.ClassNotFoundException e) {
+            // EXCEPTION: Did not found the driver class, crash expected.
+            e.printStackTrace();
+        } catch (java.lang.InstantiationException e) {
+            // EXCEPTION: Java was unable to instantiate the driver, crash expected
+            e.printStackTrace();
+        } catch (java.lang.IllegalAccessException e) {
+            // EXCEPTION: Not allowed to aces the requested class ? Crash expected.
+            e.printStackTrace();
+        }
 
+        // Init connection to DB.
+        try {
             connection = DriverManager.getConnection(DRIVER_URL);
         } catch (SQLException e) {
-            e.printStackTrace();
-
-            // TODO : Properly manage exception.
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
+            // EXCEPTION: SQL error, either internal or caused by a bad DRIVER_URL, thus not recoverable and a crash is expected.
             e.printStackTrace();
         }
     }
@@ -120,16 +118,19 @@ public class DataBase {
 
     /**
      * Get file from inside the .jar archive.
+     * Used to aces SQL scripts.
      * @param fileName the name of the file
      * @return file File recovered from the .jar archive
      */
-    // TODO : cleanup after test : set private
-    public static File getFileFromResources(String fileName) {
+    @NotNull
+    @Contract("_ -> new")
+    private static File getFileFromResources(String fileName) {
         ClassLoader classLoader = DataBase.class.getClassLoader();
 
         URL resource = classLoader.getResource(fileName);
         if (resource == null) {
-            throw new IllegalArgumentException("file is not found!");
+            throw new IllegalArgumentException("File is not found!");
+            // FIXME: check if error is adapted. This one does not require any catch clause.
         } else {
             return new File(resource.getFile());
         }
@@ -141,11 +142,9 @@ public class DataBase {
     /**
      * Separate commands from SQL script
      * @param file script to parse
-     * @return ArrayList of single lince SQL commands
+     * @return ArrayList of single line SQL commands
      */
-    // TODO : set private
-    public static ArrayList<String> commandParser (File file) {
-
+    private static ArrayList<String> commandParser (File file) {
         ArrayList<String> lines = new ArrayList<>();
         ArrayList<String> cmds = new ArrayList<>();
 
@@ -154,18 +153,18 @@ public class DataBase {
 
         // Fetch file into String Array
         try (
+                // Resources automatically closed, no mater how the try end is terminated.
+                // Objects need to implement closeable.
                 BufferedReader reader = new BufferedReader(new FileReader(file))
                 ) {
             while (reader.ready()) {
                 String line = reader.readLine();
-                // TODO : Cleanup debug
-                //System.out.println("line in: " + line);
                 lines.add(line);
             }
         } catch (IOException e) {
+            // EXCEPTION: caused by the BufferedReader.readLine(). Not sure how to handle.
+            // FIXME: handle correctly.
             e.printStackTrace();
-
-            // TODO : Properly handle exception.
         }
 
         // Parsing
@@ -212,36 +211,41 @@ public class DataBase {
 
 
     /**
-     *
-     * @param sqlRequest
+     * Run an SQL query.
+     * @param sqlRequest the single line script to be executed.
      * @return semi-parsed SQL result
      */
     public static ResultSet query(String sqlRequest) {
-
         ResultSet resultSet = null;
 
+        Statement stmt;
+
         try {
-            Statement stmt = connection.createStatement();
-            //TODO : Cleanup debug
-            //System.out.println(stmt);
+            stmt = connection.createStatement();
             resultSet = stmt.executeQuery(sqlRequest);
         } catch (java.sql.SQLException e) {
+            // EXCEPTION: Both lines throw SQLException, probably cannot be handled properly. Crash expected in the meantime.
+            // FIXME: Research on how those can be handled.
             e.printStackTrace();
         }
-
-        // TODO : Cleanup debug
-        //System.out.println("result : " + resultSet);
 
         return resultSet;
     }
 
-    public static void write(String s) {
+    /**
+     * Run an SQL write single line script.
+     * @param sqlCommand The one line command to be executed.
+     * @deprecated runScript should be used instead.
+     */
+    @Deprecated
+    public static void write(String sqlCommand) {
+        Statement stmt;
         try {
-            Statement stmt = connection.createStatement();
-            //TODO : Cleanup debug
-            //System.out.println(stmt);
-            stmt.execute(s);
+            stmt = connection.createStatement();
+            stmt.execute(sqlCommand);
         } catch (java.sql.SQLException e) {
+            // EXCEPTION: Both lines throw SQLException, probably cannot be handled properly. Crash expected in the meantime.
+            // FIXME: Research on how those can be handled.
             e.printStackTrace();
         }
     }

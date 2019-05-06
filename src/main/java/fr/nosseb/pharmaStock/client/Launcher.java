@@ -1,17 +1,15 @@
 package fr.nosseb.pharmaStock.client;
 
-// Imports
-// Custom
 import fr.nosseb.pharmaStock.client.UI.TextInputBox;
 import fr.nosseb.pharmaStock.DB.DataBase;
 import fr.nosseb.pharmaStock.settings.Settings;
-// JFX
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-// Misc
+
 import java.net.URL;
 
 
@@ -98,14 +96,23 @@ public class Launcher extends Application {
             root = FXMLLoader.load(fxml);
         } catch (java.io.IOException e) {
             // EXCEPTION: Internal resource not found, crash expected.
+            System.out.println("Internal resources not found (fxml file)!");
             e.printStackTrace();
         }
 
-        // FIXME : can we avoid the "Argument 'root' might be null" message ?
+        // Check if root has been properly assigned.
+        if (root == null) {
+            // EXCEPTION: failed to assign 'root', crash expected.
+            throw new NullPointerException("'root' cannot be null");
+        }
+
+        // Scene initialization
         scene = new Scene(root);
         scene.getStylesheets().add(css);
 
+        // Stage configuration and display
         primaryStage.setScene(scene);
+        // TODO: Localisation: Use resource instead of hardcoded String
         primaryStage.setTitle("Menu Principal");
         primaryStage.show();
     }
