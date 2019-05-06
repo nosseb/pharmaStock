@@ -8,14 +8,14 @@ import java.util.GregorianCalendar;
  * @date 05/04/2019
  */
 
-public class FicheSortie {
+public class ModFicheSortie {
     private String nom;
     private String contenu;
 
     private GregorianCalendar dateCreation;
 
 
-    public FicheSortie(String nom, Calendar dateCreation) {
+    public ModFicheSortie(String nom, Calendar dateCreation) {
         this.nom = nom;
         this.dateCreation = (GregorianCalendar) dateCreation;
     }

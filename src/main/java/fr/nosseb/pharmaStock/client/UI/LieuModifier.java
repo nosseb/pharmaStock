@@ -1,11 +1,12 @@
 package fr.nosseb.pharmaStock.client.UI;
 
+import fr.nosseb.pharmaStock.models.ModLieu;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import fr.nosseb.pharmaStock.models.Lieu;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -15,8 +16,7 @@ import java.util.ResourceBundle;
  * @date 03/04/2019
  *
  */
-
-public class ControleurModifierLieu implements Initializable {
+public class LieuModifier implements Initializable {
     @FXML
     private TextField nom;
 
@@ -26,7 +26,7 @@ public class ControleurModifierLieu implements Initializable {
     @FXML
     private Button modifier1;
 
-    static Lieu lieuAncien;
+    static ModLieu lieuAncien;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -38,9 +38,9 @@ public class ControleurModifierLieu implements Initializable {
 
     @FXML
     private void pressModifier() {
-        Lieu nouveauLieu = new Lieu(lieuAncien.getIdLieu(), nom.getText(), description.getText());
+        ModLieu nouveauLieu = new ModLieu(lieuAncien.getIdLieu(), nom.getText(), description.getText());
 
-        ControleurLieu.modifierLieu(lieuAncien, nouveauLieu);
+        fr.nosseb.pharmaStock.client.UI.Lieu.modifierLieu(lieuAncien, nouveauLieu);
 
         Stage fenetrePrincipale = (Stage)modifier1.getScene().getWindow();
         fenetrePrincipale.close();

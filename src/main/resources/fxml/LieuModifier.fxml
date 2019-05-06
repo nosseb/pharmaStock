@@ -10,13 +10,14 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="275.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.nosseb.pharmaStock.client.UI.ControleurAjouterLieu">
+
+<AnchorPane prefHeight="275.0" prefWidth="550.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="fr.nosseb.pharmaStock.client.UI.LieuModifier">
     <children>
-        <BorderPane prefHeight="550.0" prefWidth="550.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <BorderPane prefHeight="275.0" prefWidth="550.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <bottom>
                 <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <buttons>
-                    <Button fx:id="ajouter" mnemonicParsing="false" onAction="#ajouter" text="Ajouter" />
+                        <Button fx:id="modifier1" mnemonicParsing="false" onAction="#pressModifier" text="Modifier" />
                     </buttons>
                 </ButtonBar>
             </bottom>
@@ -31,8 +32,8 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Nom" />
-                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Description" GridPane.rowIndex="1" />
+                        <Label text="Nom" />
+                        <Label text="Description" GridPane.rowIndex="1" />
                         <TextField fx:id="nom" GridPane.columnIndex="1" />
                         <TextField fx:id="description" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                     </children>

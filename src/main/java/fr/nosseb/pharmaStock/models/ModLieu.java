@@ -14,9 +14,16 @@ import java.sql.SQLException;
  *
  */
 
-public class Lieu extends NomDescription {
+public class ModLieu {
 
+    protected String nom;
+    protected String description;
     private int idLieu;
+
+    @Override
+    public String toString() {
+        return this.nom;
+    }
 
     // TODO : check if needed
     public Integer getIdLieu() {
@@ -28,19 +35,21 @@ public class Lieu extends NomDescription {
         this.idLieu = i;
     }
 
-    public Lieu(String nom, String description) {
-        super(nom, description);
+    public ModLieu(String nom, String description) {
+        this.nom = nom;
+        this.description = description;
 
         this.idLieu = -1;
     }
 
-    public Lieu(int idLieu, String nom, String description) {
-        super(nom, description);
+    public ModLieu(int idLieu, String nom, String description) {
+        this.nom = nom;
+        this.description = description;
 
         this.idLieu = idLieu;
     }
 
-    public static ObservableList<Lieu> from(DataBase db) {
+    public static ObservableList<ModLieu> from(DataBase db) {
         final String SQL_REQUEST = "SELECT LIEUX.ID_LIEU, LIEUX.ID_REV, LIEUX.NOM, LIEUX.DESCRIPTION\n" +
                 "FROM LIEUX, (\n" +
                 "    SELECT ID_LIEU, MAX(ID_REV) AS MAX_REV\n" +
@@ -52,7 +61,7 @@ public class Lieu extends NomDescription {
                 "AND (LIEUX.NOM IS NOT NULL OR LIEUX.DESCRIPTION IS NOT NULL)";
 
         ResultSet resultSet = db.query(SQL_REQUEST);
-        ObservableList<Lieu> lieux = FXCollections.observableArrayList();
+        ObservableList<ModLieu> lieux = FXCollections.observableArrayList();
 
 
         try {
@@ -67,7 +76,7 @@ public class Lieu extends NomDescription {
                 // TODO : Cleanup debug
                 //System.out.println("description SQL : " + description);
 
-                lieux.add(new Lieu(id_lieu, nom, description));
+                lieux.add(new ModLieu(id_lieu, nom, description));
 
             }
         } catch (java.sql.SQLException e) {
@@ -75,11 +84,49 @@ public class Lieu extends NomDescription {
         }
 
         // TODO : Cleanup debug
-//		for (Lieu l : lieux) {
+//		for (ModLieu l : lieux) {
 //			System.out.println("lieu : " + l.getNom());
 //			System.out.println("description : " + l.getDescription());
 //		}
         return lieux;
+    }
+
+    public static ModLieu specificFrom(int idLieu, fr.nosseb.pharmaStock.DB.DataBase dataBase) {
+        final String SQL_REQUEST = "SELECT LIEUX.ID_LIEU, LIEUX.ID_REV, LIEUX.NOM, LIEUX.DESCRIPTION\n" +
+                "FROM LIEUX, (\n" +
+                "    SELECT ID_LIEU, MAX(ID_REV) AS MAX_REV\n" +
+                "    FROM LIEUX\n" +
+                "    GROUP BY ID_LIEU\n" +
+                "    ) a\n" +
+                "WHERE LIEUX.ID_LIEU = a.ID_LIEU\n" +
+                "AND LIEUX.ID_REV = a.MAX_REV\n" +
+                "AND (LIEUX.NOM IS NOT NULL OR LIEUX.DESCRIPTION IS NOT NULL)\n" +
+                "AND LIEUX.ID_LIEU = " + idLieu;
+
+        ResultSet resultSet = dataBase.query(SQL_REQUEST);
+        ObservableList<ModLieu> lieux = FXCollections.observableArrayList();
+
+
+        try {
+            while (resultSet.next()) {
+                // TODO : Cleanup debug
+                //System.out.println("Result" + resultSet);
+
+                String nom = resultSet.getString("NOM");
+                String description = resultSet.getString("DESCRIPTION");
+                int id_lieu = resultSet.getInt("ID_LIEU");
+
+                // TODO : Cleanup debug
+                //System.out.println("description SQL : " + description);
+
+                lieux.add(new ModLieu(id_lieu, nom, description));
+
+            }
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+        }
+
+        return lieux.get(0);
     }
 
     public void addTo(DataBase db) {
@@ -128,5 +175,13 @@ public class Lieu extends NomDescription {
 
         DataBase.write("INSERT INTO LIEUX (ID_LIEU, ID_REV, NOM, DESCRIPTION, REV_UTILISATEUR) VALUES (" + idLieu + ", " + id_rev + ", NULL, NULL, " + rev_utilisateur + ")");
 
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

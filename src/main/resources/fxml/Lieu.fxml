@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-<AnchorPane prefHeight="550.0" prefWidth="550.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="fr.nosseb.pharmaStock.client.UI.ControleurLieu">
+<AnchorPane prefHeight="550.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.nosseb.pharmaStock.client.UI.Lieu">
     <children>
         <BorderPane prefHeight="550.0" prefWidth="550.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
@@ -24,6 +23,7 @@
                         <Button fx:id="modifierLieu1" mnemonicParsing="false" onAction="#pressModifier" text="Modifier lieu" />
                         <Button fx:id="supprimerLieu1" mnemonicParsing="false" onAction="#pressSupprimer" text="Supprimer lieu" />
                         <Button fx:id="ajouterLieu1" mnemonicParsing="false" onAction="#pressAjouter" text="Ajouter lieu" />
+                  <Button fx:id="selectionner1" mnemonicParsing="false" onAction="#pressSelectLieu" text="Sélectionner" />
                     </buttons>
                 </ButtonBar>
             </bottom>
@@ -32,7 +32,7 @@
                     <columns>
                         <TableColumn fx:id="nom" prefWidth="280.0" text="Nom" />
                         <TableColumn fx:id="description" maxWidth="1.7976931348623157E308" prefWidth="275.0" text="Description" />
-                        <TableColumn fx:id="idLieu" text="ID"/>
+                        <TableColumn fx:id="idLieu" text="ID" />
                     </columns>
                 </TableView>
             </center>

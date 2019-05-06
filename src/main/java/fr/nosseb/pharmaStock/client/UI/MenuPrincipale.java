@@ -20,7 +20,7 @@ import java.net.URL;
  * @date 26/03/2019
  *
  */
-public class ControleurMenuPrincipale{
+public class MenuPrincipale {
     // CLEANUP: change language for entire class.
 
     // CLEANUP: wth is there a '1' at the end of that variable name ?
@@ -47,7 +47,7 @@ public class ControleurMenuPrincipale{
         Stage primaryStage = new Stage();
 
         // CLEANUP: Use 'FXMLLoader.setLocation()' to set the location used to resolve relative path attribute values.
-        URL fxml = getClass().getResource("../../../../../fxml/Equipement.fxml");
+        URL fxml = getClass().getResource("../../../../../fxml/ModEquipement.fxml");
         Parent root = null;
 
         try {
@@ -64,7 +64,7 @@ public class ControleurMenuPrincipale{
 //        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Equipement");
+        primaryStage.setTitle("ModEquipement");
         primaryStage.show();
     }
 
@@ -79,7 +79,7 @@ public class ControleurMenuPrincipale{
         Stage primaryStage = new Stage();
 
         // CLEANUP: Use 'FXMLLoader.setLocation()' to set the location used to resolve relative path attribute values.
-        URL fxml = getClass().getResource("../../../../../fxml/Lieu.fxml");
+        URL fxml = getClass().getResource("../../../../../fxml/ModLieu.fxml");
         Parent root = null;
         try {
             root = FXMLLoader.load(fxml);
@@ -95,8 +95,9 @@ public class ControleurMenuPrincipale{
 //        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Lieu");
+        primaryStage.setTitle("ModLieu");
         primaryStage.show();
+        Lieu.selectionner = false;
     }
 
     // DOCUMENTATION: Change non adapted word: "exit".
@@ -111,7 +112,7 @@ public class ControleurMenuPrincipale{
         Stage primaryStage = new Stage();
 
         // CLEANUP: Use 'FXMLLoader.setLocation()' to set the location used to resolve relative path attribute values.
-        URL fxml = getClass().getResource("../../../../../fxml/FicheSortie.fxml");
+        URL fxml = getClass().getResource("../../../../../fxml/ModFicheSortie.fxml");
         Parent root = null;
         try {
             root = FXMLLoader.load(fxml);

@@ -1,7 +1,5 @@
 package fr.nosseb.pharmaStock.models;
 
-import fr.nosseb.pharmaStock.DB.DataBase;
-
 /**
  *
  * @author Loan Veyer
@@ -9,13 +7,20 @@ import fr.nosseb.pharmaStock.DB.DataBase;
  *
  */
 
-abstract class NomDescription {
+public class ModUtilisateur {
     protected String nom;
     protected String description;
+    private String email;
 
-    NomDescription(String nom, String description) {
+    ModUtilisateur(String nom, String description, String email) {
         this.nom = nom;
         this.description = description;
+
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public String getNom() {

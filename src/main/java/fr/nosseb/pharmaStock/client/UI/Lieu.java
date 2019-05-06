@@ -1,8 +1,9 @@
 package fr.nosseb.pharmaStock.client.UI;
 
 import fr.nosseb.pharmaStock.client.Launcher;
-import fr.nosseb.pharmaStock.models.Lieu;
+//import fr.nosseb.pharmaStock.models.ModLieu;
 
+import fr.nosseb.pharmaStock.models.ModLieu;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,7 +30,7 @@ import java.util.ResourceBundle;
  * @date 03/04/2019
  *
  */
-public class ControleurLieu implements Initializable {
+public class Lieu implements Initializable {
     @FXML
     private Button retourMenuPrincipal1;
 
@@ -37,24 +38,26 @@ public class ControleurLieu implements Initializable {
     private Button ajouterLieu1;
 
     @FXML
-    private Button supprimerLieu1;
-
-    @FXML
     private Button modifierLieu1;
 
     @FXML
-    private TableView<Lieu> lieux;
+    private Button selectionner1;
 
     @FXML
-    private TableColumn<Lieu, String> nom;
+    private TableView<ModLieu> lieux;
 
     @FXML
-    private TableColumn<Lieu, String> description;
+    private TableColumn<ModLieu, String> nom;
 
     @FXML
-    private TableColumn<Lieu, Integer> idLieu;
+    private TableColumn<ModLieu, String> description;
 
-    static private ObservableList<Lieu> data;
+    @FXML
+    private TableColumn<ModLieu, Integer> idLieu;
+
+    static private ObservableList<ModLieu> data;
+    static public boolean selectionner;
+    static ModLieu selectedLocation;
 
 
     // DOCUMENTATION: Explain 'url" and 'rb" fields
@@ -71,10 +74,12 @@ public class ControleurLieu implements Initializable {
         idLieu.setCellValueFactory(new PropertyValueFactory<>("idLieu"));
 
         // Get the locations from the database.
-        data = Lieu.from(Launcher.dataBase);
+        data = ModLieu.from(Launcher.dataBase);
 
         // Link table 'lieux' with ObservableList 'data'.
         lieux.setItems(data);
+
+        selectionner1.setVisible(selectionner);
     }
 
     /**
@@ -124,7 +129,7 @@ public class ControleurLieu implements Initializable {
 
         Stage primaryStage = new Stage();
 
-        URL fxml = getClass().getResource("../../../../../fxml/AjouterLieu.fxml");
+        URL fxml = getClass().getResource("../../../../../fxml/LieuAjouter.fxml");
         String css = getClass().getResource("../../../../../css/application.css").toExternalForm();
 
         Parent root = null;
@@ -144,7 +149,7 @@ public class ControleurLieu implements Initializable {
         primaryStage.initModality(Modality.WINDOW_MODAL);
         primaryStage.initOwner(modifierLieu1.getScene().getWindow());
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Ajouter Lieu");
+        primaryStage.setTitle("Ajouter ModLieu");
         primaryStage.show();
     }
 
@@ -153,7 +158,7 @@ public class ControleurLieu implements Initializable {
      */
     @FXML
     private void pressSupprimer() {
-        Lieu select = lieux.getSelectionModel().getSelectedItem();
+        ModLieu select = lieux.getSelectionModel().getSelectedItem();
 
         if (select != null) {
             lieux.getItems().remove(select);
@@ -166,14 +171,14 @@ public class ControleurLieu implements Initializable {
      */
     @FXML
     private void pressModifier() {
-        Lieu select = lieux.getSelectionModel().getSelectedItem();
+        ModLieu select = lieux.getSelectionModel().getSelectedItem();
 
         if (select != null) {
-            ControleurModifierLieu.lieuAncien = select;
+            fr.nosseb.pharmaStock.client.UI.LieuModifier.lieuAncien = select;
 
             Stage newStage = new Stage();
 
-            URL fxml = getClass().getResource("../../../../../fxml/ModifierLieu.fxml");
+            URL fxml = getClass().getResource("../../../../../fxml/LieuModifier.fxml");
             String css = getClass().getResource("../../../../../css/application.css").toExternalForm();
 
             Parent root = null;
@@ -192,16 +197,26 @@ public class ControleurLieu implements Initializable {
             newStage.initModality(Modality.WINDOW_MODAL);
             newStage.initOwner(modifierLieu1.getScene().getWindow());
             newStage.setScene(scene);
-            newStage.setTitle("Modifier Lieu");
+            newStage.setTitle("Modifier ModLieu");
             newStage.show();
         }
+    }
+
+    @FXML
+    private void pressSelectLieu() {
+        ModLieu select = lieux.getSelectionModel().getSelectedItem();
+        fr.nosseb.pharmaStock.client.UI.EquipementModifier.selectedLocation = select;
+
+        Stage location = (Stage)retourMenuPrincipal1.getScene().getWindow();
+        // OPTIMISATION: Can we close the window later on to reduce the black screen lag ?
+        location.close();
     }
 
     /**
      * Aply the change of an element
      * @param nouveauLieu the updated element.
      */
-    static void ajouterLieu(Lieu nouveauLieu) {
+    static void ajouterLieu(ModLieu nouveauLieu) {
         // TODO : Check if fields are not null
 
         // Add element to observableList.
@@ -218,11 +233,11 @@ public class ControleurLieu implements Initializable {
      * @param ancienLieu the old version.
      * @param lieuModifier the updated version.
      */
-    static void modifierLieu(Lieu ancienLieu, Lieu lieuModifier) {
+    static void modifierLieu(ModLieu ancienLieu, ModLieu lieuModifier) {
         // Find the old object in the observableList
         // OPTIMISATION: can we use an index as input instead of a cumbersome object ?
         int i = 0;
-        for (Lieu e : data) {
+        for (ModLieu e : data) {
 
             if (e.equals(ancienLieu))
                 break;
@@ -237,4 +252,35 @@ public class ControleurLieu implements Initializable {
 
     }
 
+    static ModLieu selector() {
+        // Configuration
+        Lieu.selectionner = true;
+
+        // Window initialization
+        Stage stage = new Stage();
+
+        // CLEANUP: Use 'FXMLLoader.setLocation()' to set the location used to resolve relative path attribute values.
+        URL fxml = Lieu.class.getClassLoader().getResource("../../../../../fxml/ModLieu.fxml");
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(fxml);
+        } catch (IOException e) {
+            // EXCEPTION: Internal resource not found, hard crash expected.
+            e.printStackTrace();
+        }
+
+        // FIXME : can we avoid the "Argument 'root' might be null" message ?
+        Scene scene = new Scene(root);
+
+        // Styles, will be activated later on
+        scene.getStylesheets().add(Lieu.class.getClassLoader().getResource("../../../../../css/application.css").toExternalForm());
+
+        // Stage configuration
+        stage.setScene(scene);
+        stage.setTitle("ModLieu");
+        stage.show();
+
+        // TODO: return actual value
+        return lieux.getSelectionModel().getSelectedItem();
+    }
 }

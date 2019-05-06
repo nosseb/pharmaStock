@@ -1,9 +1,7 @@
 package fr.nosseb.pharmaStock.models;
 
 import fr.nosseb.pharmaStock.DB.DataBase;
-import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
 import java.sql.ResultSet;
@@ -15,9 +13,7 @@ import java.util.*;
  * @date 20/03/2019
  *
  */
-public class Equipement {
-
-
+public class ModEquipement {
     private int id;
     private String nom;
     private String description;
@@ -26,9 +22,23 @@ public class Equipement {
     private int lieu;
     private String lieuNom;
 
-    private ArrayList<Entretien> entretiens;
+    private ArrayList<ModEntretien> entretiens;
 
-    public Equipement(int id, String nom, String description, String numeroSerie, int lieu, String lieuNom) {
+    public ModEquipement(int id, String nom, String description, String numeroSerie, ModLieu lieu) {
+        this.id = id;
+
+        this.nom = nom;
+        this.description = description;
+        this.numeroSerie = numeroSerie;
+
+        this.lieu = lieu.getIdLieu();
+        this.lieuNom = lieu.getNom();
+
+        this.entretiens = new ArrayList<ModEntretien>();
+    }
+
+
+    public ModEquipement(int id, String nom, String description, String numeroSerie, int lieu, String lieuNom) {
         this.id = id;
 
         this.nom = nom;
@@ -38,7 +48,7 @@ public class Equipement {
         this.lieu = lieu;
         this.lieuNom = lieuNom;
 
-        this.entretiens = new ArrayList<Entretien>();
+        this.entretiens = new ArrayList<ModEntretien>();
     }
 
     // Getters
@@ -59,12 +69,16 @@ public class Equipement {
         return this.numeroSerie;
     }
 
-    public ArrayList<Entretien> getEntretiens() {
+    public ArrayList<ModEntretien> getEntretiens() {
         return this.entretiens;
     }
 
     public int getLieu() {
         return this.lieu;
+    }
+
+    public ModLieu getLieuObject(fr.nosseb.pharmaStock.DB.DataBase dataBase) {
+        return ModLieu.specificFrom(this.id, dataBase);
     }
 
     public int getId() {
@@ -90,11 +104,11 @@ public class Equipement {
 //    }
 
     // Methode pour les entretiens
-    public void ajouterEntretien(Entretien nouveauEntretien) {
+    public void ajouterEntretien(ModEntretien nouveauEntretien) {
         this.entretiens.add(nouveauEntretien);
     }
 
-    public static ObservableList<Equipement> from(DataBase db) {
+    public static ObservableList<ModEquipement> from(DataBase db) {
         // TODO : check for latest version
         final String SQL_REQUEST = "SELECT EQUIPEMENTS.ID_EQUIPEMENT, EQUIPEMENTS.NOM, EQUIPEMENTS.CF_LIEU, EQUIPEMENTS.DESCRIPTION, EQUIPEMENTS.NUMSERIE, LIEUX.ID_LIEU, LIEUX.NOM AS NOM_LIEU\n" +
                 "FROM EQUIPEMENTS, LIEUX, (\n" +
@@ -113,7 +127,7 @@ public class Equipement {
                 "AND LIEUX.ID_REV = b.MAX_REV";
 
         ResultSet results = db.query(SQL_REQUEST);
-        ObservableList<Equipement> equipements = FXCollections.observableArrayList();;
+        ObservableList<ModEquipement> equipements = FXCollections.observableArrayList();;
 
         try {
             while (results.next()) {
@@ -124,7 +138,7 @@ public class Equipement {
                 int lieu = results.getInt("CF_LIEU");
                 String lieuNom = results.getString("NOM_LIEU");
 
-                equipements.add(new Equipement(id, nom, description, numeroSerie, lieu, lieuNom));
+                equipements.add(new ModEquipement(id, nom, description, numeroSerie, lieu, lieuNom));
 
             }
         } catch (java.sql.SQLException e) {

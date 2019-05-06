@@ -9,12 +9,12 @@ import java.util.GregorianCalendar;
  *
  */
 
-public class Entretien {
+public class ModEntretien {
     private String nom;
     private String description;
     private GregorianCalendar date;
 
-    public Entretien(String nom, String description, GregorianCalendar date) {
+    public ModEntretien(String nom, String description, GregorianCalendar date) {
         this.nom = nom;
         this.description = description;
         this.date = date;

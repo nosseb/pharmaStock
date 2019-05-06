@@ -9,21 +9,26 @@ import java.util.GregorianCalendar;
  *
  */
 
-public class Consommable {
+public class ModConsommable {
     // Attribut
     private String quantite;
     private String numeroSerie;
     private GregorianCalendar datePeremption;
 
-    private Categorie categorie;
+    private ModCategorie categorie;
 
-    private Lieu lieu;
+    private ModLieu lieu;
 
-    private Proprietaire proprietaire;
+    private ModProprietaire proprietaire;
 
 
     // Constructeur
-    public Consommable(String quantite, String numeroSerie, GregorianCalendar datePeremption, Categorie categorie, Lieu lieu, Proprietaire proprietaire){
+    public ModConsommable(String quantite,
+                          String numeroSerie,
+                          GregorianCalendar datePeremption,
+                          ModCategorie categorie,
+                          ModLieu lieu,
+                          ModProprietaire proprietaire){
         this.quantite = quantite;
         this.numeroSerie = numeroSerie;
         this.datePeremption = datePeremption;
@@ -48,15 +53,15 @@ public class Consommable {
         return this.datePeremption;
     }
 
-    public Categorie getCategorie() {
+    public ModCategorie getCategorie() {
         return categorie;
     }
 
-    public Lieu getLieu() {
+    public ModLieu getLieu() {
         return lieu;
     }
 
-    public Proprietaire getProprietaire() {
+    public ModProprietaire getProprietaire() {
         return proprietaire;
     }
 }

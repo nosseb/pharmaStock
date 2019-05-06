@@ -1,5 +1,7 @@
 package fr.nosseb.pharmaStock.DB;
 
+import fr.nosseb.pharmaStock.settings.Settings;
+
 import java.io.*;
 import java.net.URL;
 import java.sql.*;
@@ -47,12 +49,15 @@ public class DataBase {
         }
 
         runScript(getFileFromResources("sql/CreationTables.sql"));
+
+        // Save DB version.
+        Settings.setDb_version("0.1");
     }
 
 
 
     /**
-     * Run a multi lines script
+     * Run a multi lines script.
      * @param file .SQL script
      */
     private static void runScript(File file) {
@@ -69,8 +74,8 @@ public class DataBase {
 
 
     /**
-     * Run a single line script
-     * @param sql Single line SQL command
+     * Run a single line script.
+     * @param sql Single line SQL command.
      */
     private static void runScript(String sql) {
         try (Statement statement = connection.createStatement()) {

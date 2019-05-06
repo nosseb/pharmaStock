@@ -1,15 +1,17 @@
 package fr.nosseb.pharmaStock.client;
 
+// Imports
+// Custom
 import fr.nosseb.pharmaStock.client.UI.TextInputBox;
 import fr.nosseb.pharmaStock.DB.DataBase;
 import fr.nosseb.pharmaStock.settings.Settings;
-
+// JFX
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+// Misc
 import java.net.URL;
 
 
@@ -39,6 +41,7 @@ public class Launcher extends Application {
     @Override
     public void start(Stage primaryStage) {
         // ONLINE: Set client to true.
+
         // Load and check settings
         boolean validSettings = Settings.loadSettings(Launcher.class, false);
 
@@ -52,6 +55,7 @@ public class Launcher extends Application {
                 String path = TextInputBox.display("Chemin d'accès", "Chemin d'accès vers les fichiers du logiciel :");
 
                 // Specials directories alias.
+                // FIXME: check if compatible with MS Windows & Mac OSX
                 switch (path.charAt(0)) {
                     case '~' :
                         path = System.getProperty("user.home") + path.substring(1);
@@ -67,26 +71,25 @@ public class Launcher extends Application {
                 // Save path
                 Settings.setDb_path(path);
 
+                // FIXME: check for .lck files
+
                 // Init the Database
                 DataBase.build(Settings.getDb_path());
-
-                // Save DB version
-                // TODO: To be placed somewhere more appropriate (eg. inside of 'DataBase.build()' )
-                Settings.setDb_version("0.1");
             }
 
             // ONLINE: Check online configuration and request user input accordingly.
 
         } else {
             // Configuration is correct, attempt to connect.
+            // FIXME: check for .lck files
             DataBase.connect(Settings.getDb_path());
+            // TODO : Close DB ?
         }
 
         // DOCUMENTATION: Explain wth 'Parent root' is.
         Parent root = null;
         Scene scene;
 
-        // CLEANUP: Use 'FXMLLoader.setLocation()' to set the location used to resolve relative path attribute values.
         // Will allow for cleaner paths when importing resources.
         URL fxml = getClass().getResource("../../../../fxml/MenuPrincipal.fxml");
         String css = getClass().getResource("../../../../css/application.css").toExternalForm();

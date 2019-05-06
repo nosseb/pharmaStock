@@ -194,6 +194,7 @@ CREATE TABLE droits (
     stockDetail             BOOLEAN NOT NULL ,
     alertesMail             BOOLEAN NOT NULL ,
     materielAjout           BOOLEAN NOT NULL ,
+    materielAjout           BOOLEAN NOT NULL ,
     materielModification    BOOLEAN NOT NULL ,
     materielSupression      BOOLEAN NOT NULL ,
     formulaireRedaction     BOOLEAN NOT NULL ,
