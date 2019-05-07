@@ -58,7 +58,7 @@ public class ModEquipment {
         this.locationId = locationId;
         this.locationName = locationName;
     }
-    
+
     /**
      * Get latest revision of all equipments fromDB the DB. Null entries are ignored.
      * @return A list composed of the latest version of every equipment fromDB the DB. Null entries are ignored.
@@ -132,6 +132,14 @@ public class ModEquipment {
                 ((this.id > -1)? (this.id + ", " + this.nextRevId() + ", ") : "") +
                 this.locationId + ", '" + this.name + "', '" + this.description + "', '" + this.serialNumber + "', " + revUser + ")");
 
+    }
+
+    public void removefromDB() {
+        // TODO : take active user instead of arbitrary value.
+        int userRev = 2;
+
+        // Make a new entry with increased "idRev" and null in all fields, so that this Location won't be showed any more.
+        DataBase.write("INSERT INTO EQUIPEMENTS (ID_EQUIPEMENT, ID_REV, NOM, DESCRIPTION, REV_UTILISATEUR, CF_LIEU, CF_FACTURE, CF_PROPRIETAIRE, NUMSERIE) VALUES (" + this.id + ", " + this.nextRevId() + ", NULL, NULL, " + userRev + ", NULL, NULL, NULL, NULL)");
     }
 
     public String getName() {

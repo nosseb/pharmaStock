@@ -1,5 +1,6 @@
 package fr.nosseb.pharmaStock.client;
 
+import fr.nosseb.pharmaStock.client.UI.CtrlMainMenu;
 import fr.nosseb.pharmaStock.client.UI.CtrlTextInputBox;
 import fr.nosseb.pharmaStock.DB.DataBase;
 import fr.nosseb.pharmaStock.settings.Settings;
@@ -84,36 +85,9 @@ public class Launcher extends Application {
             // TODO : Close DB ?
         }
 
-        // DOCUMENTATION: Explain wth 'Parent root' is.
-        Parent root = null;
-        Scene scene;
+        // Call Main Menu
+        CtrlMainMenu ctrlMainMenu = new CtrlMainMenu();
+        ctrlMainMenu.caller(primaryStage);
 
-        // Will allow for cleaner paths when importing resources.
-        URL fxml = getClass().getResource("../../../../fxml/MainMenu.fxml");
-        String css = getClass().getResource("../../../../css/application.css").toExternalForm();
-
-        try {
-            root = FXMLLoader.load(fxml);
-        } catch (java.io.IOException e) {
-            // EXCEPTION: Internal resource not found, crash expected.
-            System.out.println("Internal resources not found (fxml file)!");
-            e.printStackTrace();
-        }
-
-        // Check if root has been properly assigned.
-        if (root == null) {
-            // EXCEPTION: failed to assign 'root', crash expected.
-            throw new NullPointerException("'root' cannot be null");
-        }
-
-        // Scene initialization
-        scene = new Scene(root);
-        scene.getStylesheets().add(css);
-
-        // Stage configuration and display
-        primaryStage.setScene(scene);
-        // TODO: Localisation: Use resource instead of hardcoded String
-        primaryStage.setTitle("Menu Principal");
-        primaryStage.show();
     }
 }

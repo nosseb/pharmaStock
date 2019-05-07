@@ -109,8 +109,10 @@ public class CtrlEquipment implements Initializable {
     // DOCUMENTATION
     @FXML private void pressSupprimer() throws IOException {
         ModEquipment select = equipments.getSelectionModel().getSelectedItem();
-        if (select != null)
+        if (select != null) {
+            select.removefromDB();
             equipments.getItems().remove(select);
+        }
     }
 
     // FIXME: Better manage exception.
