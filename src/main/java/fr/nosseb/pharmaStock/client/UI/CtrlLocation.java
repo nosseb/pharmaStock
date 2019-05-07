@@ -1,6 +1,5 @@
 package fr.nosseb.pharmaStock.client.UI;
 
-import fr.nosseb.pharmaStock.client.Launcher;
 //import fr.nosseb.pharmaStock.models.ModLocation;
 
 import fr.nosseb.pharmaStock.models.ModLocation;
@@ -31,29 +30,14 @@ import java.util.ResourceBundle;
  *
  */
 public class CtrlLocation implements Initializable {
-    @FXML
-    private Button retourMenuPrincipal1;
-
-    @FXML
-    private Button ajouterLieu1;
-
-    @FXML
-    private Button modifierLieu1;
-
-    @FXML
-    private Button selectionner1;
-
-    @FXML
-    private TableView<ModLocation> lieux;
-
-    @FXML
-    private TableColumn<ModLocation, String> nom;
-
-    @FXML
-    private TableColumn<ModLocation, String> description;
-
-    @FXML
-    private TableColumn<ModLocation, Integer> idLieu;
+    @FXML private Button retourMenuPrincipal1;
+    @FXML private Button ajouterLieu1;
+    @FXML private Button modifierLieu1;
+    @FXML private Button select1;
+    @FXML private TableView<ModLocation> location;
+    @FXML private TableColumn<ModLocation, String> name;
+    @FXML private TableColumn<ModLocation, String> description;
+    @FXML private TableColumn<ModLocation, Integer> id;
 
     static private ObservableList<ModLocation> data;
     static public boolean selectionner;
@@ -69,24 +53,23 @@ public class CtrlLocation implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Link JavaFX table columns to actual data.
-        nom.setCellValueFactory(new PropertyValueFactory<>("name"));
+        name.setCellValueFactory(new PropertyValueFactory<>("name"));
         description.setCellValueFactory(new PropertyValueFactory<>("description"));
-        idLieu.setCellValueFactory(new PropertyValueFactory<>("idLieu"));
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
 
         // Get the locations fromDB the database.
-        data = ModLocation.fromDB(Launcher.dataBase);
+        data = ModLocation.fromDB();
 
-        // Link table 'lieux' with ObservableList 'data'.
-        lieux.setItems(data);
+        // Link table 'location' with ObservableList 'data'.
+        location.setItems(data);
 
-        selectionner1.setVisible(selectionner);
+        select1.setVisible(selectionner);
     }
 
     /**
      * Fallback onto the main menu.
      */
-    @FXML
-    private void pressRetourMenu() {
+    @FXML private void pressRetourMenu() {
         Stage location = (Stage)retourMenuPrincipal1.getScene().getWindow();
         // OPTIMISATION: Can we close the window later on to reduce the black screen lag ?
         location.close();
@@ -118,8 +101,7 @@ public class CtrlLocation implements Initializable {
     /**
      * Launch window to add a new location.
      */
-    @FXML
-    private void pressAjouter() {
+    @FXML private void pressAjouter() {
         Stage fenetreLieu = (Stage)ajouterLieu1.getScene().getWindow();
         // OPTIMISATION: Can we close the window later on to reduce the black screen lag ?
         fenetreLieu.close();
@@ -129,7 +111,7 @@ public class CtrlLocation implements Initializable {
 
         Stage primaryStage = new Stage();
 
-        URL fxml = getClass().getResource("../../../../../fxml/CtrlLocationAdd.fxml");
+        URL fxml = getClass().getResource("../../../../../fxml/LocationAdd.fxml");
         String css = getClass().getResource("../../../../../css/application.css").toExternalForm();
 
         Parent root = null;
@@ -156,29 +138,27 @@ public class CtrlLocation implements Initializable {
     /**
      * Delete a location.
      */
-    @FXML
-    private void pressSupprimer() {
-        ModLocation select = lieux.getSelectionModel().getSelectedItem();
+    @FXML private void pressSupprimer() {
+        ModLocation select = location.getSelectionModel().getSelectedItem();
 
         if (select != null) {
-            lieux.getItems().remove(select);
-            select.removeFrom(Launcher.dataBase);
+            location.getItems().remove(select);
+            select.removeFrom();
         }
     }
 
     /**
      * Edit a location.
      */
-    @FXML
-    private void pressModifier() {
-        ModLocation select = lieux.getSelectionModel().getSelectedItem();
+    @FXML private void pressModifier() {
+        ModLocation select = location.getSelectionModel().getSelectedItem();
 
         if (select != null) {
             CtrlLocationEdit.lieuAncien = select;
 
             Stage newStage = new Stage();
 
-            URL fxml = getClass().getResource("../../../../../fxml/CtrlLocationEdit.fxml");
+            URL fxml = getClass().getResource("../../../../../fxml/LocationEdit.fxml");
             String css = getClass().getResource("../../../../../css/application.css").toExternalForm();
 
             Parent root = null;
@@ -202,9 +182,8 @@ public class CtrlLocation implements Initializable {
         }
     }
 
-    @FXML
-    private void pressSelectLieu() {
-        ModLocation select = lieux.getSelectionModel().getSelectedItem();
+    @FXML private void pressSelectLocation() {
+        ModLocation select = location.getSelectionModel().getSelectedItem();
         CtrlEquipmentEdit.selectedLocation = select;
 
         Stage location = (Stage)retourMenuPrincipal1.getScene().getWindow();
@@ -222,7 +201,7 @@ public class CtrlLocation implements Initializable {
         // Add element to observableList.
         data.add(nouveauLieu);
         // Add element to Database.
-        nouveauLieu.addTo(Launcher.dataBase);
+        nouveauLieu.addTo();
 
         // Sync table x=with DataBase
 
@@ -248,19 +227,21 @@ public class CtrlLocation implements Initializable {
         // Exchange the element in the observableList.
         data.set(i, lieuModifier);
         // Apply the modification to the Database.
-        lieuModifier.addTo(Launcher.dataBase);
+        lieuModifier.addTo();
 
     }
 
     static ModLocation selector() {
         // Configuration
         CtrlLocation.selectionner = true;
-
-        // Window initialization
         Stage stage = new Stage();
+        URL fxml = CtrlLocation.class.getClassLoader().getResource("fxml/Location.fxml");
 
-        // CLEANUP: Use 'FXMLLoader.setLocation()' to set the location used to resolve relative path attribute values.
-        URL fxml = CtrlLocation.class.getClassLoader().getResource("../../../../../fxml/ModLocation.fxml");
+        if (fxml == null) {
+            // EXCEPTION: failed to load fxml file.
+            throw new NullPointerException("'fxml' cannot be null");
+        }
+
         Parent root = null;
         try {
             root = FXMLLoader.load(fxml);
@@ -269,11 +250,24 @@ public class CtrlLocation implements Initializable {
             e.printStackTrace();
         }
 
+        if (root == null) {
+            // EXCEPTION: failed to assign root
+            throw new NullPointerException("'root' cannot be null");
+        }
+
         // FIXME : can we avoid the "Argument 'root' might be null" message ?
         Scene scene = new Scene(root);
 
-        // Styles, will be activated later on
-        scene.getStylesheets().add(CtrlLocation.class.getClassLoader().getResource("../../../../../css/application.css").toExternalForm());
+        // Styles
+        URL url = CtrlLocation.class.getClassLoader().getResource("css/application.css");
+        String css = null;
+        try {
+            css = url.toExternalForm();
+        } catch (NullPointerException e) {
+            // EXCEPTION: failed to transform url, crash expected.
+            e.printStackTrace();
+        }
+        scene.getStylesheets().add(css);
 
         // Stage configuration
         stage.setScene(scene);

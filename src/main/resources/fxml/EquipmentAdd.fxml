@@ -32,17 +32,17 @@
                         <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Numéro de série" GridPane.rowIndex="2" />
                         <TextField fx:id="name" GridPane.columnIndex="1" />
                         <TextField fx:id="description" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField fx:id="SerialNumber" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="serialNumber" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Lieu" GridPane.rowIndex="3" />
-                  <Label fx:id="labelNomLieu" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Button fx:id="modLieu1" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#pressModLieu1" text="Modifier" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Label fx:id="locationName" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Button fx:id="slctLocation1" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#pressSlctLocation1" text="Modifier" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                     </children>
                 </GridPane>
             </center>
             <bottom>
                 <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <buttons>
-                        <Button fx:id="ajouter1" mnemonicParsing="false" onAction="#pressAjouter1" text="Ajouter" />
+                        <Button fx:id="add1" mnemonicParsing="false" onAction="#pressAdd1" text="Ajouter" />
                     </buttons>
                 </ButtonBar>
             </bottom>

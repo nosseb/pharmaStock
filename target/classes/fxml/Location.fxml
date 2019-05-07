@@ -23,16 +23,16 @@
                         <Button fx:id="modifierLieu1" mnemonicParsing="false" onAction="#pressModifier" text="Modifier location" />
                         <Button fx:id="supprimerLieu1" mnemonicParsing="false" onAction="#pressSupprimer" text="Supprimer location" />
                         <Button fx:id="ajouterLieu1" mnemonicParsing="false" onAction="#pressAjouter" text="Ajouter location" />
-                  <Button fx:id="selectionner1" mnemonicParsing="false" onAction="#pressSelectLieu" text="Sélectionner" />
+                  <Button fx:id="select1" mnemonicParsing="false" onAction="#pressSelectLocation" text="Sélectionner" />
                     </buttons>
                 </ButtonBar>
             </bottom>
             <center>
-                <TableView fx:id="lieux" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                <TableView fx:id="location" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <columns>
                         <TableColumn fx:id="name" prefWidth="280.0" text="Nom" />
                         <TableColumn fx:id="description" maxWidth="1.7976931348623157E308" prefWidth="275.0" text="Description" />
-                        <TableColumn fx:id="idLieu" text="ID" />
+                        <TableColumn fx:id="id" text="ID" />
                     </columns>
                 </TableView>
             </center>

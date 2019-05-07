@@ -1,6 +1,5 @@
 package fr.nosseb.pharmaStock.client.UI;
 
-import fr.nosseb.pharmaStock.client.Launcher;
 import fr.nosseb.pharmaStock.models.ModEquipment;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -21,7 +20,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Controleur de la page qui affiche les equipements
+ * Controleur de la page qui affiche les equipments
  *
  * @author Loan Veyer
  * @date 26/03/2019
@@ -33,14 +32,14 @@ public class CtrlEquipment implements Initializable {
     @FXML private Button retourMenuPrincipal1;
     @FXML private Button ajouterEquipement1;
     @FXML private Button supprimerEquipement1;
-    @FXML private Button modifierEquipement1;
-    @FXML private TableView<ModEquipment> equipements;
-    @FXML private TableColumn<ModEquipment, String> nom;
-    @FXML private TableColumn<ModEquipment, String> lieu;
-    @FXML private TableColumn<ModEquipment, String> numeroSerie;
+    @FXML private Button editEquipment1;
+    @FXML private TableView<ModEquipment> equipments;
+    @FXML private TableColumn<ModEquipment, String> name;
+    @FXML private TableColumn<ModEquipment, String> locationName;
+    @FXML private TableColumn<ModEquipment, String> serialNumber;
 
     // List used to fill the table with the equipments
-    static private ObservableList<ModEquipment> equipementsList;
+    static private ObservableList<ModEquipment> equipmentsList;
 
 
     /**
@@ -49,16 +48,16 @@ public class CtrlEquipment implements Initializable {
      * @param rb
      */
     @Override public void initialize(URL url, ResourceBundle rb) {
-        // Links to FXML table collumns
-        nom.setCellValueFactory(new PropertyValueFactory<>("name"));
-        lieu.setCellValueFactory(new PropertyValueFactory<>("lieuNom"));
-        numeroSerie.setCellValueFactory(new PropertyValueFactory<>("numeroSerie"));
+        // Links to FXML table columns
+        name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        locationName.setCellValueFactory(new PropertyValueFactory<>("locationName"));
+        serialNumber.setCellValueFactory(new PropertyValueFactory<>("serialNumber"));
 
         // Get equipments list fromDB database
-        equipementsList = ModEquipment.fromDB();
+        equipmentsList = ModEquipment.fromDB();
 
         // fill table
-        equipements.setItems(equipementsList);
+        equipments.setItems(equipmentsList);
     }
 
 
@@ -93,7 +92,7 @@ public class CtrlEquipment implements Initializable {
     @FXML private void pressAjouter() throws IOException {
         // Define new stage and scene
         Stage newStage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../../../fxml/CtrlEquipmentAdd.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../../../fxml/EquipmentAdd.fxml"));
         // FIXME: Better manage exception.
         Scene scene = new Scene(loader.load());
         scene.getStylesheets().add(getClass().getResource("../../../../../css/application.css").toExternalForm());
@@ -101,7 +100,7 @@ public class CtrlEquipment implements Initializable {
 
         // Configure stage
         newStage.initModality(Modality.WINDOW_MODAL);
-        newStage.initOwner(modifierEquipement1.getScene().getWindow());
+        newStage.initOwner(editEquipment1.getScene().getWindow());
         newStage.setScene(scene);
         newStage.setTitle("Ajouter ModEquipment");
         newStage.show();
@@ -109,9 +108,9 @@ public class CtrlEquipment implements Initializable {
 
     // DOCUMENTATION
     @FXML private void pressSupprimer() throws IOException {
-        ModEquipment select = equipements.getSelectionModel().getSelectedItem();
+        ModEquipment select = equipments.getSelectionModel().getSelectedItem();
         if (select != null)
-            equipements.getItems().remove(select);
+            equipments.getItems().remove(select);
     }
 
     // FIXME: Better manage exception.
@@ -119,26 +118,26 @@ public class CtrlEquipment implements Initializable {
      * Call window to modify an equipment
      * @throws IOException
      */
-    @FXML private void pressModifier() throws IOException {
+    @FXML private void pressEdit() throws IOException {
         // Get the equipment selected by the user.
-        ModEquipment selectedEquipment = equipements.getSelectionModel().getSelectedItem();
+        ModEquipment selectedEquipment = equipments.getSelectionModel().getSelectedItem();
 
         // Only if an equipment is selected.
         if (selectedEquipment != null) {
             // Define new stage and scene
             Stage newStage = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../../../fxml/CtrlEquipmentEdit.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../../../fxml/EquipmentEdit.fxml"));
             Scene scene = new Scene(loader.load());
             scene.getStylesheets().add(getClass().getResource("../../../../../css/application.css").toExternalForm());
             newStage.setScene(scene);
 
             // Send values
             CtrlEquipmentEdit controller = loader.<CtrlEquipmentEdit>getController();
-            controller.setEquipementAncien(selectedEquipment);
+            controller.setOldEquipment(selectedEquipment);
 
             // Configure stage
             newStage.initModality(Modality.WINDOW_MODAL);
-            newStage.initOwner(modifierEquipement1.getScene().getWindow());
+            newStage.initOwner(editEquipment1.getScene().getWindow());
             newStage.setScene(scene);
             newStage.setTitle("Modifier ModEquipment");
             newStage.show();
@@ -148,14 +147,14 @@ public class CtrlEquipment implements Initializable {
 
     // DOCUMENTATION
     static public void ajouterEquipement(ModEquipment nouvelleEquipement) {
-        equipementsList.add(nouvelleEquipement);
+        equipmentsList.add(nouvelleEquipement);
     }
 
     // DOCUMENTATION
     static public void modifierEquipement(ModEquipment ancienEquipement, ModEquipment equipementModifie) {
 
         int i = 0;
-        for (ModEquipment e : equipementsList) {
+        for (ModEquipment e : equipmentsList) {
 
             if (e.equals(ancienEquipement))
                 break;
@@ -163,6 +162,6 @@ public class CtrlEquipment implements Initializable {
             i++;
         }
 
-        equipementsList.set(i, equipementModifie);
+        equipmentsList.set(i, equipementModifie);
     }
 }

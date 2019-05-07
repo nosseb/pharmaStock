@@ -22,22 +22,17 @@ import java.util.ResourceBundle;
  */
 
 public class CtrlLocationAdd implements Initializable {
-    @FXML
-    private TextField nom;
+    @FXML private TextField nom;
 
-    @FXML
-    private TextField description;
+    @FXML private TextField description;
 
-    @FXML
-    private Button ajouter;
+    @FXML private Button ajouter;
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    @Override public void initialize(URL url, ResourceBundle rb) {
 
     }
 
-    @FXML
-    private void ajouter() {
+    @FXML private void ajouter() {
         if (nom.getText() != " " && description.getText() != " ") {
             ModLocation nouveauLieu = new ModLocation(nom.getText(), description.getText());
 
@@ -50,7 +45,7 @@ public class CtrlLocationAdd implements Initializable {
             Stage primaryStage = new Stage();
 
             // CLEANUP: Use 'FXMLLoader.setLocation()' to set the location used to resolve relative path attribute values.
-            URL fxml = getClass().getResource("../../../../../fxml/ModLocation.fxml");
+            URL fxml = getClass().getResource("../../../../../fxml/Location.fxml");
             Parent root = null;
             try {
                 root = FXMLLoader.load(fxml);

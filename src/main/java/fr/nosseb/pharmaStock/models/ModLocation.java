@@ -87,7 +87,7 @@ public class ModLocation {
      * @param idLieu The id of the location requested.
      * @return The location requested, as an object.
      */
-    static ModLocation specificFrom(int idLieu) {
+    static ModLocation specificFromDB(int idLieu) {
         // SQL command
         final String SQL_REQUEST = "SELECT LIEUX.ID_LIEU, LIEUX.ID_REV, LIEUX.NOM, LIEUX.DESCRIPTION\n" +
                 "FROM LIEUX, (\n" +

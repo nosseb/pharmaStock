@@ -21,12 +21,12 @@ import java.util.ResourceBundle;
  */
 public class CtrlEquipmentAdd implements Initializable {
     // Links to FXML elements
-    @FXML private TextField nom;
+    @FXML private TextField name;
     @FXML private TextField description;
-    @FXML private TextField numeroSerie;
-    @FXML private Label labelNomLieu;
-    @FXML private Button modLieu1;
-    @FXML private Button ajouter1;
+    @FXML private TextField serialNumber;
+    @FXML private Label locationName;
+    @FXML private Button slctLocation1;
+    @FXML private Button add1;
 
     static ModLocation selectedLocation;
 
@@ -43,24 +43,24 @@ public class CtrlEquipmentAdd implements Initializable {
     /**
      * Send modifications to previous controller
      */
-    @FXML private void pressAjouter1() {
+    @FXML private void pressAdd1() {
         // Generate equipment
-        ModEquipment equipementModifier ;
-        equipementModifier = new ModEquipment(1, nom.getText(), description.getText(), numeroSerie.getText(), selectedLocation);
+        ModEquipment editEquipment;
+        editEquipment = new ModEquipment(1, name.getText(), description.getText(), serialNumber.getText(), selectedLocation);
 
         // Transmit old and new equipment to the previous controller.
-        CtrlEquipment.ajouterEquipement(equipementModifier);
+        CtrlEquipment.ajouterEquipement(editEquipment);
 
         // Reopen previous controller.
-        Stage fenetrePrincipale = (Stage)ajouter1.getScene().getWindow();
+        Stage mainWindow = (Stage) add1.getScene().getWindow();
         // Close this window.
-        fenetrePrincipale.close();
+        mainWindow.close();
     }
 
     /**
      * Open te window to select a location
      */
-    @FXML private void pressModLieu1() {
-        ModLocation lieu = CtrlLocation.selector();
+    @FXML private void pressSlctLocation1() {
+        selectedLocation = CtrlLocation.selector();
     }
 }

@@ -1,8 +1,8 @@
 package fr.nosseb.pharmaStock.client.UI;
 
-import fr.nosseb.pharmaStock.client.Launcher;
 import fr.nosseb.pharmaStock.models.ModEquipment;
 import fr.nosseb.pharmaStock.models.ModLocation;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,9 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
 import java.net.URL;
-
 import java.util.ResourceBundle;
 
 /**
@@ -26,25 +24,14 @@ import java.util.ResourceBundle;
  *
  */
 public class CtrlEquipmentEdit implements Initializable {
-    @FXML
-    private TextField nom;
+    @FXML private TextField name;
+    @FXML private TextField description;
+    @FXML private TextField serialNumber;
+    @FXML private Label locationName;
+    @FXML private Button selectLieu1;
+    @FXML private Button modifier1;
 
-    @FXML
-    private TextField description;
-
-    @FXML
-    private TextField numeroSerie;
-
-    @FXML
-    private Label lieu;
-
-    @FXML
-    private Button selectLieu1;
-
-    @FXML
-    private Button modifier1;
-
-    private ModEquipment equipementAncien;
+    private ModEquipment oldEquipment;
     static ModLocation selectedLocation;
 
 
@@ -53,23 +40,21 @@ public class CtrlEquipmentEdit implements Initializable {
      * @param url
      * @param rb
      */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    @Override public void initialize(URL url, ResourceBundle rb) {
         // Nothing to do
-        // Initialisation is performed when we get the 'equipementAncien' value.
+        // Initialisation is performed when we get the 'oldEquipment' value.
     }
 
     /**
      * Send modifications to previous controller
      */
-    @FXML
-    private void pressModifier() {
+    @FXML private void pressModifier() {
         // Generate equipment
         ModEquipment equipementModifier ;
-        equipementModifier = new ModEquipment(1, nom.getText(), description.getText(), numeroSerie.getText(), selectedLocation);
+        equipementModifier = new ModEquipment(1, name.getText(), description.getText(), serialNumber.getText(), selectedLocation);
 
         // Transmit old and new equipment to the previous controller.
-        CtrlEquipment.modifierEquipement(equipementAncien, equipementModifier);
+        CtrlEquipment.modifierEquipement(oldEquipment, equipementModifier);
 
         // Reopen previous controller.
         Stage fenetrePrincipale = (Stage)modifier1.getScene().getWindow();
@@ -80,14 +65,13 @@ public class CtrlEquipmentEdit implements Initializable {
     /**
      * Open te window to select a location
      */
-    @FXML
-    private void pressSelectLieu() {
+    @FXML private void pressSelectLieu() {
         // Init
         Stage primaryStage = new Stage();
         CtrlLocation.selectionner = true;
 
         // CLEANUP: Use 'FXMLLoader.setLocation()' to set the location used to resolve relative path attribute values.
-        URL fxml = getClass().getResource("../../../../../fxml/ModLocation.fxml");
+        URL fxml = getClass().getResource("../../../../../fxml/Location.fxml");
         Parent root = null;
         try {
             root = FXMLLoader.load(fxml);
@@ -109,22 +93,22 @@ public class CtrlEquipmentEdit implements Initializable {
     }
 
     /**
-     * Receive 'equipementAncien' and set the label accordingly.
+     * Receive 'oldEquipment' and set the label accordingly.
      * @param equipment the selected equipment
      */
-    void setEquipementAncien(ModEquipment equipment) {
+    void setOldEquipment(ModEquipment equipment) {
         // set value
-        equipementAncien = equipment;
+        this.oldEquipment = equipment;
 
         // Set text in textFields
-        nom.setText(equipementAncien.getName());
-        description.setText(equipementAncien.getDescription());
-        numeroSerie.setText(equipementAncien.getSerialNumber());
+        this.name.setText(oldEquipment.getName());
+        this.description.setText(oldEquipment.getDescription());
+        this.serialNumber.setText(oldEquipment.getSerialNumber());
 
         // Set label text
-        lieu.setText(equipementAncien.getLocationName());
+        this.locationName.setText(oldEquipment.getLocationName());
 
         // Get Location object
-        selectedLocation = equipementAncien.getLieuObject(Launcher.dataBase);
+        selectedLocation = oldEquipment.getLieuObject();
     }
 }

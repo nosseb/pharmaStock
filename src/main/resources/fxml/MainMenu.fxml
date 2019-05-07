@@ -24,7 +24,7 @@
                 <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                     <children>
                         <Button fx:id="equipment1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#pressEquipment" text="Equipement" />
-                        <Button fx:id="Location1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#pressLieu" text="Lieu" />
+                        <Button fx:id="Location1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#pressLocation" text="Lieu" />
                         <Button fx:id="ficheSortie1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#pressFicheSortie" text="Fiche de sortie" />
                         <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Fonction4" />
                     </children>

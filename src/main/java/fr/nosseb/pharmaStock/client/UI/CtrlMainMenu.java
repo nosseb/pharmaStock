@@ -28,7 +28,8 @@ public class CtrlMainMenu {
     /**
      * Launch window to view equipment.
      */
-    @FXML public void pressEquipment() {
+    @FXML public void pressEquipment()
+    {
         // Terminate current stage (window).
         Stage currentStage = (Stage) equipment1.getScene().getWindow();
         // OPTIMISATION: Can we close the window later on to reduce the black screen lag ?
@@ -62,20 +63,25 @@ public class CtrlMainMenu {
      * Launch window to view locations.
      */
     @FXML
-    public void pressLieu(){
+    public void pressLocation(){
         Stage fenetrePrincipale = (Stage) Location1.getScene().getWindow();
         // OPTIMISATION: Can we close the window later on to reduce the black screen lag ?
         fenetrePrincipale.close();
         Stage primaryStage = new Stage();
 
         // CLEANUP: Use 'FXMLLoader.setLocation()' to set the location used to resolve relative path attribute values.
-        URL fxml = getClass().getResource("../../../../../fxml/ModLocation.fxml");
+        URL fxml = getClass().getResource("../../../../../fxml/Location.fxml");
         Parent root = null;
         try {
             root = FXMLLoader.load(fxml);
         } catch (IOException e) {
             // EXCEPTION: Internal resource not found, hard crash expected.
             e.printStackTrace();
+        }
+
+        // Check if root was properly assigned.
+        if (root == null) {
+            throw new NullPointerException("'root' cannot be null");
         }
 
         // FIXME : can we avoid the "Argument 'root' might be null" message ?
@@ -102,7 +108,7 @@ public class CtrlMainMenu {
         Stage primaryStage = new Stage();
 
         // CLEANUP: Use 'FXMLLoader.setLocation()' to set the location used to resolve relative path attribute values.
-        URL fxml = getClass().getResource("../../../../../fxml/ModFicheSortie.fxml");
+        URL fxml = getClass().getResource("../../../../../fxml/FicheSortie.fxml");
         Parent root = null;
         try {
             root = FXMLLoader.load(fxml);

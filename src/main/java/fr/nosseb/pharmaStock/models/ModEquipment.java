@@ -20,7 +20,7 @@ public class ModEquipment {
     private String name;
     private String description;
     private String serialNumber;
-    private int location;
+    private int locationId;
 
     // Stored for ease of aces.
     private String locationName;
@@ -34,7 +34,7 @@ public class ModEquipment {
      * @param name equipment's name.
      * @param description equipment's description.
      * @param serialNumber equipment's serial number.
-     * @param location equipment's location as an object.
+     * @param location equipment's locationId as an object.
      */
     public ModEquipment(int id, String name, String description, String serialNumber, @NotNull ModLocation location) {
         this(id, name, description, serialNumber, location.getId(), location.getName());
@@ -47,8 +47,8 @@ public class ModEquipment {
      * @param name equipment's name.
      * @param description equipment's description.
      * @param serialNumber equipment's serial number.
-     * @param locationId equipment's location's id.
-     * @param locationName equipment's location's name.
+     * @param locationId equipment's locationId's id.
+     * @param locationName equipment's locationId's name.
      */
     public ModEquipment(int id, String name, String description, String serialNumber, int locationId, String locationName) {
         this.id = id;
@@ -57,7 +57,7 @@ public class ModEquipment {
         this.description = description;
         this.serialNumber = serialNumber;
 
-        this.location = locationId;
+        this.locationId = locationId;
         this.locationName = locationName;
 
         // CLEANUP: Are Upkeeps required to be stored ?
@@ -129,12 +129,12 @@ public class ModEquipment {
     }
 
     // CLEANUP: Are Upkeeps required to be stored ?
-//    public ArrayList<ModUpkeep> getUpkeeps() {
-//        return this.upkeeps;
-//    }
+    /*public ArrayList<ModUpkeep> getUpkeeps() {
+        return this.upkeeps;
+    }*/
 
-    public ModLocation getLieuObject(fr.nosseb.pharmaStock.DB.DataBase dataBase) {
-        return ModLocation.specificFrom(this.id, dataBase);
+    public ModLocation getLieuObject() {
+        return ModLocation.specificFromDB(this.locationId);
     }
 
 
@@ -146,15 +146,16 @@ public class ModEquipment {
         this.description = description;
     }
 
-//    public void setLieu(int location) {
-//        this.location = location;
-//        this.locationName = location.getName();
-//    }
+    // CLEANUP: can this bit of code be definitely removed.
+    /*public void setLieu(int locationId) {
+        this.locationId = locationId;
+        this.locationName = locationId.getName();
+    }*/
 
     // CLEANUP: Are Upkeeps required to be stored ?
-    // Methode pour les upkeeps
-//    public void ajouterEntretien(ModUpkeep nouveauEntretien) {
-//        this.upkeeps.add(nouveauEntretien);
-//    }
+    /*// Methode pour les upkeeps
+    public void ajouterEntretien(ModUpkeep nouveauEntretien) {
+        this.upkeeps.add(nouveauEntretien);
+    }*/
 
 }

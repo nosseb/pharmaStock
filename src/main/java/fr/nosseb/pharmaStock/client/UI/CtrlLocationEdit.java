@@ -17,28 +17,21 @@ import java.util.ResourceBundle;
  *
  */
 public class CtrlLocationEdit implements Initializable {
-    @FXML
-    private TextField nom;
-
-    @FXML
-    private TextField description;
-
-    @FXML
-    private Button modifier1;
+    @FXML private TextField name;
+    @FXML private TextField description;
+    @FXML private Button modifier1;
 
     static ModLocation lieuAncien;
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    @Override public void initialize(URL url, ResourceBundle rb) {
 
-        nom.setText(lieuAncien.getName());
+        name.setText(lieuAncien.getName());
         description.setText(lieuAncien.getDescription());
 
     }
 
-    @FXML
-    private void pressModifier() {
-        ModLocation nouveauLieu = new ModLocation(lieuAncien.getId(), nom.getText(), description.getText());
+    @FXML private void pressModifier() {
+        ModLocation nouveauLieu = new ModLocation(lieuAncien.getId(), name.getText(), description.getText());
 
         CtrlLocation.modifierLieu(lieuAncien, nouveauLieu);
 
