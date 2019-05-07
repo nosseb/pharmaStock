@@ -70,7 +70,6 @@ public class CtrlEquipmentEdit implements Initializable {
         Stage primaryStage = new Stage();
         CtrlLocation.selectionner = true;
 
-        // CLEANUP: Use 'FXMLLoader.setLocation()' to set the location used to resolve relative path attribute values.
         URL fxml = getClass().getResource("../../../../../fxml/Location.fxml");
         Parent root = null;
         try {

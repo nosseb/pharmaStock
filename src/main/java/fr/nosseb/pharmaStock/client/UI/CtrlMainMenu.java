@@ -69,7 +69,6 @@ public class CtrlMainMenu {
         fenetrePrincipale.close();
         Stage primaryStage = new Stage();
 
-        // CLEANUP: Use 'FXMLLoader.setLocation()' to set the location used to resolve relative path attribute values.
         URL fxml = getClass().getResource("../../../../../fxml/Location.fxml");
         Parent root = null;
         try {
@@ -87,8 +86,7 @@ public class CtrlMainMenu {
         // FIXME : can we avoid the "Argument 'root' might be null" message ?
         Scene scene = new Scene(root);
 
-        // CLEANUP: Can we get rid of this or will it be activated later on ?
-//        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("../../../../../application.css").toExternalForm());
 
         primaryStage.setScene(scene);
         primaryStage.setTitle("ModLocation");
@@ -107,7 +105,6 @@ public class CtrlMainMenu {
         fenetrePrincipale.close();
         Stage primaryStage = new Stage();
 
-        // CLEANUP: Use 'FXMLLoader.setLocation()' to set the location used to resolve relative path attribute values.
         URL fxml = getClass().getResource("../../../../../fxml/FicheSortie.fxml");
         Parent root = null;
         try {
@@ -120,8 +117,7 @@ public class CtrlMainMenu {
         // FIXME : can we avoid the "Argument 'root' might be null" message ?
         Scene scene = new Scene(root);
 
-        // CLEANUP: Can we get rid of this or will it be activated later on ?
-//        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("../../../../../application.css").toExternalForm());
 
         primaryStage.setScene(scene);
         primaryStage.setTitle("Fiche de sortie");

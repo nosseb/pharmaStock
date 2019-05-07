@@ -2,25 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="43168124-dff1-42d9-bae6-e487d0fb3c9c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/robinson.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/robinson.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/derby.log" beforeDir="false" afterPath="$PROJECT_DIR$/derby.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlEquipment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlEquipment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlEquipmentAdd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlEquipmentAdd.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlEquipmentEdit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlEquipmentEdit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlLocation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlLocation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlLocationAdd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlLocationAdd.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlLocationEdit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlLocationEdit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlMainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlMainMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/models/ModEquipment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/models/ModEquipment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/models/ModLocation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/models/ModLocation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/Equipment.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/Equipment.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/EquipmentAdd.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/EquipmentAdd.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/EquipmentEdit.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/EquipmentEdit.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/Location.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/Location.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/MainMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/MainMenu.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/Location.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/Location.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/MainMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/MainMenu.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -32,59 +22,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/Location.fxml">
-          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="567">
-              <caret line="39" column="4" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlLocation.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/models/ModEquipment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1280">
-              <caret line="233" column="34" selection-start-line="233" selection-start-column="34" selection-end-line="233" selection-end-column="34" />
+            <state relative-caret-position="20">
+              <caret line="60" column="4" lean-forward="true" selection-start-line="60" selection-start-column="4" selection-end-line="60" selection-end-column="4" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#initialize#0;class#CtrlLocation#0" />
-                <element signature="method#pressRetourMenu#0;class#CtrlLocation#0" />
-                <element signature="method#pressAjouter#0;class#CtrlLocation#0" />
-                <element signature="method#pressSupprimer#0;class#CtrlLocation#0" />
-                <element signature="method#pressModifier#0;class#CtrlLocation#0" />
-                <element signature="method#pressSelectLocation#0;class#CtrlLocation#0" />
-                <element signature="method#ajouterLieu#0;class#CtrlLocation#0" />
-                <element signature="method#modifierLieu#0;class#CtrlLocation#0" />
-                <element signature="method#selector#0;class#CtrlLocation#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlEquipmentAdd.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
-              <caret line="63" column="40" selection-start-line="63" selection-start-column="40" selection-end-line="63" selection-end-column="40" />
-              <folding>
-                <element signature="method#initialize#0;class#CtrlEquipmentAdd#0" />
-                <element signature="e#1813#1814#0" expanded="true" />
-                <element signature="e#1870#1871#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlEquipmentEdit.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="78" column="60" selection-start-line="78" selection-start-column="59" selection-end-line="78" selection-end-column="60" />
-              <folding>
-                <element signature="method#initialize#0;class#CtrlEquipmentEdit#0" />
-                <element signature="method#pressModifier#0;class#CtrlEquipmentEdit#0" />
+                <element signature="method#ModEquipment#0;class#ModEquipment#0" />
+                <element signature="e#5276#5277#0" expanded="true" />
+                <element signature="e#5308#5309#0" expanded="true" />
+                <element signature="e#5344#5345#0" expanded="true" />
+                <element signature="e#5375#5376#0" expanded="true" />
+                <element signature="e#5413#5414#0" expanded="true" />
+                <element signature="e#5452#5453#0" expanded="true" />
+                <element signature="e#5491#5492#0" expanded="true" />
+                <element signature="e#5531#5532#0" expanded="true" />
+                <element signature="e#5573#5574#0" expanded="true" />
+                <element signature="e#5639#5640#0" expanded="true" />
+                <element signature="e#5679#5680#0" expanded="true" />
+                <element signature="e#5711#5712#0" expanded="true" />
+                <element signature="e#5765#5766#0" expanded="true" />
+                <element signature="e#5811#5812#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -156,20 +114,20 @@
         <option value="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/models/ModUpkeep.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/models/ModUser.java" />
         <option value="$PROJECT_DIR$/src/main/resources/fxml/MainMenu.fxml" />
-        <option value="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlLocationAdd.java" />
-        <option value="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlMainMenu.java" />
         <option value="$PROJECT_DIR$/src/main/resources/fxml/Location.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/Launcher.java" />
         <option value="$PROJECT_DIR$/src/main/resources/fxml/Equipment.fxml" />
-        <option value="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlEquipment.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlLocationEdit.java" />
         <option value="$PROJECT_DIR$/src/main/resources/fxml/EquipmentEdit.fxml" />
-        <option value="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlEquipmentEdit.java" />
-        <option value="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/models/ModLocation.java" />
-        <option value="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/models/ModEquipment.java" />
         <option value="$PROJECT_DIR$/src/main/resources/fxml/EquipmentAdd.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/models/ModLocation.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlEquipmentAdd.java" />
+        <option value="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlEquipmentEdit.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlLocation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlLocationAdd.java" />
+        <option value="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlMainMenu.java" />
+        <option value="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/models/ModEquipment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlEquipment.java" />
       </list>
     </option>
   </component>
@@ -199,17 +157,6 @@
             <path>
               <item name="pharmaStock" type="b2602c69:ProjectViewProjectNode" />
               <item name="pharmaStock" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pharmaStock" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pharmaStock" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pharmaStock" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pharmaStock" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="DB" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="pharmaStock" type="b2602c69:ProjectViewProjectNode" />
@@ -263,31 +210,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="pharmaStock" type="462c0819:PsiDirectoryNode" />
-              <item name="DB" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pharmaStock" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pharmaStock" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pharmaStock" type="462c0819:PsiDirectoryNode" />
               <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pharmaStock" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pharmaStock" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pharmaStock" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pharmaStock" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="fxml" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -377,13 +300,14 @@
     </todo-panel>
     <todo-panel id="all">
       <are-packages-shown value="true" />
+      <todo-filter name="Cleanup" />
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1059" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49921012" visible="true" weight="0.16400427" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49921012" visible="true" weight="0.16400427" />
       <window_info id="Structure" order="1" sideWeight="0.5007899" side_tool="true" weight="0.18370607" />
       <window_info id="Designer" order="2" />
       <window_info id="Learn" order="3" />
@@ -391,7 +315,7 @@
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32838982" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.28495762" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.39512712" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3983051" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -596,16 +520,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/models/ModCategory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-          <folding>
-            <element signature="method#ModCategory#0;class#ModCategory#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/models/ModExpendable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="640">
@@ -654,34 +568,6 @@
             <element signature="method#getFileFromResources#0;class#DataBase#0" />
             <element signature="method#commandParser#0;class#DataBase#0" />
             <element signature="method#query#0;class#DataBase#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/models/ModUpkeep.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="40" selection-start-column="40" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/models/ModUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#621#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlLocationAdd.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="24" column="10" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#initialize#0;class#CtrlLocationAdd#0" />
-            <element signature="method#ajouter#0;class#CtrlLocationAdd#0" />
           </folding>
         </state>
       </provider>
@@ -738,69 +624,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/models/ModLocation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="89" column="23" selection-start-line="89" selection-start-column="23" selection-end-line="89" selection-end-column="23" />
-          <folding>
-            <element signature="method#ModLocation#1;class#ModLocation#0" />
-            <element signature="method#fromDB#0;class#ModLocation#0" />
-            <element signature="method#addTo#0;class#ModLocation#0" />
-            <element signature="method#removeFrom#0;class#ModLocation#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/models/ModEquipment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="153" column="4" selection-start-line="153" selection-start-column="4" selection-end-line="153" selection-end-column="4" />
-          <folding>
-            <element signature="method#ModEquipment#0;class#ModEquipment#0" />
-            <element signature="method#ModEquipment#1;class#ModEquipment#0" />
-            <element signature="method#fromDB#0;class#ModEquipment#0" />
-            <element signature="e#4571#4572#0" expanded="true" />
-            <element signature="e#4611#4612#0" expanded="true" />
-            <element signature="e#4680#4761#0" />
-            <element signature="e#4804#4805#0" expanded="true" />
-            <element signature="e#4870#4871#0" expanded="true" />
-            <element signature="e#5108#5243#0" />
-            <element signature="e#5303#5447#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/EquipmentAdd.fxml">
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="479">
           <caret line="44" column="93" selection-start-line="44" selection-start-column="84" selection-end-line="44" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlEquipment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="91" column="57" selection-start-line="91" selection-start-column="57" selection-end-line="91" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#pressRetourMenu#0;class#CtrlEquipment#0" />
-            <element signature="method#pressAjouter#0;class#CtrlEquipment#0" />
-            <element signature="method#pressSupprimer#0;class#CtrlEquipment#0" />
-            <element signature="method#modifierEquipement#0;class#CtrlEquipment#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlMainMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="82" column="15" lean-forward="true" selection-start-line="82" selection-start-column="15" selection-end-line="82" selection-end-column="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#pressEquipment#0;class#CtrlMainMenu#0" />
-            <element signature="method#pressFicheSortie#0;class#CtrlMainMenu#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -810,37 +638,6 @@
           <caret line="105" column="68" lean-forward="true" selection-start-line="105" selection-start-column="12" selection-end-line="105" selection-end-column="68" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/Location.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="39" column="4" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlEquipmentEdit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="78" column="60" selection-start-line="78" selection-start-column="59" selection-end-line="78" selection-end-column="60" />
-          <folding>
-            <element signature="method#initialize#0;class#CtrlEquipmentEdit#0" />
-            <element signature="method#pressModifier#0;class#CtrlEquipmentEdit#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlEquipmentAdd.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="63" column="40" selection-start-line="63" selection-start-column="40" selection-end-line="63" selection-end-column="40" />
-          <folding>
-            <element signature="method#initialize#0;class#CtrlEquipmentAdd#0" />
-            <element signature="e#1813#1814#0" expanded="true" />
-            <element signature="e#1870#1871#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -863,21 +660,146 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/Location.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="567">
+          <caret line="39" column="4" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/models/ModUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#621#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlEquipmentEdit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="71" selection-start-line="71" selection-end-line="71" />
+          <folding>
+            <element signature="method#initialize#0;class#CtrlEquipmentEdit#0" />
+            <element signature="method#pressModifier#0;class#CtrlEquipmentEdit#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlLocation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1280">
-          <caret line="233" column="34" selection-start-line="233" selection-start-column="34" selection-end-line="233" selection-end-column="34" />
+        <state relative-caret-position="172">
+          <caret line="106" selection-start-line="106" selection-end-line="106" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#initialize#0;class#CtrlLocation#0" />
-            <element signature="method#pressRetourMenu#0;class#CtrlLocation#0" />
-            <element signature="method#pressAjouter#0;class#CtrlLocation#0" />
             <element signature="method#pressSupprimer#0;class#CtrlLocation#0" />
             <element signature="method#pressModifier#0;class#CtrlLocation#0" />
             <element signature="method#pressSelectLocation#0;class#CtrlLocation#0" />
-            <element signature="method#ajouterLieu#0;class#CtrlLocation#0" />
-            <element signature="method#modifierLieu#0;class#CtrlLocation#0" />
             <element signature="method#selector#0;class#CtrlLocation#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlLocationAdd.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="58" column="12" selection-start-line="58" selection-start-column="12" selection-end-line="58" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#initialize#0;class#CtrlLocationAdd#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlMainMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="120" selection-start-line="120" selection-end-line="120" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#pressEquipment#0;class#CtrlMainMenu#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/models/ModLocation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="129" column="11" selection-start-line="129" selection-start-column="11" selection-end-line="129" selection-end-column="11" />
+          <folding>
+            <element signature="method#ModLocation#1;class#ModLocation#0" />
+            <element signature="method#fromDB#0;class#ModLocation#0" />
+            <element signature="method#specificFromDB#0;class#ModLocation#0" />
+            <element signature="method#removeFrom#0;class#ModLocation#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/models/ModUpkeep.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="3" selection-start-column="3" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/models/ModCategory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+          <folding>
+            <element signature="method#ModCategory#0;class#ModCategory#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlEquipmentAdd.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="729">
+          <caret line="62" column="51" selection-start-line="62" selection-start-column="51" selection-end-line="62" selection-end-column="51" />
+          <folding>
+            <element signature="method#initialize#0;class#CtrlEquipmentAdd#0" />
+            <element signature="e#1703#1704#0" expanded="true" />
+            <element signature="e#1761#1762#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/client/UI/CtrlEquipment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="767">
+          <caret line="168" column="36" selection-start-line="168" selection-start-column="36" selection-end-line="168" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#pressRetourMenu#0;class#CtrlEquipment#0" />
+            <element signature="method#pressSupprimer#0;class#CtrlEquipment#0" />
+            <element signature="method#pressEdit#0;class#CtrlEquipment#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/nosseb/pharmaStock/models/ModEquipment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="60" column="4" lean-forward="true" selection-start-line="60" selection-start-column="4" selection-end-line="60" selection-end-column="4" />
+          <folding>
+            <element signature="method#ModEquipment#0;class#ModEquipment#0" />
+            <element signature="e#5276#5277#0" expanded="true" />
+            <element signature="e#5308#5309#0" expanded="true" />
+            <element signature="e#5344#5345#0" expanded="true" />
+            <element signature="e#5375#5376#0" expanded="true" />
+            <element signature="e#5413#5414#0" expanded="true" />
+            <element signature="e#5452#5453#0" expanded="true" />
+            <element signature="e#5491#5492#0" expanded="true" />
+            <element signature="e#5531#5532#0" expanded="true" />
+            <element signature="e#5573#5574#0" expanded="true" />
+            <element signature="e#5639#5640#0" expanded="true" />
+            <element signature="e#5679#5680#0" expanded="true" />
+            <element signature="e#5711#5712#0" expanded="true" />
+            <element signature="e#5765#5766#0" expanded="true" />
+            <element signature="e#5811#5812#0" expanded="true" />
           </folding>
         </state>
       </provider>

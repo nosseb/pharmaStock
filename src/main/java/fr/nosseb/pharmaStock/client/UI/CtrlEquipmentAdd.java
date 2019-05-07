@@ -37,7 +37,6 @@ public class CtrlEquipmentAdd implements Initializable {
      */
     @Override public void initialize(URL url, ResourceBundle rb) {
         // Nothing to do
-        // Initialisation is performed when we get the 'equipementAncien' value.
     }
 
     /**
@@ -46,7 +45,7 @@ public class CtrlEquipmentAdd implements Initializable {
     @FXML private void pressAdd1() {
         // Generate equipment
         ModEquipment editEquipment;
-        editEquipment = new ModEquipment(1, name.getText(), description.getText(), serialNumber.getText(), selectedLocation);
+        editEquipment = new ModEquipment(-1, name.getText(), description.getText(), serialNumber.getText(), selectedLocation);
 
         // Transmit old and new equipment to the previous controller.
         CtrlEquipment.ajouterEquipement(editEquipment);

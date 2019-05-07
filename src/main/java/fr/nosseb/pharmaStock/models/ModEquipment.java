@@ -7,6 +7,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -24,9 +25,6 @@ public class ModEquipment {
 
     // Stored for ease of aces.
     private String locationName;
-
-    // CLEANUP: Are Upkeeps required to be stored ?
-//    private ArrayList<ModUpkeep> upkeeps;
 
     /**
      * Constructor for equipment using Location object.
@@ -59,13 +57,8 @@ public class ModEquipment {
 
         this.locationId = locationId;
         this.locationName = locationName;
-
-        // CLEANUP: Are Upkeeps required to be stored ?
-//        // CLEANUP: check if <ModUpkeep> cans be safely removed.
-//        this.upkeeps = new ArrayList<ModUpkeep>();
     }
-
-
+    
     /**
      * Get latest revision of all equipments fromDB the DB. Null entries are ignored.
      * @return A list composed of the latest version of every equipment fromDB the DB. Null entries are ignored.
@@ -112,6 +105,35 @@ public class ModEquipment {
         return equipments;
     }
 
+    private int nextRevId() {
+        int revId = 0;
+        if (this.id > -1 ) {
+            ResultSet resultSet = DataBase.query("SELECT MAX(ID_REV) AS MAX_ID_REV FROM EQUIPEMENTS WHERE ID_EQUIPEMENT = " + this.id);
+            try {
+                resultSet.next();
+                revId = resultSet.getInt("MAX_ID_REV");
+            } catch (SQLException e) {
+                // EXCEPTION: SQL error when getting existing element element. Not sure how to handle, crash expected for now.
+                e.printStackTrace();
+            }
+            revId++;
+        }
+
+        return revId;
+    }
+
+    public void addToDB() {
+        // TODO : take active user instead of arbitrary value.
+        int revUser = 2;
+
+        DataBase.write("INSERT INTO EQUIPEMENTS (" +
+                ((this.id > -1)? "ID_EQUIPEMENT, ID_REV, " : "") +
+                "CF_LIEU, NOM, DESCRIPTION, NUMSERIE, REV_UTILISATEUR) VALUES (" +
+                ((this.id > -1)? (this.id + ", " + this.nextRevId() + ", ") : "") +
+                this.locationId + ", '" + this.name + "', '" + this.description + "', '" + this.serialNumber + "', " + revUser + ")");
+
+    }
+
     public String getName() {
         return this.name;
     }
@@ -128,15 +150,9 @@ public class ModEquipment {
         return this.serialNumber;
     }
 
-    // CLEANUP: Are Upkeeps required to be stored ?
-    /*public ArrayList<ModUpkeep> getUpkeeps() {
-        return this.upkeeps;
-    }*/
-
     public ModLocation getLieuObject() {
         return ModLocation.specificFromDB(this.locationId);
     }
-
 
     public void setName(String name) {
         this.name = name;
@@ -145,17 +161,5 @@ public class ModEquipment {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    // CLEANUP: can this bit of code be definitely removed.
-    /*public void setLieu(int locationId) {
-        this.locationId = locationId;
-        this.locationName = locationId.getName();
-    }*/
-
-    // CLEANUP: Are Upkeeps required to be stored ?
-    /*// Methode pour les upkeeps
-    public void ajouterEntretien(ModUpkeep nouveauEntretien) {
-        this.upkeeps.add(nouveauEntretien);
-    }*/
 
 }

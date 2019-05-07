@@ -126,8 +126,7 @@ public class ModLocation {
     /**
      * Add a new location (itself) to the database.
      */
-    public void addTo() {
-
+    public void addToDB() {
         // CLEANUP: should be placed in a method, used by "remove" as well.
         // Determining the right id to be used.
         int idRev=0;
@@ -144,7 +143,7 @@ public class ModLocation {
         }
 
         // TODO : take active user instead of arbitrary value.
-        int userRev = 2;
+        int revUser = 2;
 
         // It makes the SQL command slightly easier to read.
         String name = this.name;
@@ -155,7 +154,7 @@ public class ModLocation {
                 ( (this.id > -1)? "ID_LIEU, ID_REV, " : "") +
                 "NOM, DESCRIPTION, REV_UTILISATEUR) VALUES (" +
                 ((this.id > -1)? (id + ", " + (idRev) + ", ") : "" ) +
-                "'" + name + "', '" + description + "', " + userRev + ")");
+                "'" + name + "', '" + description + "', " + revUser + ")");
 
     }
 
@@ -164,7 +163,7 @@ public class ModLocation {
      */
     public void removeFrom() {
 
-        // CLEANUP: should be placed in a method, used by "addTo" as well.
+        // CLEANUP: should be placed in a method, used by "addToDB" as well.
         // Determining the right id to be used.
         int idRev=0;
         if (this.id > -1 ) {

@@ -148,6 +148,8 @@ public class CtrlEquipment implements Initializable {
     // DOCUMENTATION
     static public void ajouterEquipement(ModEquipment nouvelleEquipement) {
         equipmentsList.add(nouvelleEquipement);
+
+        nouvelleEquipement.addToDB();
     }
 
     // DOCUMENTATION
@@ -163,5 +165,7 @@ public class CtrlEquipment implements Initializable {
         }
 
         equipmentsList.set(i, equipementModifie);
+
+        equipementModifie.addToDB();
     }
 }

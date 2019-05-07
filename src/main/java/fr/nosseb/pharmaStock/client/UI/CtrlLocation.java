@@ -75,7 +75,6 @@ public class CtrlLocation implements Initializable {
         location.close();
         Stage primaryStage = new Stage();
 
-        // CLEANUP: Use 'FXMLLoader.setLocation()' to set the location used to resolve relative path attribute values.
         URL fxml = getClass().getResource("../../../../../fxml/MainMenu.fxml");
         String css = getClass().getResource("../../../../../css/application.css").toExternalForm();
 
@@ -106,8 +105,6 @@ public class CtrlLocation implements Initializable {
         // OPTIMISATION: Can we close the window later on to reduce the black screen lag ?
         fenetreLieu.close();
 
-        // CLEANUP: Can we get rid of this or will it be activated later on ?
-        //Stage location = (Stage)ajouterEquipement1.getScene().getWindow();
 
         Stage primaryStage = new Stage();
 
@@ -185,9 +182,8 @@ public class CtrlLocation implements Initializable {
     @FXML private void pressSelectLocation() {
         ModLocation select = location.getSelectionModel().getSelectedItem();
         CtrlEquipmentEdit.selectedLocation = select;
-
+        CtrlEquipmentAdd.selectedLocation = select;
         Stage location = (Stage)retourMenuPrincipal1.getScene().getWindow();
-        // OPTIMISATION: Can we close the window later on to reduce the black screen lag ?
         location.close();
     }
 
@@ -201,7 +197,7 @@ public class CtrlLocation implements Initializable {
         // Add element to observableList.
         data.add(nouveauLieu);
         // Add element to Database.
-        nouveauLieu.addTo();
+        nouveauLieu.addToDB();
 
         // Sync table x=with DataBase
 
@@ -227,7 +223,7 @@ public class CtrlLocation implements Initializable {
         // Exchange the element in the observableList.
         data.set(i, lieuModifier);
         // Apply the modification to the Database.
-        lieuModifier.addTo();
+        lieuModifier.addToDB();
 
     }
 
@@ -275,6 +271,6 @@ public class CtrlLocation implements Initializable {
         stage.show();
 
         // TODO: return actual value
-        return null;
+        return selectedLocation;
     }
 }
