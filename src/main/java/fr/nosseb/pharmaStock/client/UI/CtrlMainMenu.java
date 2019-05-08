@@ -1,5 +1,6 @@
 package fr.nosseb.pharmaStock.client.UI;
 
+import com.sun.javafx.application.LauncherImpl;
 import fr.nosseb.pharmaStock.client.Launcher;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 
 
 /**
@@ -25,41 +27,12 @@ public class CtrlMainMenu {
     @FXML private Button Location1;
     @FXML private Button ficheSortie1;
 
-    private Stage stage;
-
     /**
      * Launch window to view equipment.
      */
     @FXML public void pressEquipment() {
-        ClassLoader classLoader = Launcher.class.getClassLoader();
-        Stage currentStage = (Stage) equipment1.getScene().getWindow();
-
-        // Setup new stage
-        URL fxml = classLoader.getResource("fxml/Equipment.fxml");
-        Parent root = null;
-        if (fxml == null) {
-            throw new NullPointerException("'fxml' cannot be null");
-        }
-        try {
-            root = FXMLLoader.load(fxml);
-        } catch (IOException e) {
-            // EXCEPTION: Internal resource not found, hard crash expected.
-            e.printStackTrace();
-        }
-
-        // Check if root was properly assigned.
-        if (root == null) {
-            throw new NullPointerException("'root' cannot be null");
-        }
-        Scene scene = new Scene(root);
-        URL resource = classLoader.getResource("css/application.css");
-        if (resource == null) {
-            throw new NullPointerException("'css' cannot be null");
-        }
-        scene.getStylesheets().add(resource.toExternalForm());
-
-        currentStage.setScene(scene);
-        currentStage.setTitle("Équipement");
+        CtrlEquipment ctrlEquipment = new CtrlEquipment();
+        ctrlEquipment.caller();
     }
 
     /**
@@ -125,38 +98,23 @@ public class CtrlMainMenu {
         primaryStage.show();
     }
 
-    public void caller(Stage primaryStage) {
-        this.stage = primaryStage;
-
-        Parent root = null;
+    public void caller() {
+        Parent parent = null;
         Scene scene;
-
-        // Will allow for cleaner paths when importing resources.
-        URL fxml = getClass().getResource("../../../../../fxml/MainMenu.fxml");
-        String css = getClass().getResource("../../../../../css/application.css").toExternalForm();
-
+        URL fxml = Launcher.class.getClassLoader().getResource("fxml/MainMenu.fxml");
         try {
-            root = FXMLLoader.load(fxml);
-        } catch (java.io.IOException e) {
+            assert fxml != null;
+            parent = FXMLLoader.load(fxml);
+        } catch (IOException e) {
             // EXCEPTION: Internal resource not found, crash expected.
-            System.out.println("Internal resources not found (fxml file)!");
             e.printStackTrace();
         }
-
-        // Check if root has been properly assigned.
-        if (root == null) {
-            // EXCEPTION: failed to assign 'root', crash expected.
-            throw new NullPointerException("'root' cannot be null");
-        }
-
-        // Scene initialization
-        scene = new Scene(root);
-        scene.getStylesheets().add(css);
-
-        // Stage configuration and display
-        this.stage.setScene(scene);
+        assert parent != null;
+        scene = new Scene(parent);
+        scene.getStylesheets().add(Objects.requireNonNull(Launcher.class.getClassLoader().getResource("css/application.css")).toExternalForm());
+        Launcher.commonStage.setScene(scene);
         // TODO: Localisation: Use resource instead of hardcoded String
-        this.stage.setTitle("Menu Principal");
-        this.stage.show();
+        Launcher.commonStage.setTitle("Menu Principal");
+        Launcher.commonStage.show();
     }
 }

@@ -7,31 +7,31 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane prefHeight="550.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.nosseb.pharmaStock.client.UI.CtrlEquipment">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.nosseb.pharmaStock.client.UI.CtrlEquipment">
     <children>
-        <BorderPane prefHeight="500.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <center>
-                <TableView fx:id="equipments" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                <TableView fx:id="equipments" BorderPane.alignment="CENTER">
                     <columns>
-                        <TableColumn fx:id="name" prefWidth="179.0" text="Nom" />
-                        <TableColumn fx:id="locationName" prefWidth="222.0" text="Lieu de stockage" />
-                        <TableColumn fx:id="serialNumber" prefWidth="148.0" text="Numéro de série" />
+                        <TableColumn fx:id="name" text="Nom" />
+                        <TableColumn fx:id="locationName" text="Lieu de stockage" />
+                        <TableColumn fx:id="serialNumber" text="Numéro de série" />
                     </columns>
                 </TableView>
             </center>
             <top>
-                <ButtonBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                <ButtonBar nodeOrientation="RIGHT_TO_LEFT" minHeight="40" BorderPane.alignment="CENTER">
                     <buttons>
                         <Button fx:id="retourMenuPrincipal1" mnemonicParsing="false" onAction="#pressRetourMenu" text="Retour Menu principal" />
                     </buttons>
                 </ButtonBar>
             </top>
             <bottom>
-                <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                <ButtonBar buttonMinWidth="0.0" minHeight="40.0" BorderPane.alignment="CENTER">
                     <buttons>
                         <Button fx:id="editEquipment1" mnemonicParsing="false" onAction="#pressEdit" text="Modifier équipement" />
-                        <Button fx:id="supprimerEquipement1" mnemonicParsing="false" onAction="#pressSupprimer" text="Supprimer équipement" />
-                        <Button fx:id="ajouterEquipement1" mnemonicParsing="false" onAction="#pressAjouter" text="Ajouter équipement" />
+                        <Button fx:id="deleteEquipment1" mnemonicParsing="false" onAction="#pressDelete" text="Supprimer équipement" />
+                        <Button fx:id="addEquipment1" mnemonicParsing="false" onAction="#pressAdd" text="Ajouter équipement" />
                     </buttons>
                 </ButtonBar>
             </bottom>

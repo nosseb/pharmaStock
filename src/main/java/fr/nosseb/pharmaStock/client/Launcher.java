@@ -6,12 +6,7 @@ import fr.nosseb.pharmaStock.DB.DataBase;
 import fr.nosseb.pharmaStock.settings.Settings;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.net.URL;
 
 
 /**
@@ -20,9 +15,7 @@ import java.net.URL;
  * @since 0.1
  */
 public class Launcher extends Application {
-    // Database, used thorough the software.
-    public static DataBase dataBase = new DataBase();
-
+    static public Stage commonStage;
 
     /**
      * Main method, launch JavaFX.
@@ -39,6 +32,7 @@ public class Launcher extends Application {
      */
     @Override
     public void start(Stage primaryStage) {
+        commonStage = primaryStage;
         // ONLINE: Set client to true.
 
         // Load and check settings
@@ -87,7 +81,6 @@ public class Launcher extends Application {
 
         // Call Main Menu
         CtrlMainMenu ctrlMainMenu = new CtrlMainMenu();
-        ctrlMainMenu.caller(primaryStage);
-
+        ctrlMainMenu.caller();
     }
 }

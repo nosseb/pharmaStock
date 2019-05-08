@@ -54,7 +54,7 @@ public class CtrlEquipmentEdit implements Initializable {
         equipementModifier = new ModEquipment(1, name.getText(), description.getText(), serialNumber.getText(), selectedLocation);
 
         // Transmit old and new equipment to the previous controller.
-        CtrlEquipment.modifierEquipement(oldEquipment, equipementModifier);
+        CtrlEquipment.editEquipment(oldEquipment, equipementModifier);
 
         // Reopen previous controller.
         Stage fenetrePrincipale = (Stage)modifier1.getScene().getWindow();

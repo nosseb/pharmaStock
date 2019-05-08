@@ -1,5 +1,6 @@
 package fr.nosseb.pharmaStock.client.UI;
 
+import fr.nosseb.pharmaStock.client.Launcher;
 import fr.nosseb.pharmaStock.models.ModEquipment;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,6 +18,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 /**
@@ -30,8 +32,8 @@ import java.util.ResourceBundle;
 public class CtrlEquipment implements Initializable {
     // Links to JFX elements
     @FXML private Button retourMenuPrincipal1;
-    @FXML private Button ajouterEquipement1;
-    @FXML private Button supprimerEquipement1;
+    @FXML private Button addEquipment1;
+    @FXML private Button deleteEquipment1;
     @FXML private Button editEquipment1;
     @FXML private TableView<ModEquipment> equipments;
     @FXML private TableColumn<ModEquipment, String> name;
@@ -89,7 +91,7 @@ public class CtrlEquipment implements Initializable {
     /**
      * Method to add equipment
      */
-    @FXML private void pressAjouter() throws IOException {
+    @FXML private void pressAdd() throws IOException {
         // Define new stage and scene
         Stage newStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../../../fxml/EquipmentAdd.fxml"));
@@ -107,7 +109,7 @@ public class CtrlEquipment implements Initializable {
     }
 
     // DOCUMENTATION
-    @FXML private void pressSupprimer() throws IOException {
+    @FXML private void pressDelete() throws IOException {
         ModEquipment select = equipments.getSelectionModel().getSelectedItem();
         if (select != null) {
             select.removefromDB();
@@ -148,14 +150,14 @@ public class CtrlEquipment implements Initializable {
 
 
     // DOCUMENTATION
-    static public void ajouterEquipement(ModEquipment nouvelleEquipement) {
+    static public void addEquipment(ModEquipment nouvelleEquipement) {
         equipmentsList.add(nouvelleEquipement);
 
         nouvelleEquipement.addToDB();
     }
 
     // DOCUMENTATION
-    static public void modifierEquipement(ModEquipment ancienEquipement, ModEquipment equipementModifie) {
+    static public void editEquipment(ModEquipment ancienEquipement, ModEquipment equipementModifie) {
 
         int i = 0;
         for (ModEquipment e : equipmentsList) {
@@ -169,5 +171,26 @@ public class CtrlEquipment implements Initializable {
         equipmentsList.set(i, equipementModifie);
 
         equipementModifie.addToDB();
+    }
+
+    void caller() {
+        Parent parent = null;
+        Scene scene;
+        URL fxml = Launcher.class.getClassLoader().getResource("fxml/Equipment.fxml");
+        try {
+            assert fxml != null;
+            parent = FXMLLoader.load(fxml);
+        } catch ( IOException e) {
+            // EXCEPTION: Internal resource not found, crash expected.
+            e.printStackTrace();
+        }
+        assert parent != null;
+        scene = new Scene(parent);
+        scene.getStylesheets().add(Objects.requireNonNull(Launcher.class.getClassLoader().getResource("css/application.css")).toExternalForm());
+        Launcher.commonStage.setScene(scene);
+        // TODO: Localisation: Use resource instead of hardcoded String
+        Launcher.commonStage.setScene(scene);
+        Launcher.commonStage.setTitle("Équipement");
+        Launcher.commonStage.show();
     }
 }
