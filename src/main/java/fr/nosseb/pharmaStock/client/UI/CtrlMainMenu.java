@@ -2,12 +2,14 @@ package fr.nosseb.pharmaStock.client.UI;
 
 import com.sun.javafx.application.LauncherImpl;
 import fr.nosseb.pharmaStock.client.Launcher;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -111,6 +113,7 @@ public class CtrlMainMenu {
         }
         assert parent != null;
         scene = new Scene(parent);
+        System.out.println(Launcher.class.getClassLoader().getResource("css/application.css"));
         scene.getStylesheets().add(Objects.requireNonNull(Launcher.class.getClassLoader().getResource("css/application.css")).toExternalForm());
         Launcher.commonStage.setScene(scene);
         // TODO: Localisation: Use resource instead of hardcoded String

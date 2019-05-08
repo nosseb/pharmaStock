@@ -7,34 +7,37 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.nosseb.pharmaStock.client.UI.CtrlEquipment">
-    <children>
-        <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <center>
-                <TableView fx:id="equipments" BorderPane.alignment="CENTER">
-                    <columns>
-                        <TableColumn fx:id="name" text="Nom" />
-                        <TableColumn fx:id="locationName" text="Lieu de stockage" />
-                        <TableColumn fx:id="serialNumber" text="Numéro de série" />
-                    </columns>
-                </TableView>
-            </center>
-            <top>
-                <ButtonBar nodeOrientation="RIGHT_TO_LEFT" minHeight="40" BorderPane.alignment="CENTER">
-                    <buttons>
-                        <Button fx:id="retourMenuPrincipal1" mnemonicParsing="false" onAction="#pressRetourMenu" text="Retour Menu principal" />
-                    </buttons>
-                </ButtonBar>
-            </top>
-            <bottom>
-                <ButtonBar buttonMinWidth="0.0" minHeight="40.0" BorderPane.alignment="CENTER">
-                    <buttons>
-                        <Button fx:id="editEquipment1" mnemonicParsing="false" onAction="#pressEdit" text="Modifier équipement" />
-                        <Button fx:id="deleteEquipment1" mnemonicParsing="false" onAction="#pressDelete" text="Supprimer équipement" />
-                        <Button fx:id="addEquipment1" mnemonicParsing="false" onAction="#pressAdd" text="Ajouter équipement" />
-                    </buttons>
-                </ButtonBar>
-            </bottom>
-        </BorderPane>
-    </children>
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="fr.nosseb.pharmaStock.client.UI.CtrlEquipment">
+    <BorderPane>
+        <center>
+            <TableView fx:id="equipments" BorderPane.alignment="CENTER">
+                <columns>
+                    <TableColumn fx:id="name" text="Nom"/>
+                    <TableColumn fx:id="locationName" text="Lieu de stockage"/>
+                    <TableColumn fx:id="serialNumber" text="Numéro de série"/>
+                </columns>
+            </TableView>
+        </center>
+        <top>
+            <ButtonBar nodeOrientation="RIGHT_TO_LEFT" minHeight="40">
+                <buttons>
+                    <Button fx:id="retourMenuPrincipal1" mnemonicParsing="false" onAction="#pressRetourMenu"
+                            text="Retour Menu principal"/>
+                </buttons>
+            </ButtonBar>
+        </top>
+        <bottom>
+            <ButtonBar minHeight="40">
+                <buttons>
+                    <Button fx:id="editEquipment1" mnemonicParsing="false" onAction="#pressEdit"
+                            text="Modifier équipement"/>
+                    <Button fx:id="deleteEquipment1" mnemonicParsing="false" onAction="#pressDelete"
+                            text="Supprimer équipement"/>
+                    <Button fx:id="addEquipment1" mnemonicParsing="false" onAction="#pressAdd"
+                            text="Ajouter équipement"/>
+                </buttons>
+            </ButtonBar>
+        </bottom>
+    </BorderPane>
 </AnchorPane>
