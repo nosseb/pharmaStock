@@ -64,27 +64,11 @@ public class CtrlEquipment implements Initializable {
     }
 
 
-    // DOCUMENTATION: Document method inner.
-    // DOCUMENTATION: explain exeption.
-    // FIXME: Can we better manage the exception ?
     /**
      * Method to return to the main menu scene
-     * @throws IOException
      */
-    @FXML private void pressRetourMenu() throws IOException {
-
-        Stage location = (Stage)retourMenuPrincipal1.getScene().getWindow();
-        location.close();
-
-        Stage primaryStage = new Stage();
-
-        Parent root = FXMLLoader.load(getClass().getResource("../../../../../fxml/MainMenu.fxml"));
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("../../../../../css/application.css").toExternalForm());
-
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("Menu Principal");
-        primaryStage.show();
+    @FXML private void pressRetourMenu() {
+        CtrlMainMenu.caller();
     }
 
 
