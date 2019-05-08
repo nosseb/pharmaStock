@@ -22,18 +22,20 @@ public class Launcher extends Application {
      * @param args Launch arguments for the software.
      */
     public static void main(String[] args) {
+        // Method inherited from the "Application" abstract class.
         launch(args);
     }
 
 
     /**
      * Main method, called by JavaFX.
-     * @param primaryStage
+     * @param primaryStage Stage provided by JavaFX.
      */
     @Override
     public void start(Stage primaryStage) {
         commonStage = primaryStage;
-        // ONLINE: Set client to true.
+
+        // TODO: ONLINE: Set client to true.
 
         // Load and check settings
         boolean validSettings = Settings.loadSettings(Launcher.class, false);
@@ -44,7 +46,6 @@ public class Launcher extends Application {
                 // DB has probably never been initialized.
                 // Requesting user for correct path to DB.
 
-                // TODO: Localisation: Use resource instead of hardcoded strings.
                 String path = CtrlTextInputBox.display("Chemin d'accès", "Chemin d'accès vers les fichiers du logiciel :");
 
                 // Specials directories alias.
@@ -59,24 +60,21 @@ public class Launcher extends Application {
                         break;
                 }
 
-                // FIXME: Check if valid URL.
+                // TODO: Check if valid URL.
 
                 // Save path
                 Settings.setDb_path(path);
 
-                // FIXME: check for .lck files
 
                 // Init the Database
                 DataBase.build(Settings.getDb_path());
             }
 
-            // ONLINE: Check online configuration and request user input accordingly.
+            // TODO: ONLINE: Check online configuration and request user input accordingly.
 
         } else {
             // Configuration is correct, attempt to connect.
-            // FIXME: check for .lck files
             DataBase.connect(Settings.getDb_path());
-            // TODO : Close DB ?
         }
 
         // Call Main Menu

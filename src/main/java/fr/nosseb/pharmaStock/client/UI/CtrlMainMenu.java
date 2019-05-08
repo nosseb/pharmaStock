@@ -17,7 +17,7 @@ import java.util.Objects;
 
 
 /**
- * Contrôleur de la page d'acceuil
+ * Controller for the home page.
  *
  * @author Loan Veyer
  * @date 26/03/2019
@@ -30,7 +30,7 @@ public class CtrlMainMenu {
     @FXML private Button ficheSortie1;
 
     /**
-     * Launch window to view equipment.
+     * Launch window to view equipment upon user request.
      */
     @FXML public void pressEquipment() {
         CtrlEquipment ctrlEquipment = new CtrlEquipment();
@@ -38,7 +38,7 @@ public class CtrlMainMenu {
     }
 
     /**
-     * Launch window to view locations.
+     * Launch window to view locations upon user request.
      */
     @FXML public void pressLocation(){
         Stage fenetrePrincipale = (Stage) Location1.getScene().getWindow();
@@ -71,9 +71,8 @@ public class CtrlMainMenu {
         CtrlLocation.selectionner = false;
     }
 
-    // DOCUMENTATION: Change non adapted word: "exit".
     /**
-     * Launch window to fill "exit" forms
+     * Launch window to fill withdraw forms
      */
     @FXML public void pressFicheSortie()  {
         Stage fenetrePrincipale = (Stage)ficheSortie1.getScene().getWindow();
