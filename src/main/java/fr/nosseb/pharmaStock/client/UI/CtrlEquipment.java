@@ -1,6 +1,7 @@
 package fr.nosseb.pharmaStock.client.UI;
 
 import fr.nosseb.pharmaStock.client.Launcher;
+import fr.nosseb.pharmaStock.client.utils;
 import fr.nosseb.pharmaStock.models.ModEquipment;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -94,18 +95,9 @@ public class CtrlEquipment implements Initializable {
     @FXML private void pressAdd() throws IOException {
         // Define new stage and scene
         Stage newStage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../../../fxml/EquipmentAdd.fxml"));
-        // FIXME: Better manage exception.
-        Scene scene = new Scene(loader.load());
-        scene.getStylesheets().add(getClass().getResource("../../../../../css/application.css").toExternalForm());
-        newStage.setScene(scene);
-
-        // Configure stage
-        newStage.initModality(Modality.WINDOW_MODAL);
         newStage.initOwner(editEquipment1.getScene().getWindow());
-        newStage.setScene(scene);
-        newStage.setTitle("Ajouter ModEquipment");
-        newStage.show();
+
+        CtrlEquipmentAdd.caller(newStage);
     }
 
     // DOCUMENTATION
@@ -173,23 +165,9 @@ public class CtrlEquipment implements Initializable {
         equipementModifie.addToDB();
     }
 
+    // DOCUMENTATION
     void caller() {
-        Parent parent = null;
-        Scene scene;
-        URL fxml = Launcher.class.getClassLoader().getResource("fxml/Equipment.fxml");
-        try {
-            assert fxml != null;
-            parent = FXMLLoader.load(fxml);
-        } catch ( IOException e) {
-            // EXCEPTION: Internal resource not found, crash expected.
-            e.printStackTrace();
-        }
-        assert parent != null;
-        scene = new Scene(parent);
-        scene.getStylesheets().add(Objects.requireNonNull(Launcher.class.getClassLoader().getResource("css/application.css")).toExternalForm());
-        Launcher.commonStage.setScene(scene);
-        // TODO: Localisation: Use resource instead of hardcoded String
-        Launcher.commonStage.setScene(scene);
+        Launcher.commonStage.setScene(utils.sceneGenerator("fxml/Equipment.fxml"));
         Launcher.commonStage.setTitle("Équipement");
         Launcher.commonStage.show();
     }

@@ -77,8 +77,7 @@ public class Launcher extends Application {
             DataBase.connect(Settings.getDb_path());
         }
 
-        // Call Main Menu
-        CtrlMainMenu ctrlMainMenu = new CtrlMainMenu();
-        ctrlMainMenu.caller();
+        // Call Main Menu in a new object
+        CtrlMainMenu.caller();
     }
 }

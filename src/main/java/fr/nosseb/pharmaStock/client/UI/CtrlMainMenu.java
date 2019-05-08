@@ -2,6 +2,7 @@ package fr.nosseb.pharmaStock.client.UI;
 
 import com.sun.javafx.application.LauncherImpl;
 import fr.nosseb.pharmaStock.client.Launcher;
+import fr.nosseb.pharmaStock.client.utils;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -99,23 +100,9 @@ public class CtrlMainMenu {
         primaryStage.show();
     }
 
-    public void caller() {
-        Parent parent = null;
-        Scene scene;
-        URL fxml = Launcher.class.getClassLoader().getResource("fxml/MainMenu.fxml");
-        try {
-            assert fxml != null;
-            parent = FXMLLoader.load(fxml);
-        } catch (IOException e) {
-            // EXCEPTION: Internal resource not found, crash expected.
-            e.printStackTrace();
-        }
-        assert parent != null;
-        scene = new Scene(parent);
-        System.out.println(Launcher.class.getClassLoader().getResource("css/application.css"));
-        scene.getStylesheets().add(Objects.requireNonNull(Launcher.class.getClassLoader().getResource("css/application.css")).toExternalForm());
-        Launcher.commonStage.setScene(scene);
-        // TODO: Localisation: Use resource instead of hardcoded String
+    // DOCUMENTATION
+    public static void caller() {
+        Launcher.commonStage.setScene(utils.sceneGenerator("fxml/MainMenu.fxml"));
         Launcher.commonStage.setTitle("Menu Principal");
         Launcher.commonStage.show();
     }

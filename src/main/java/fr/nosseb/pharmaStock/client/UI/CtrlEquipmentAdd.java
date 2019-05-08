@@ -1,5 +1,6 @@
 package fr.nosseb.pharmaStock.client.UI;
 
+import fr.nosseb.pharmaStock.client.utils;
 import fr.nosseb.pharmaStock.models.ModEquipment;
 import fr.nosseb.pharmaStock.models.ModLocation;
 import javafx.fxml.FXML;
@@ -7,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -61,5 +63,14 @@ public class CtrlEquipmentAdd implements Initializable {
      */
     @FXML private void pressSlctLocation1() {
         selectedLocation = CtrlLocation.selector();
+    }
+
+    // DOCUMENTATION
+    static void caller(Stage stage) {
+        // Configure stage
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.setScene(utils.sceneGenerator("fxml/EquipmentAdd.fxml"));
+        stage.setTitle("Ajouter ModEquipment");
+        stage.show();
     }
 }
