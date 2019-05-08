@@ -104,23 +104,23 @@ public class CtrlEquipment implements Initializable {
 
         // Only if an equipment is selected.
         if (selectedEquipment != null) {
-            // Define new stage and scene
-            Stage newStage = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../../../fxml/EquipmentEdit.fxml"));
-            Scene scene = new Scene(loader.load());
-            scene.getStylesheets().add(getClass().getResource("../../../../../css/application.css").toExternalForm());
-            newStage.setScene(scene);
+//            // Define new stage and scene
+//            Stage newStage = new Stage();
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../../../fxml/EquipmentEdit.fxml"));
+//            Scene scene = new Scene(loader.load());
+//            scene.getStylesheets().add(getClass().getResource("../../../../../css/application.css").toExternalForm());
+//
+//            // Send values
+//            CtrlEquipmentEdit controller = loader.<CtrlEquipmentEdit>getController();
+//            controller.setOldEquipment(selectedEquipment);
+//
+//            newStage.initOwner(editEquipment1.getScene().getWindow());
+//
+//            CtrlEquipmentEdit.caller(newStage);
 
-            // Send values
-            CtrlEquipmentEdit controller = loader.<CtrlEquipmentEdit>getController();
-            controller.setOldEquipment(selectedEquipment);
-
-            // Configure stage
-            newStage.initModality(Modality.WINDOW_MODAL);
-            newStage.initOwner(editEquipment1.getScene().getWindow());
-            newStage.setScene(scene);
-            newStage.setTitle("Modifier ModEquipment");
-            newStage.show();
+            CtrlEquipmentEdit ctrlEquipmentEdit = new CtrlEquipmentEdit();
+            ctrlEquipmentEdit.caller(selectedEquipment);
+//            ctrlEquipmentEdit.setOldEquipment(selectedEquipment);
         }
     }
 

@@ -1,5 +1,6 @@
 package fr.nosseb.pharmaStock.client.UI;
 
+import fr.nosseb.pharmaStock.client.utils;
 import fr.nosseb.pharmaStock.models.ModEquipment;
 import fr.nosseb.pharmaStock.models.ModLocation;
 
@@ -11,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -100,7 +102,10 @@ public class CtrlEquipmentEdit implements Initializable {
         this.oldEquipment = equipment;
 
         // Set text in textFields
-        this.name.setText(oldEquipment.getName());
+        // CLEANUP: debug
+        String temp = oldEquipment.getName();
+        System.out.println(temp);
+        this.name.setText(temp);
         this.description.setText(oldEquipment.getDescription());
         this.serialNumber.setText(oldEquipment.getSerialNumber());
 
@@ -109,5 +114,19 @@ public class CtrlEquipmentEdit implements Initializable {
 
         // Get Location object
         selectedLocation = oldEquipment.getLieuObject();
+    }
+
+    // DOCUMENTATION
+    void caller(ModEquipment oldEquipment) {
+
+
+        Stage stage = new Stage();
+
+        // Configure stage
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.setScene(utils.sceneGenerator("fxml/EquipmentEdit.fxml"));
+        stage.setTitle("Modifier ModEquipment");
+        setOldEquipment(oldEquipment);
+        stage.show();
     }
 }

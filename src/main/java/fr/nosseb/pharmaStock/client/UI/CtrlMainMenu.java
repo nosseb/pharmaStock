@@ -1,6 +1,6 @@
 package fr.nosseb.pharmaStock.client.UI;
 
-import com.sun.javafx.application.LauncherImpl;
+
 import fr.nosseb.pharmaStock.client.Launcher;
 import fr.nosseb.pharmaStock.client.utils;
 
@@ -42,9 +42,9 @@ public class CtrlMainMenu {
      * Launch window to view locations upon user request.
      */
     @FXML public void pressLocation(){
-        Stage fenetrePrincipale = (Stage) Location1.getScene().getWindow();
+        Stage mainStage = (Stage) Location1.getScene().getWindow();
         // OPTIMISATION: Can we close the window later on to reduce the black screen lag ?
-        fenetrePrincipale.close();
+        mainStage.close();
         Stage primaryStage = new Stage();
 
         URL fxml = getClass().getResource("../../../../../fxml/Location.fxml");
