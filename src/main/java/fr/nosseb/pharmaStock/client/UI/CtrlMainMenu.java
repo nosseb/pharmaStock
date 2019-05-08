@@ -42,34 +42,8 @@ public class CtrlMainMenu {
      * Launch window to view locations upon user request.
      */
     @FXML public void pressLocation(){
-        Stage mainStage = (Stage) Location1.getScene().getWindow();
-        // OPTIMISATION: Can we close the window later on to reduce the black screen lag ?
-        mainStage.close();
-        Stage primaryStage = new Stage();
-
-        URL fxml = getClass().getResource("../../../../../fxml/Location.fxml");
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(fxml);
-        } catch (IOException e) {
-            // EXCEPTION: Internal resource not found, hard crash expected.
-            e.printStackTrace();
-        }
-
-        // Check if root was properly assigned.
-        if (root == null) {
-            throw new NullPointerException("'root' cannot be null");
-        }
-
-        // FIXME : can we avoid the "Argument 'root' might be null" message ?
-        Scene scene = new Scene(root);
-
-        scene.getStylesheets().add(getClass().getResource("../../../../../application.css").toExternalForm());
-
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("ModLocation");
-        primaryStage.show();
-        CtrlLocation.selectionner = false;
+        CtrlLocation ctrlLocation = new CtrlLocation();
+        ctrlLocation.caller();
     }
 
     /**

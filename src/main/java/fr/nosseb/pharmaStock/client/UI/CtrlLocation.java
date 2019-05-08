@@ -2,6 +2,8 @@ package fr.nosseb.pharmaStock.client.UI;
 
 //import fr.nosseb.pharmaStock.models.ModLocation;
 
+import fr.nosseb.pharmaStock.client.Launcher;
+import fr.nosseb.pharmaStock.client.utils;
 import fr.nosseb.pharmaStock.models.ModLocation;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -70,31 +72,7 @@ public class CtrlLocation implements Initializable {
      * Fallback onto the main menu.
      */
     @FXML private void pressRetourMenu() {
-        Stage location = (Stage)retourMenuPrincipal1.getScene().getWindow();
-        // OPTIMISATION: Can we close the window later on to reduce the black screen lag ?
-        location.close();
-        Stage primaryStage = new Stage();
-
-        URL fxml = getClass().getResource("../../../../../fxml/MainMenu.fxml");
-        String css = getClass().getResource("../../../../../css/application.css").toExternalForm();
-
-        Parent root = null;
-
-        try {
-            root = FXMLLoader.load(fxml);
-        } catch (IOException e) {
-            // EXCEPTION: Internal resource not found, hard crash expected.
-            e.printStackTrace();
-        }
-
-        // FIXME : can we avoid the "Argument 'root' might be null" message ?
-        Scene scene = new Scene(root);
-
-        scene.getStylesheets().add(css);
-
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("Menu Principal");
-        primaryStage.show();
+        CtrlMainMenu.caller();
     }
 
     /**
@@ -272,5 +250,17 @@ public class CtrlLocation implements Initializable {
 
         // TODO: return actual value
         return selectedLocation;
+    }
+
+    // DOCUMENTATION
+    void caller(Stage stage) {
+        stage.setScene(utils.sceneGenerator("fxml/Location.fxml"));
+        stage.setTitle("Lieux");
+        stage.show();
+    }
+
+    // DOCUMENTATION
+    void caller() {
+        caller(Launcher.commonStage);
     }
 }
