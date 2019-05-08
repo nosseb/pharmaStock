@@ -22,7 +22,7 @@
                     <buttons>
                         <Button fx:id="modifierLieu1" mnemonicParsing="false" onAction="#pressModifier" text="Modifier location" />
                         <Button fx:id="supprimerLieu1" mnemonicParsing="false" onAction="#pressSupprimer" text="Supprimer location" />
-                        <Button fx:id="ajouterLieu1" mnemonicParsing="false" onAction="#pressAjouter" text="Ajouter location" />
+                        <Button fx:id="ajouterLieu1" mnemonicParsing="false" onAction="#pressAdd" text="Ajouter location" />
                   <Button fx:id="select1" mnemonicParsing="false" onAction="#pressSelectLocation" text="Sélectionner" />
                     </buttons>
                 </ButtonBar>

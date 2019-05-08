@@ -78,7 +78,7 @@ public class CtrlLocation implements Initializable {
     /**
      * Launch window to add a new location.
      */
-    @FXML private void pressAjouter() {
+    @FXML private void pressAdd() {
         Stage fenetreLieu = (Stage)ajouterLieu1.getScene().getWindow();
         // OPTIMISATION: Can we close the window later on to reduce the black screen lag ?
         fenetreLieu.close();
