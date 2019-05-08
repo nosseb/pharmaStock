@@ -1,6 +1,8 @@
 package fr.nosseb.pharmaStock.client.UI;
 
+import fr.nosseb.pharmaStock.client.utils;
 import fr.nosseb.pharmaStock.models.ModLocation;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -8,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -62,5 +65,13 @@ public class CtrlLocationAdd implements Initializable {
             primaryStage.setTitle("ModLocation");
             primaryStage.show();
         }
+    }
+
+    // DOCUMENTATION
+    void caller(Stage stage) {
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.setScene(utils.sceneGenerator("fxml/LocationAdd.fxml").scene);
+        stage.setTitle("Ajouter lieu");
+        stage.show();
     }
 }

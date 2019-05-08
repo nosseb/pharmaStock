@@ -3,23 +3,18 @@ package fr.nosseb.pharmaStock.client.UI;
 import fr.nosseb.pharmaStock.client.Launcher;
 import fr.nosseb.pharmaStock.client.utils;
 import fr.nosseb.pharmaStock.models.ModEquipment;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-//import fr.nosseb.pharmaStock.models.ModEquipment;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 /**
@@ -98,7 +93,7 @@ public class CtrlEquipment implements Initializable {
      * Call window to modify an equipment
      * @throws IOException
      */
-    @FXML private void pressEdit() throws IOException {
+    @FXML private void pressEdit() {
         // Get the equipment selected by the user.
         ModEquipment selectedEquipment = equipments.getSelectionModel().getSelectedItem();
 
@@ -150,9 +145,12 @@ public class CtrlEquipment implements Initializable {
     }
 
     // DOCUMENTATION
-    void caller() {
-        Launcher.commonStage.setScene(utils.sceneGenerator("fxml/Equipment.fxml"));
+    static CtrlEquipment caller() {
+        utils.Holder holder = utils.sceneGenerator("fxml/Equipment.fxml");
+        Launcher.commonStage.setScene(holder.scene);
         Launcher.commonStage.setTitle("Équipement");
         Launcher.commonStage.show();
+
+        return holder.fxmlLoader.getController();
     }
 }

@@ -43,19 +43,17 @@ public class CtrlEquipmentEdit implements Initializable {
      * @param rb
      */
     @Override public void initialize(URL url, ResourceBundle rb) {
-        // Nothing to do
-        // Initialisation is performed when we get the 'oldEquipment' value.
     }
 
     /**
      * Send modifications to previous controller
      */
     @FXML private void pressModifier() {
-        // Generate equipment
+        // Generate oldEquipment
         ModEquipment equipementModifier ;
         equipementModifier = new ModEquipment(1, name.getText(), description.getText(), serialNumber.getText(), selectedLocation);
 
-        // Transmit old and new equipment to the previous controller.
+        // Transmit old and new oldEquipment to the previous controller.
         CtrlEquipment.editEquipment(oldEquipment, equipementModifier);
 
         // Reopen previous controller.
@@ -68,6 +66,7 @@ public class CtrlEquipmentEdit implements Initializable {
      * Open te window to select a location
      */
     @FXML private void pressSelectLieu() {
+
         // Init
         Stage primaryStage = new Stage();
         CtrlLocation.selectionner = true;
@@ -95,38 +94,37 @@ public class CtrlEquipmentEdit implements Initializable {
 
     /**
      * Receive 'oldEquipment' and set the label accordingly.
-     * @param equipment the selected equipment
+     * @param oldEquipment the selected oldEquipment
      */
-    void setOldEquipment(ModEquipment equipment) {
-        // set value
-        this.oldEquipment = equipment;
+    void setOldEquipment(ModEquipment oldEquipment) {
+        this.oldEquipment = oldEquipment;
 
         // Set text in textFields
-        // CLEANUP: debug
-        String temp = oldEquipment.getName();
-        System.out.println(temp);
-        this.name.setText(temp);
-        this.description.setText(oldEquipment.getDescription());
-        this.serialNumber.setText(oldEquipment.getSerialNumber());
+        this.name.setText(this.oldEquipment.getName());
+        this.description.setText(this.oldEquipment.getDescription());
+        this.serialNumber.setText(this.oldEquipment.getSerialNumber());
 
         // Set label text
-        this.locationName.setText(oldEquipment.getLocationName());
+        this.locationName.setText(this.oldEquipment.getLocationName());
 
         // Get Location object
-        selectedLocation = oldEquipment.getLieuObject();
+        selectedLocation = this.oldEquipment.getLieuObject();
     }
 
     // DOCUMENTATION
-    void caller(ModEquipment oldEquipment) {
-
-
+    CtrlEquipmentEdit caller(ModEquipment oldEquipment) {
         Stage stage = new Stage();
 
         // Configure stage
         stage.initModality(Modality.WINDOW_MODAL);
-        stage.setScene(utils.sceneGenerator("fxml/EquipmentEdit.fxml"));
+        utils.Holder holder = utils.sceneGenerator("fxml/EquipmentEdit.fxml");
+        stage.setScene(holder.scene);
         stage.setTitle("Modifier ModEquipment");
-        setOldEquipment(oldEquipment);
         stage.show();
+
+        CtrlEquipmentEdit ctrlEquipmentEdit = holder.fxmlLoader.<CtrlEquipmentEdit>getController();
+        ctrlEquipmentEdit.setOldEquipment(oldEquipment);
+
+        return ctrlEquipmentEdit;
     }
 }

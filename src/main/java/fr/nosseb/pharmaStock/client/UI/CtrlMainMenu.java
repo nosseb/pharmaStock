@@ -34,22 +34,20 @@ public class CtrlMainMenu {
      * Launch window to view equipment upon user request.
      */
     @FXML public void pressEquipment() {
-        CtrlEquipment ctrlEquipment = new CtrlEquipment();
-        ctrlEquipment.caller();
+        CtrlEquipment ctrlEquipment = CtrlEquipment.caller();
     }
 
     /**
      * Launch window to view locations upon user request.
      */
     @FXML public void pressLocation(){
-        CtrlLocation ctrlLocation = new CtrlLocation();
-        ctrlLocation.caller();
+        CtrlLocation ctrlLocation = CtrlLocation.caller();
     }
 
     /**
      * Launch window to fill withdraw forms
      */
-    @FXML public void pressFicheSortie()  {
+    /*@FXML public void pressFicheSortie()  {
         Stage fenetrePrincipale = (Stage)ficheSortie1.getScene().getWindow();
         // OPTIMISATION: Can we close the window later on to reduce the black screen lag ?
         fenetrePrincipale.close();
@@ -72,11 +70,12 @@ public class CtrlMainMenu {
         primaryStage.setScene(scene);
         primaryStage.setTitle("Fiche de sortie");
         primaryStage.show();
-    }
+    }*/
+
 
     // DOCUMENTATION
     public static void caller() {
-        Launcher.commonStage.setScene(utils.sceneGenerator("fxml/MainMenu.fxml"));
+        Launcher.commonStage.setScene(utils.sceneGenerator("fxml/MainMenu.fxml").scene);
         Launcher.commonStage.setTitle("Menu Principal");
         Launcher.commonStage.show();
     }

@@ -17,22 +17,26 @@ public class utils {
      * Generate a scene (load file and handle errors.
      * @param fxmlPath the path to the fxml file describing the scene.
      */
-    public static Scene sceneGenerator(String fxmlPath) {
-        Scene scene;
-
+    public static Holder sceneGenerator(String fxmlPath) {
+        Holder holder = new Holder();
         Parent parent = null;
         URL fxml = Launcher.class.getClassLoader().getResource(fxmlPath);
+        holder.fxmlLoader = new FXMLLoader(fxml);
         try {
-            assert fxml != null;
-            parent = FXMLLoader.load(fxml);
+            parent = holder.fxmlLoader.load();
         } catch (IOException e) {
             // EXCEPTION: Internal resource not found, crash expected.
             e.printStackTrace();
         }
         assert parent != null;
-        scene = new Scene(parent);
-        scene.getStylesheets().add(Objects.requireNonNull(Launcher.class.getClassLoader().getResource("css/application.css")).toExternalForm());
+        holder.scene = new Scene(parent);
+        holder.scene.getStylesheets().add(Objects.requireNonNull(Launcher.class.getClassLoader().getResource("css/application.css")).toExternalForm());
 
-        return scene;
+        return holder;
+    }
+
+    public static class Holder {
+        public Scene scene;
+        public FXMLLoader fxmlLoader;
     }
 }

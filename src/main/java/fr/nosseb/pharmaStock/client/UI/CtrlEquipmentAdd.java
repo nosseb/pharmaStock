@@ -69,7 +69,7 @@ public class CtrlEquipmentAdd implements Initializable {
     static void caller(Stage stage) {
         // Configure stage
         stage.initModality(Modality.WINDOW_MODAL);
-        stage.setScene(utils.sceneGenerator("fxml/EquipmentAdd.fxml"));
+        stage.setScene(utils.sceneGenerator("fxml/EquipmentAdd.fxml").scene);
         stage.setTitle("Ajouter ModEquipment");
         stage.show();
     }

@@ -79,35 +79,11 @@ public class CtrlLocation implements Initializable {
      * Launch window to add a new location.
      */
     @FXML private void pressAdd() {
-        Stage fenetreLieu = (Stage)ajouterLieu1.getScene().getWindow();
-        // OPTIMISATION: Can we close the window later on to reduce the black screen lag ?
-        fenetreLieu.close();
+        Stage newStage = new Stage();
+        newStage.initOwner(ajouterLieu1.getScene().getWindow());
 
-
-        Stage primaryStage = new Stage();
-
-        URL fxml = getClass().getResource("../../../../../fxml/LocationAdd.fxml");
-        String css = getClass().getResource("../../../../../css/application.css").toExternalForm();
-
-        Parent root = null;
-
-        try {
-            root = FXMLLoader.load(fxml);
-        } catch (IOException e) {
-            // EXCEPTION: Internal resource not found, hard crash expected.
-            e.printStackTrace();
-        }
-
-        // FIXME : can we avoid the "Argument 'root' might be null" message ?
-        Scene scene = new Scene(root);
-
-        scene.getStylesheets().add(css);
-
-        primaryStage.initModality(Modality.WINDOW_MODAL);
-        primaryStage.initOwner(modifierLieu1.getScene().getWindow());
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("Ajouter ModLocation");
-        primaryStage.show();
+        CtrlLocationAdd ctrlLocationAdd = new CtrlLocationAdd();
+        ctrlLocationAdd.caller(newStage);
     }
 
     /**
@@ -253,14 +229,16 @@ public class CtrlLocation implements Initializable {
     }
 
     // DOCUMENTATION
-    void caller(Stage stage) {
-        stage.setScene(utils.sceneGenerator("fxml/Location.fxml"));
+    static CtrlLocation caller(Stage stage) {
+        utils.Holder holder = utils.sceneGenerator("fxml/Location.fxml");
+        stage.setScene(holder.scene);
         stage.setTitle("Lieux");
         stage.show();
+        return holder.fxmlLoader.getController();
     }
 
     // DOCUMENTATION
-    void caller() {
-        caller(Launcher.commonStage);
+    static CtrlLocation caller() {
+        return caller(Launcher.commonStage);
     }
 }
